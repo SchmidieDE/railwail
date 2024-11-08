@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import Note from "../components/Note"
 import "../styles/Home.css"
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../components/ui/card"
 
 function Home() {
     const [notes, setNotes] = useState([]);
@@ -9,7 +10,7 @@ function Home() {
     const [title, setTitle] = useState("");
 
     useEffect(() => {
-        getNotes();
+        //getNotes();
     }, []);
 
     const getNotes = () => {
@@ -55,29 +56,16 @@ function Home() {
                 ))}
             </div>
             <h2>Create a Note</h2>
-            <form onSubmit={createNote}>
-                <label htmlFor="title">Title:</label>
-                <br />
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    required
-                    onChange={(e) => setTitle(e.target.value)}
-                    value={title}
-                />
-                <label htmlFor="content">Content:</label>
-                <br />
-                <textarea
-                    id="content"
-                    name="content"
-                    required
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
-                ></textarea>
-                <br />
-                <input type="submit" value="Submit"></input>
-            </form>
+            <Card>
+                <CardHeader>
+                    <CardTitle>Create a Note</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <CardDescription>
+                        Create a new note with a title and content.
+                    </CardDescription>
+                </CardContent>
+            </Card>
         </div>
     );
 }

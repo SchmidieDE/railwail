@@ -1,10 +1,15 @@
 import react from "react"
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate, createBrowserRouter } from "react-router-dom"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from "./pages/Home"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
+import Dashboard from "./pages/Dashboard"
+import ProtectedLayout from "./components/layout/ProtectedLayout"
+import UnProtectedLayout from "./components/layout/UnprotectedLayout"
+import { RouterProvider } from "react-router-dom"
+import './index.css'
 
 function Logout() {
   localStorage.clear()
@@ -16,24 +21,59 @@ function RegisterAndLogout() {
   return <Register />
 }
 
+
+
+const routes = createBrowserRouter([
+  {
+    path: "/dashboard",
+    element: <ProtectedLayout/>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute>
+      }
+    ]
+  },
+  {
+    path: "/test",
+    element: <div>test</div>
+  },
+  {
+    path: "/",
+    element: <UnProtectedLayout />,
+    children: [
+      {
+        path: "",
+        element: <Home />
+      },
+      {
+        path: "/login",
+        element: <Login />
+      },
+      {
+        path: "/logout",
+        element: <Logout />
+      },
+      {
+        path: "/register",
+        element: <RegisterAndLogout />
+      }, 
+      {
+        path: "*",
+        element: <NotFound />
+      }
+    ]
+  }
+  ]
+)
+
+
+
+
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<RegisterAndLogout />} />
-        <Route path="*" element={<NotFound />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={routes} />
   )
 }
 
