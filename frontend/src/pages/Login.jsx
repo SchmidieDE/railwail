@@ -1,4 +1,12 @@
 import Form from "../components/Form"
+import { Button } from "../components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../components/ui/dialog"
 
 function Login() {
 
@@ -23,10 +31,22 @@ function Login() {
     return (
     <div> 
         <Form route="/api/token/" method="login" />
-        Das ist ein test  P
+        
+        <Dialog>
+            <DialogTrigger asChild>
+                <Button variant="outline">Öffne Popup</Button>
+            </DialogTrigger>
+            <DialogContent>
+                <DialogHeader>
+                    <DialogTitle>Popup Titel</DialogTitle>
+                </DialogHeader>
+                <p>Hier kommt der Inhalt des Popups hin.</p>
+            </DialogContent>
+        </Dialog>
+
         <button onClick={handleFetch} style={{color: "black"}}>
             Test
-        </button>
+        </button><Button></Button>
     </div>
     )
 }

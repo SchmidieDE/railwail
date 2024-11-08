@@ -10,6 +10,8 @@ import ProtectedLayout from "./components/layout/ProtectedLayout"
 import UnProtectedLayout from "./components/layout/UnprotectedLayout"
 import { RouterProvider } from "react-router-dom"
 import './index.css'
+import Pricing from "./pages/Pricing"
+
 
 function Logout() {
   localStorage.clear()
@@ -58,6 +60,10 @@ const routes = createBrowserRouter([
         path: "/register",
         element: <RegisterAndLogout />
       }, 
+      {
+        path: "/pricing",
+        element: <Pricing />
+      },
       {
         path: "*",
         element: <NotFound />
