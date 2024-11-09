@@ -84,7 +84,6 @@ const routes = createBrowserRouter([
 function App() {
   return (
     <>
-    <TrackPageView />
     <RouterProvider router={routes} />
     </>
   )
