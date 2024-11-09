@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import api from "../api";
 import Note from "../components/Note"
 import "../styles/Home.css"
@@ -19,6 +19,11 @@ function Home() {
     const [visitCounts, setVisitCounts] = useState({});
     // State für ausgewählte Tags
     const [selectedTags, setSelectedTags] = useState([]);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
+    const [dragDistance, setDragDistance] = useState(0);
+    const containerRef = useRef(null);
 
     useEffect(() => {
         //getNotes();
@@ -124,6 +129,34 @@ function Home() {
         );
     };
 
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        setStartX(e.pageX - containerRef.current.offsetLeft);
+        setScrollLeft(containerRef.current.scrollLeft);
+        setDragDistance(0);
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - containerRef.current.offsetLeft;
+        const walk = (x - startX); // Bewegung weniger empfindlich
+        setDragDistance(Math.abs(walk)); // Speichere die Drag-Distanz
+        containerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleCardClick = (e, link) => {
+        e.preventDefault(); // Verhindere sofortiges Klicken
+        // Öffne Link nur wenn die Drag-Distanz minimal war (weniger als 5px)
+        if (dragDistance < 5) {
+            window.open(link, '_blank');
+        }
+    };
+
     return (
         <div className="w-full px-4 md:px-6 lg:px-8">
             <div className="px-4 md:px-6 lg:px-8">
@@ -200,50 +233,33 @@ function Home() {
 
                         {/* Modell-Karten Container */}
                         <div 
-                            className="cursor-grab active:cursor-grabbing"
-                            onMouseDown={(e) => {
-                                const ele = e.currentTarget;
-                                const pos = {
-                                    left: ele.scrollLeft,
-                                    x: e.clientX,
-                                };
-
-                                const mouseMoveHandler = (e) => {
-                                    const dx = e.clientX - pos.x;
-                                    ele.scrollLeft = pos.left - dx;
-                                };
-
-                                const mouseUpHandler = () => {
-                                    document.removeEventListener('mousemove', mouseMoveHandler);
-                                    document.removeEventListener('mouseup', mouseUpHandler);
-                                };
-
-                                document.addEventListener('mousemove', mouseMoveHandler);
-                                document.addEventListener('mouseup', mouseUpHandler);
-                            }}
+                            ref={containerRef}
+                            className="cursor-grab active:cursor-grabbing overflow-x-auto"
+                            onMouseDown={handleMouseDown}
+                            onMouseUp={handleMouseUp}
+                            onMouseLeave={handleMouseUp}
+                            onMouseMove={handleMouseMove}
                             style={{ 
                                 overflowX: 'scroll',
-                                width: '100%',
                                 scrollbarWidth: 'none',
-                                msOverflowStyle: 'none'
+                                msOverflowStyle: 'none',
+                                WebkitOverflowScrolling: 'touch'
                             }}
                         >
-                            <div className="flex gap-4 py-4 px-2 min-w-max">
+                            <div className="flex gap-4 py-4 px-4 min-w-max">
                                 {models.map((model) => (
-                                    <a 
+                                    <div 
                                         key={model.id}
-                                        href={model.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        onClick={() => handleVisit(model.id)}
-                                        className="flex-none w-[280px] m-2 border rounded-lg shadow-sm 
+                                        onClick={(e) => handleCardClick(e, model.link)}
+                                        className="flex-none w-[280px] md:w-[400px] border rounded-lg shadow-sm 
                                             hover:shadow-lg hover:scale-105 
                                             transition-all duration-300 ease-in-out 
-                                            cursor-pointer bg-white"
+                                            cursor-grab active:cursor-grabbing bg-white
+                                            select-none"
                                     >
-                                        <div className="flex h-32">
+                                        <div className="flex h-24 md:h-32">
                                             {/* Bild-Container */}
-                                            <div className="w-32 flex-shrink-0 overflow-hidden">
+                                            <div className="w-24 md:w-32 flex-shrink-0 overflow-hidden select-none">
                                                 <img 
                                                     src={model.image} 
                                                     alt={model.title}
@@ -251,27 +267,29 @@ function Home() {
                                                         transition-all duration-300
                                                         hover:scale-110
                                                         filter saturate-75 hover:saturate-100"
+                                                    draggable="false"
+                                                    onDragStart={(e) => e.preventDefault()}
                                                 />
                                             </div>
                                             
                                             {/* Text-Container */}
-                                            <div className="flex-1 p-4">
+                                            <div className="flex-1 p-3 md:p-4">
                                                 <div className="flex flex-col justify-between h-full">
                                                     <div>
-                                                        <h3 className="text-lg font-medium truncate mb-2">
+                                                        <h3 className="text-sm md:text-lg font-medium truncate mb-1 md:mb-2 text-gray-800">
                                                             {model.title}
                                                         </h3>
-                                                        <p className="text-sm text-gray-600 line-clamp-2">
+                                                        <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
                                                             {model.description}
                                                         </p>
                                                     </div>
-                                                    <span className="text-sm text-gray-500">
+                                                    <span className="text-xs md:text-sm text-gray-500">
                                                         {formatVisits(visitCounts[model.id] || 0)}
                                                     </span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
+                                    </div>
                                 ))}
                             </div>
                         </div>
