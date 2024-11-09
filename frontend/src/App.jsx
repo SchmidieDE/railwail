@@ -10,7 +10,11 @@ import ProtectedLayout from "./components/layout/ProtectedLayout"
 import UnProtectedLayout from "./components/layout/UnprotectedLayout"
 import { RouterProvider } from "react-router-dom"
 import './index.css'
+import ReactGA from "react-ga4";
 import Pricing from "./pages/Pricing"
+
+
+ReactGA.initialize("G-QS3J0FX7ZC"); 
 
 
 function Logout() {
@@ -79,7 +83,10 @@ const routes = createBrowserRouter([
 
 function App() {
   return (
+    <>
+    <TrackPageView />
     <RouterProvider router={routes} />
+    </>
   )
 }
 
