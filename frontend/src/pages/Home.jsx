@@ -137,6 +137,13 @@ function Home() {
         }
     ];
 
+    // Sortierte Models basierend auf Besucherzahlen
+    const sortedModels = [...models].sort((a, b) => {
+        const visitsA = visitCounts[a.id] || 0;
+        const visitsB = visitCounts[b.id] || 0;
+        return visitsB - visitsA; // Absteigend sortieren (meist bis wenigst besucht)
+    });
+
     // Funktion zur Formatierung der Besucherzahlen
     const formatVisits = (count) => {
         if (count >= 1000000) {
@@ -287,19 +294,16 @@ function Home() {
                             }}
                         >
                             <div className="flex gap-4 py-4 px-4 min-w-max">
-                                {models.map((model) => (
+                                {sortedModels.map((model) => (
                                     <div 
                                         key={model.id}
-                                        onClick={(e) => handleCardClick(e, model.link)}
-                                        className="flex-none w-[280px] md:w-[400px] border rounded-lg shadow-sm 
-                                            hover:shadow-lg hover:scale-105 
-                                            transition-all duration-300 ease-in-out 
-                                            cursor-grab active:cursor-grabbing bg-white
-                                            select-none"
+                                        className="flex-none w-[280px] md:w-[400px] h-[160px] md:h-[180px] border rounded-lg 
+                                            shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out 
+                                            bg-white select-none overflow-hidden"
                                     >
-                                        <div className="flex h-24 md:h-32">
-                                            {/* Bild-Container */}
-                                            <div className="w-24 md:w-32 flex-shrink-0 overflow-hidden select-none">
+                                        <div className="flex h-full">
+                                            {/* Bild-Container - Feste Breite */}
+                                            <div className="w-24 md:w-32 flex-shrink-0 overflow-hidden">
                                                 <img 
                                                     src={model.image} 
                                                     alt={model.title}
@@ -312,20 +316,34 @@ function Home() {
                                                 />
                                             </div>
                                             
-                                            {/* Text-Container */}
-                                            <div className="flex-1 p-3 md:p-4">
-                                                <div className="flex flex-col justify-between h-full">
-                                                    <div>
-                                                        <h3 className="text-sm md:text-lg font-medium truncate mb-1 md:mb-2 text-gray-800">
-                                                            {model.title}
-                                                        </h3>
-                                                        <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
-                                                            {model.description}
-                                                        </p>
-                                                    </div>
+                                            {/* Content Container - Flex mit fester Struktur */}
+                                            <div className="flex-1 p-3 md:p-4 flex flex-col justify-between">
+                                                {/* Text Content */}
+                                                <div>
+                                                    <h3 className="text-sm md:text-lg font-medium mb-2 text-gray-800">
+                                                        {model.title}
+                                                    </h3>
+                                                    <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
+                                                        {model.description}
+                                                    </p>
+                                                </div>
+
+                                                {/* Footer mit Stats und Button - Immer am unteren Rand */}
+                                                <div className="mt-auto pt-2 flex items-center justify-between">
                                                     <span className="text-xs md:text-sm text-gray-500">
                                                         {formatVisits(visitCounts[model.id] || 0)}
                                                     </span>
+                                                    <Button
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            window.open(model.link, '_blank');
+                                                            handleVisit(model.id);
+                                                        }}
+                                                        className="bg-primary hover:bg-primary/90 text-white text-xs 
+                                                            md:text-sm px-3 py-1 min-w-[80px] md:min-w-[90px]"
+                                                    >
+                                                        Open →
+                                                    </Button>
                                                 </div>
                                             </div>
                                         </div>
@@ -336,8 +354,8 @@ function Home() {
                     </CardContent>
                 </Card>
 
-                {/* Rechte Card für Tags - versteckt auf kleinen Bildschirmen */}
-                <Card className="hidden lg:block w-[300px] h-fit mb-8">
+                {/* Tag Card - jetzt auch auf Mobile sichtbar */}
+                <Card className="w-full lg:w-[300px] h-fit mb-8">
                     <div className="flex h-full border rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 bg-black">
                         <div className="flex-1 p-4">
                             <div className="flex flex-col h-full">
@@ -345,7 +363,36 @@ function Home() {
                                     <h3 className="text-lg font-medium text-white mb-2">
                                         Popular Tags
                                     </h3>
-                                    <div className="flex flex-col space-y-2">
+                                    {/* Tags Container mit Touch-Events */}
+                                    <div 
+                                        className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 cursor-grab active:cursor-grabbing"
+                                        onTouchStart={(e) => {
+                                            const ele = e.currentTarget;
+                                            const touch = e.touches[0];
+                                            const pos = {
+                                                left: ele.scrollLeft,
+                                                x: touch.clientX,
+                                            };
+
+                                            const touchMoveHandler = (e) => {
+                                                const dx = touch.clientX - e.touches[0].clientX;
+                                                ele.scrollLeft = pos.left + dx;
+                                            };
+
+                                            const touchEndHandler = () => {
+                                                ele.removeEventListener('touchmove', touchMoveHandler);
+                                                ele.removeEventListener('touchend', touchEndHandler);
+                                            };
+
+                                            ele.addEventListener('touchmove', touchMoveHandler);
+                                            ele.addEventListener('touchend', touchEndHandler);
+                                        }}
+                                        style={{ 
+                                            scrollbarWidth: 'none',
+                                            msOverflowStyle: 'none',
+                                            WebkitOverflowScrolling: 'touch'
+                                        }}
+                                    >
                                         {[
                                             "Image Generation",
                                             "Text to Image",
@@ -365,7 +412,7 @@ function Home() {
                                         ].map((tag) => (
                                             <label
                                                 key={tag}
-                                                className="flex items-center space-x-3 cursor-pointer group"
+                                                className="flex-shrink-0 lg:flex-shrink flex items-center space-x-3 cursor-pointer group"
                                             >
                                                 <div className="relative w-4 h-4">
                                                     <input
@@ -400,7 +447,7 @@ function Home() {
                                                     </div>
                                                 </div>
                                                 <span className={`
-                                                    text-sm text-white
+                                                    text-sm text-white whitespace-nowrap lg:whitespace-normal
                                                     transition-all duration-200
                                                     hover:scale-105 hover:font-medium
                                                     ${selectedTags.includes(tag) ? 'font-medium scale-105' : ''}
