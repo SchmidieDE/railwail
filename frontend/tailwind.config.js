@@ -10,6 +10,13 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			black: {
+				DEFAULT: '#1A1A38f2', // sehr intensive gleichmäßige Mischung
+				light: '#1A1A38f2',
+				lightish: '#1A1A38f2',
+				dark: '#1A1A38f2',
+				darkish: '#1A1A38f2',
+			  },
 				dark: {
 					DEFAULT: '#121212',
 					light: '#121212',

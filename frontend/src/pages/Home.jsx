@@ -4,6 +4,15 @@ import Note from "../components/Note"
 import "../styles/Home.css"
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../components/ui/card"
 import { Button } from "../components/ui/button"
+import { 
+    ImageIcon,  // für "Generate images"
+    Type,       // für "Generate text"
+    FileImage,  // für "Caption images"
+    Pencil,     // für "Edit images"
+    RefreshCw,  // für "Restore images"
+    LayoutGrid  // für "All"
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 
 
@@ -14,7 +23,7 @@ function Home() {
     const [notes, setNotes] = useState([]);
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
-    const [selectedCategory, setSelectedCategory] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState("All");
     // State für die Besucherzahlen
     const [visitCounts, setVisitCounts] = useState({});
     // State für ausgewählte Tags
@@ -24,6 +33,12 @@ function Home() {
     const [scrollLeft, setScrollLeft] = useState(0);
     const [dragDistance, setDragDistance] = useState(0);
     const containerRef = useRef(null);
+
+    // Separate States für Kategorie-Scroll
+    const [isScrollingCategories, setIsScrollingCategories] = useState(false);
+    const [startXCategories, setStartXCategories] = useState(0);
+    const [scrollLeftCategories, setScrollLeftCategories] = useState(0);
+    const categoriesRef = useRef(null);
 
     useEffect(() => {
         //getNotes();
@@ -74,66 +89,126 @@ function Home() {
 
     // Füge diese Modell-Daten am Anfang der Komponente hinzu
     const models = [
+        // Generate images
         {
-            id: 'chatgpt',
-            title: "ChatGPT 4",
-            description: "Advanced language model for natural conversations",
-            image: "/images/chatgpt.jpg",
-            link: "https://chat.openai.com"
-        },
-        {
-            id: 'stable-diffusion',
+            id: 1,
             title: "Stable Diffusion",
-            description: "AI image generation model",
+            description: "Generate high-quality images from text descriptions with advanced AI model",
             image: "/images/chatgpt.jpg",
-            link: "https://stability.ai"
+            category: "Generate images",
+            link: "https://api.stability.ai"
         },
         {
-            id: 'dall-e-3',
-            title: "DALL-E 3",
-            description: "Create realistic images from text",
+            id: 2,
+            title: "DALL-E 2",
+            description: "Create realistic images and art from natural language descriptions",
             image: "/images/chatgpt.jpg",
-            link: "https://openai.com/dall-e-3"
+            category: "Generate images",
+            link: "https://openai.com/dall-e-2"
         },
         {
-            id: 'midjourney',
+            id: 3,
             title: "Midjourney",
-            description: "Advanced AI image generation with artistic flair and high-quality outputs",
+            description: "Generate artistic images with unique style and high creativity",
             image: "/images/chatgpt.jpg",
-            link: "https://www.midjourney.com",
-            rating: 4.7
+            category: "Generate images",
+            link: "https://www.midjourney.com"
+        },
+
+        // Generate text
+        {
+            id: 4,
+            title: "GPT-4",
+            description: "Advanced language model for text generation and understanding",
+            image: "/images/chatgpt.jpg",
+            category: "Generate text",
+            link: "https://openai.com/gpt-4"
         },
         {
-            id: 'claude',
-            title: "Claude AI",
-            description: "Anthropic's advanced language model for analysis and content generation",
+            id: 5,
+            title: "Claude 2",
+            description: "Anthropic's AI for sophisticated text generation and analysis",
             image: "/images/chatgpt.jpg",
-            link: "https://www.anthropic.com/claude",
-            rating: 4.6
+            category: "Generate text",
+            link: "https://www.anthropic.com/claude"
         },
         {
-            id: 'gemini',
-            title: "Google Gemini",
-            description: "Google's multimodal AI model for text, code, and image understanding",
+            id: 6,
+            title: "PaLM API",
+            description: "Google's powerful language model for text generation",
             image: "/images/chatgpt.jpg",
-            link: "https://gemini.google.com",
-            rating: 4.8
+            category: "Generate text",
+            link: "https://developers.generativeai.google/products/palm"
+        },
+
+        // Caption images
+        {
+            id: 7,
+            title: "Azure Vision",
+            description: "Microsoft's AI for accurate image captioning and analysis",
+            image: "/images/chatgpt.jpg",
+            category: "Caption images",
+            link: "https://azure.microsoft.com/services/cognitive-services/computer-vision"
         },
         {
-            id: 'leonardo',
-            title: "Leonardo AI",
-            description: "AI-powered creative suite for generating and editing images",
+            id: 8,
+            title: "Google Cloud Vision",
+            description: "Detect objects and text in images with high accuracy",
             image: "/images/chatgpt.jpg",
-            link: "https://leonardo.ai",
-            rating: 4.4
+            category: "Caption images",
+            link: "https://cloud.google.com/vision"
+        },
+
+        // Edit images
+        {
+            id: 9,
+            title: "Adobe Firefly",
+            description: "AI-powered creative image editing and generation",
+            image: "/images/chatgpt.jpg",
+            category: "Edit images",
+            link: "https://www.adobe.com/products/firefly"
         },
         {
-            id: 'runway',
+            id: 10,
             title: "Runway ML",
-            description: "Creative suite for video editing and generation with AI",
+            description: "Professional AI tools for video and image editing",
             image: "/images/chatgpt.jpg",
-            link: "https://runway.ml",
-            rating: 4.5
+            category: "Edit images",
+            link: "https://runway.ml"
+        },
+        {
+            id: 11,
+            title: "Remove.bg API",
+            description: "Automatically remove image backgrounds with AI",
+            image: "/images/chatgpt.jpg",
+            category: "Edit images",
+            link: "https://www.remove.bg/api"
+        },
+
+        // Restore images
+        {
+            id: 12,
+            title: "Replicate",
+            description: "Run various image restoration models via API",
+            image: "/images/chatgpt.jpg",
+            category: "Restore images",
+            link: "https://replicate.com"
+        },
+        {
+            id: 13,
+            title: "Deep Image Prior",
+            description: "Advanced AI for image restoration and enhancement",
+            image: "/images/chatgpt.jpg",
+            category: "Restore images",
+            link: "https://dmitryulyanov.github.io/deep_image_prior"
+        },
+        {
+            id: 14,
+            title: "Tencent ARC",
+            description: "AI-powered image restoration and enhancement",
+            image: "/images/chatgpt.jpg",
+            category: "Restore images",
+            link: "https://arc.tencent.com/en/ai-demos/faceRestoration"
         }
     ];
 
@@ -204,10 +279,41 @@ function Home() {
         }
     };
 
+    // Separate Handler für Kategorie-Scroll
+    const handleCategoryMouseDown = (e) => {
+        setIsScrollingCategories(true);
+        const slider = categoriesRef.current;
+        setStartXCategories(e.pageX - slider.offsetLeft);
+        setScrollLeftCategories(slider.scrollLeft);
+        e.stopPropagation(); // Verhindert Bubble-up zum API-Container
+    };
+
+    const handleCategoryMouseUp = (e) => {
+        setIsScrollingCategories(false);
+        e.stopPropagation();
+    };
+
+    const handleCategoryMouseMove = (e) => {
+        if (!isScrollingCategories) return;
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const slider = categoriesRef.current;
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startXCategories) * 2;
+        slider.scrollLeft = scrollLeftCategories - walk;
+    };
+
+    // Filtere die Models basierend auf der ausgewählten Kategorie
+    const filteredModels = models.filter(model => {
+        if (selectedCategory === "All") return true;
+        return model.category === selectedCategory;
+    });
+
     return (
         <div className="w-full px-4 md:px-6 lg:px-8">
             <div className="px-4 md:px-6 lg:px-8">
-                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold my-6 text-purple-900">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold my-6 text-black">
                     Run AI instantly
                 </h2>
                 <div className="text-sm md:text-base text-gray-500 mb-6">
@@ -229,50 +335,50 @@ function Home() {
                     <CardContent>
                         {/* Kategorie-Buttons Container */}
                         <div 
-                            className="cursor-grab active:cursor-grabbing"
-                            onMouseDown={(e) => {
-                                const ele = e.currentTarget;
-                                const pos = {
-                                    left: ele.scrollLeft,
-                                    x: e.clientX,
-                                };
-
-                                const mouseMoveHandler = (e) => {
-                                    const dx = e.clientX - pos.x;
-                                    ele.scrollLeft = pos.left - dx;
-                                };
-
-                                const mouseUpHandler = () => {
-                                    document.removeEventListener('mousemove', mouseMoveHandler);
-                                    document.removeEventListener('mouseup', mouseUpHandler);
-                                };
-
-                                document.addEventListener('mousemove', mouseMoveHandler);
-                                document.addEventListener('mouseup', mouseUpHandler);
-                            }}
+                            ref={categoriesRef}
+                            className="mb-6 cursor-grab active:cursor-grabbing overflow-x-auto select-none"
+                            onMouseDown={handleCategoryMouseDown}
+                            onMouseLeave={handleCategoryMouseUp}
+                            onMouseUp={handleCategoryMouseUp}
+                            onMouseMove={handleCategoryMouseMove}
+                            onClick={(e) => e.stopPropagation()}
                             style={{ 
-                                overflowX: 'scroll',
-                                width: '100%',
                                 scrollbarWidth: 'none',
-                                msOverflowStyle: 'none'
+                                msOverflowStyle: 'none',
+                                WebkitOverflowScrolling: 'touch'
                             }}
                         >
                             <div className="flex gap-2 py-2 min-w-max px-2">
-                                {["All", "Generate images", "Generate text", "Caption images", "Edit images", "Restore images"].map((category) => (
+                                {[
+                                    { name: "All", icon: <LayoutGrid className="w-4 h-4" /> },
+                                    { name: "Generate images", icon: <ImageIcon className="w-4 h-4" /> },
+                                    { name: "Generate text", icon: <Type className="w-4 h-4" /> },
+                                    { name: "Caption images", icon: <FileImage className="w-4 h-4" /> },
+                                    { name: "Edit images", icon: <Pencil className="w-4 h-4" /> },
+                                    { name: "Restore images", icon: <RefreshCw className="w-4 h-4" /> }
+                                ].map((category) => (
                                     <Button
-                                        key={category}
+                                        key={category.name}
                                         variant="outline"
                                         className={`
                                             transition-colors
-                                            w-[120px]
-                                            ${selectedCategory === category 
+                                            whitespace-nowrap
+                                            px-4 py-2
+                                            text-sm md:text-base
+                                            flex items-center gap-2
+                                            select-none
+                                            ${selectedCategory === category.name 
                                                 ? 'bg-primary text-white' 
                                                 : 'text-gray-800 hover:bg-primary/90 hover:text-white'
                                             }
                                         `}
-                                        onClick={() => selectCategory(category)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            selectCategory(category.name);
+                                        }}
                                     >
-                                        {category}
+                                        {category.icon}
+                                        {category.name}
                                     </Button>
                                 ))}
                             </div>
@@ -281,75 +387,87 @@ function Home() {
                         {/* Modell-Karten Container */}
                         <div 
                             ref={containerRef}
-                            className="cursor-grab active:cursor-grabbing overflow-x-auto"
+                            className="flex-1 cursor-grab active:cursor-grabbing overflow-x-auto"
                             onMouseDown={handleMouseDown}
                             onMouseUp={handleMouseUp}
                             onMouseLeave={handleMouseUp}
                             onMouseMove={handleMouseMove}
                             style={{ 
-                                overflowX: 'scroll',
                                 scrollbarWidth: 'none',
                                 msOverflowStyle: 'none',
-                                WebkitOverflowScrolling: 'touch'
+                                '::-webkit-scrollbar': { display: 'none' }
                             }}
                         >
-                            <div className="flex gap-4 py-4 px-4 min-w-max">
-                                {sortedModels.map((model) => (
-                                    <div 
-                                        key={model.id}
-                                        className="flex-none w-[280px] md:w-[400px] h-[160px] md:h-[180px] border rounded-lg 
-                                            shadow-sm hover:shadow-lg transition-all duration-300 ease-in-out 
-                                            bg-white select-none overflow-hidden"
-                                    >
-                                        <div className="flex h-full">
-                                            {/* Bild-Container - Feste Breite */}
-                                            <div className="w-24 md:w-32 flex-shrink-0 overflow-hidden">
-                                                <img 
-                                                    src={model.image} 
-                                                    alt={model.title}
-                                                    className="w-full h-full object-cover rounded-l-lg
-                                                        transition-all duration-300
-                                                        hover:scale-110
-                                                        filter saturate-75 hover:saturate-100"
-                                                    draggable="false"
-                                                    onDragStart={(e) => e.preventDefault()}
-                                                />
-                                            </div>
-                                            
-                                            {/* Content Container - Flex mit fester Struktur */}
-                                            <div className="flex-1 p-3 md:p-4 flex flex-col justify-between">
-                                                {/* Text Content */}
-                                                <div>
-                                                    <h3 className="text-sm md:text-lg font-medium mb-2 text-gray-800">
-                                                        {model.title}
-                                                    </h3>
-                                                    <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
-                                                        {model.description}
-                                                    </p>
+                            <AnimatePresence mode="wait">
+                                <motion.div 
+                                    key={selectedCategory}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.22 }}
+                                    className="flex gap-4 py-4 px-4 min-w-max"
+                                >
+                                    {filteredModels.map((model) => (
+                                        <motion.div
+                                            key={model.id}
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            transition={{ duration: 0.22 }}
+                                            className="flex-none w-[280px] md:w-[400px] h-[160px] md:h-[180px] 
+                                                border rounded-lg shadow-sm hover:shadow-lg 
+                                                transition-all duration-300 ease-in-out 
+                                                bg-white select-none overflow-hidden"
+                                        >
+                                            <div className="flex h-full">
+                                                {/* Bild-Container - Feste Breite */}
+                                                <div className="w-24 md:w-32 flex-shrink-0 overflow-hidden">
+                                                    <img 
+                                                        src={model.image} 
+                                                        alt={model.title}
+                                                        className="w-full h-full object-cover rounded-l-lg
+                                                            transition-all duration-300
+                                                            hover:scale-110
+                                                            filter saturate-75 hover:saturate-100"
+                                                        draggable="false"
+                                                        onDragStart={(e) => e.preventDefault()}
+                                                    />
                                                 </div>
+                                                
+                                                {/* Content Container - Flex mit fester Struktur */}
+                                                <div className="flex-1 p-3 md:p-4 flex flex-col justify-between">
+                                                    {/* Text Content */}
+                                                    <div>
+                                                        <h3 className="text-sm md:text-lg font-medium mb-2 text-gray-800">
+                                                            {model.title}
+                                                        </h3>
+                                                        <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
+                                                            {model.description}
+                                                        </p>
+                                                    </div>
 
-                                                {/* Footer mit Stats und Button - Immer am unteren Rand */}
-                                                <div className="mt-auto pt-2 flex items-center justify-between">
-                                                    <span className="text-xs md:text-sm text-gray-500">
-                                                        {formatVisits(visitCounts[model.id] || 0)}
-                                                    </span>
-                                                    <Button
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            window.open(model.link, '_blank');
-                                                            handleVisit(model.id);
-                                                        }}
-                                                        className="bg-primary hover:bg-primary/90 text-white text-xs 
-                                                            md:text-sm px-3 py-1 min-w-[80px] md:min-w-[90px]"
-                                                    >
-                                                        Open →
-                                                    </Button>
+                                                    {/* Footer mit Stats und Button - Immer am unteren Rand */}
+                                                    <div className="mt-auto pt-2 flex items-center justify-between">
+                                                        <span className="text-xs md:text-sm text-gray-500">
+                                                            {formatVisits(visitCounts[model.id] || 0)}
+                                                        </span>
+                                                        <Button
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                window.open(model.link, '_blank');
+                                                                handleVisit(model.id);
+                                                            }}
+                                                            className="bg-primary hover:bg-primary/90 text-white text-xs 
+                                                                md:text-sm px-3 py-1 min-w-[80px] md:min-w-[90px]"
+                                                        >
+                                                            Open →
+                                                        </Button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                                        </motion.div>
+                                    ))}
+                                </motion.div>
+                            </AnimatePresence>
                         </div>
                     </CardContent>
                 </Card>
@@ -361,116 +479,75 @@ function Home() {
                             <div className="flex flex-col h-full">
                                 <div>
                                     <h3 className="text-lg font-medium text-white mb-2">
-                                        Popular Tags
+                                        Most Used Models
                                     </h3>
-                                    {/* Tags Container mit Touch-Events */}
-                                    <div 
-                                        className="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 cursor-grab active:cursor-grabbing"
-                                        onTouchStart={(e) => {
-                                            const ele = e.currentTarget;
-                                            const touch = e.touches[0];
-                                            const pos = {
-                                                left: ele.scrollLeft,
-                                                x: touch.clientX,
-                                            };
-
-                                            const touchMoveHandler = (e) => {
-                                                const dx = touch.clientX - e.touches[0].clientX;
-                                                ele.scrollLeft = pos.left + dx;
-                                            };
-
-                                            const touchEndHandler = () => {
-                                                ele.removeEventListener('touchmove', touchMoveHandler);
-                                                ele.removeEventListener('touchend', touchEndHandler);
-                                            };
-
-                                            ele.addEventListener('touchmove', touchMoveHandler);
-                                            ele.addEventListener('touchend', touchEndHandler);
-                                        }}
-                                        style={{ 
-                                            scrollbarWidth: 'none',
-                                            msOverflowStyle: 'none',
-                                            WebkitOverflowScrolling: 'touch'
-                                        }}
-                                    >
-                                        {[
-                                            "Image Generation",
-                                            "Text to Image",
-                                            "Style Transfer",
-                                            "Photo Editing",
-                                            "Face Generation",
-                                            "Background Removal",
-                                            "Art Style",
-                                            "Realistic",
-                                            "Cartoon",
-                                            "Portrait",
-                                            "Landscape",
-                                            "Animation",
-                                            "3D",
-                                            "Sketch",
-                                            "Color",
-                                        ].map((tag) => (
-                                            <label
-                                                key={tag}
-                                                className="flex-shrink-0 lg:flex-shrink flex items-center space-x-3 cursor-pointer group"
-                                            >
-                                                <div className="relative w-4 h-4">
-                                                    <input
-                                                        type="checkbox"
-                                                        checked={selectedTags.includes(tag)}
-                                                        onChange={() => toggleTag(tag)}
-                                                        className="absolute w-4 h-4 opacity-0 cursor-pointer"
-                                                    />
-                                                    <div className={`
-                                                        w-4 h-4 border rounded
-                                                        transition-colors duration-200
-                                                        ${selectedTags.includes(tag) 
-                                                            ? 'bg-primary border-primary' 
-                                                            : 'border-white'
-                                                        }
-                                                    `}>
-                                                        {selectedTags.includes(tag) && (
-                                                            <svg 
-                                                                className="w-4 h-4 text-white" 
-                                                                fill="none" 
-                                                                stroke="currentColor" 
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path 
-                                                                    strokeLinecap="round" 
-                                                                    strokeLinejoin="round" 
-                                                                    strokeWidth="2" 
-                                                                    d="M5 13l4 4L19 7"
-                                                                />
-                                                            </svg>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                                <span className={`
-                                                    text-sm text-white whitespace-nowrap lg:whitespace-normal
-                                                    transition-all duration-200
-                                                    hover:scale-105 hover:font-medium
-                                                    ${selectedTags.includes(tag) ? 'font-medium scale-105' : ''}
-                                                `}>
-                                                    {tag}
-                                                </span>
-                                            </label>
-                                        ))}
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>Stable Diffusion</span>
+                                            <span className="text-xs text-gray-400 ml-auto">2.5M</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>DALL-E 2</span>
+                                            <span className="text-xs text-gray-400 ml-auto">1.8M</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>Midjourney</span>
+                                            <span className="text-xs text-gray-400 ml-auto">1.2M</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>GPT-4</span>
+                                            <span className="text-xs text-gray-400 ml-auto">950K</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>Claude 2</span>
+                                            <span className="text-xs text-gray-400 ml-auto">780K</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>Adobe Firefly</span>
+                                            <span className="text-xs text-gray-400 ml-auto">650K</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>Google Vision</span>
+                                            <span className="text-xs text-gray-400 ml-auto">520K</span>
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
+                                            />
+                                            <span>Runway ML</span>
+                                            <span className="text-xs text-gray-400 ml-auto">480K</span>
+                                        </div>
                                     </div>
                                 </div>
-                                {selectedTags.length > 0 && (
-                                    <div className="mt-4 flex justify-between items-center">
-                                        <span className="text-sm text-white">
-                                            {selectedTags.length} tags selected
-                                        </span>
-                                        <button
-                                            onClick={() => setSelectedTags([])}
-                                            className="text-sm text-white hover:text-gray-200"
-                                        >
-                                            Clear all
-                                        </button>
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>
