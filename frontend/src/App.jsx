@@ -11,6 +11,8 @@ import UnProtectedLayout from "./components/layout/UnprotectedLayout"
 import { RouterProvider } from "react-router-dom"
 import './index.css'
 import ReactGA from "react-ga4";
+import ImageModelsOverview from "./pages/ImageModels/index.tsx"
+import ImageModel from "./pages/ImageModels/ImageModel/index.tsx"
 import Pricing from "./pages/Pricing"
 
 
@@ -67,6 +69,14 @@ const routes = createBrowserRouter([
       {
         path: "/pricing",
         element: <Pricing />
+      },
+      {
+        path: "/image-models",
+        element: <ImageModelsOverview />
+      },
+      {
+        path: "/image-models/:modelName",
+        element: <ImageModel />
       },
       {
         path: "*",
