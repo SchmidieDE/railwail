@@ -44,6 +44,7 @@
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.1",
+    "framer-motion": "^11.11.13",
     "input-otp": "^1.4.1",
     "jwt-decode": "^4.0.0",
     "lucide-react": "^0.455.0",
@@ -64,6 +65,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/dotenv": "^8.2.3",
     "@types/node": "^22.9.0",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",

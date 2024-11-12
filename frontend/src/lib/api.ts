@@ -1,5 +1,15 @@
+
+
+
 const api = (type: string, url: string, data: any) => {
-  const baseUrl = process.env.BACKEND_URL
+  
+  
+
+  
+  const baseUrl = import.meta.env.VITE_BACKEND_URL 
+  
+  console.log(baseUrl, "BASE URL")
+
 
   return fetch(baseUrl + url, {
       method: type,
