@@ -90,6 +90,17 @@ function Home() {
     // Füge diese Modell-Daten am Anfang der Komponente hinzu
     const models = [
         // Generate images
+        /*
+
+        {
+        pathName: "recraft-ai/recraft-v3-svg",
+        description: "asa",
+        title: "Reacrd Ai V3 SVG"
+        category: "image-models"
+        link:...
+        }
+
+        */
         {
             id: 1,
             title: "Stable Diffusion",
