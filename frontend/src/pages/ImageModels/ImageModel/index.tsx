@@ -26,7 +26,7 @@ const ImageModel = () => {
 
   
     return <div>ImageModel {modelName}
-    {imageUrl ? <img src={imageUrl as string} alt="Generated Image" /> : <p>Loading...</p>}
+    {imageUrl ? <img src={imageUrl as string} alt="Generated Image" /> : <p>Loading... gdfgdf</p>}
     </div>
 }
 

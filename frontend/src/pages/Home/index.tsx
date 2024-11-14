@@ -13,6 +13,7 @@ import {
     LayoutGrid  // für "All"
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ModelPreview from "./comp/ModelPreview";
 
 
 
@@ -99,6 +100,1035 @@ function Home() {
         category: "image-models"
         link:...
         }
+
+
+        {
+        pathName: "black-forest-labs/flux-1.1-pro-ultra",
+        description: "FLUX1.1 [pro] in ultra and raw modes. Images are up to 4 megapixels. Use raw mode for realism.",
+        title: "FLUX1.1 [pro]"
+        category: "image-models"
+        link:...
+    }
+        
+
+
+        // image models
+         {
+        pathName: "recraft-ai/recraft-v3",
+        description: "Recraft V3 ("red_panda") is a top text-to-image model, excelling in diverse styles and verified as SOTA by Artificial Analysis.",
+        title: "Recraft V3"
+        category: "image-models"
+        link:...
+        }
+
+
+         {
+        pathName: "stability-ai/stable-diffusion-3.5-large",
+        description: "A text-to-image model that generates high-resolution, detailed images in various styles, with diverse outputs enabled by Query-Key Normalization.",
+        title: "stability-ai"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        
+
+
+
+        {
+        pathName: "ibm-granite/granite-3.0-8b-instruct",
+        description: "Granite-3.0-8B-Instruct is an 8B parameter open-source model optimized for tasks like summarization, problem-solving, translation, reasoning, and coding.",
+        title: "ibm-granite"
+        category: "generate text"
+        link:...
+        }
+
+
+
+        {
+        pathName: "black-forest-labs/flux-1.1-pro",
+        description: "FLUX1.1 [pro] in ultra and raw modes. Images are up to 4 megapixels. Use raw mode for realism.",
+        title: "flux-1.1-pro-ultra"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+        pathName: "bytedance/sdxl-lightning-4step",
+        description: "SDXL-Lightning by ByteDance: a fast text-to-image model that makes high-quality images in 4 steps",
+        title: "sdxl-lightning-4step"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+        pathName: "black-forest-labs/flux-schnell",
+        description: "The fastest image generation model tailored for local development and personal use",
+        title: "flux-schnell"
+        category: "image-models"
+        link:...
+        }
+
+
+        {
+         pathName: "stability-ai/stable-diffusion",
+        description: "A latent text-to-image diffusion model capable of generating photo-realistic images given any text input",
+        title: "stable-diffusion"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        {
+         pathName: "stability-ai/sdxl",
+        description: "A text-to-image generative AI model that creates beautiful images",
+        title: "sdxl"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+         pathName: "jagilley/controlnet-scribble",
+        description: "Generate detailed images from scribbled drawings",
+        title: "controlnet-scribble"
+        category: "image-models"
+        link:...
+        }
+
+
+        {
+         pathName: "stability-ai/stable-diffusion-inpainting",
+        description: "Fill in masked parts of images with Stable Diffusion",
+        title: "stable-diffusion-inpainting"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        {
+         pathName: "ai-forever/kandinsky-2.2",
+        description: "multilingual text2image latent diffusion model",
+        title: "kandinsky-2.2"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+         pathName: "datacte/proteus-v0.2",
+        description: "Proteus v0.2 offers subtle but notable improvements in prompt understanding over v0.1, surpassing MJ6 and nearing its stylistic abilities.",
+        title: "proteus-v0.2"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+
+         {
+         pathName: "fofr/sdxl-emoji",
+        description: "An SDXL fine-tune based on Apple Emojis",
+        title: "sdxl-emoji"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+
+
+         {
+         pathName: "black-forest-labs/flux-pro",
+        description: "State-of-the-art image generation with top of the line prompt following, visual quality, image detail and output diversity.",
+        title: "flux-pro"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+         pathName: "ai-forever/kandinsky-2",
+        description: "text2img model trained on LAION HighRes and fine-tuned on internal datasets",
+        title: "kandinsky-2"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        {
+         pathName: "black-forest-labs/flux-dev",
+        description: "A 12 billion parameter rectified flow transformer capable of generating images from text descriptions",
+        title: "flux-dev"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+         {
+         pathName: "black-forest-labs/flux-1.1-pro",
+        description: "Faster, better FLUX Pro. Text-to-image model with excellent image quality, prompt adherence, and output diversity.",
+        title: "flux-1.1-pro"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+         pathName: "tstramer/material-diffusion",
+        description: "Stable diffusion fork for generating tileable outputs using v1.5 model",
+        title: "material-diffusion"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+         {
+         pathName: "datacte/proteus-v0.3",
+        description: "Stable diffusion fork for generating tileable outputs using v1.5 model",
+        title: "proteus-v0.3"
+        category: "image-models"
+        link:...
+        }
+
+
+
+         {
+         pathName: "playgroundai/playground-v2.5-1024px-aesthetic",
+        description: "Playground v2.5 is the state-of-the-art open-source model in aesthetic quality",
+        title: "playground-v2.5"
+        category: "image-models"
+        link:...
+        }
+
+
+        {
+         pathName: "fofr/latent-consistency-model",
+        description: "Super-fast, 0.6s per image. LCM with img2img, large batching and canny controlnet",
+        title: "latent-consistency-model"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+        {
+         pathName: "lucataco/ssd-1b",
+        description: "Segmind SSD-1B is a 50% smaller, faster SDXL model, delivering high-quality text-to-image generation with a 60% speed boost.",
+        title: "ssd-1b"
+        category: "image-models"
+        link:...
+        }
+
+
+        
+        {
+         pathName: "fofr/realvisxl-v3-multi-controlnet-lora",
+        description: "RealVisXl V3 with multi-controlnet, lora loading, img2img, inpainting",
+        title: "realvisxl-v3-multi-controlnet-lora"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        {
+         pathName: "batouresearch/sdxl-controlnet-lora",
+        description: "Last update: Now supports img2img.''' SDXL Canny controlnet with LoRA support.",
+        title: "sdxl-controlnet-lora"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        {
+         pathName: "fofr/any-comfyui-workflow",
+        description: "Run any ComfyUI workflow. Guide: https://github.com/fofr/cog-comfyui",
+        title: "any-comfyui-workflow"
+        category: "image-models"
+        link:...
+        }
+
+
+
+        {
+         pathName: "fofr/sticker-maker",
+        description: "Make stickers with AI. Generates graphics with transparent backgrounds.",
+        title: "sticker-maker"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+
+         {
+         pathName: "lucataco/realvisxl2-lcm",
+        description: "RealvisXL-v2.0 with LCM LoRA - requires fewer steps (4 to 8 instead of the original 40 to 50)",
+        title: "RealvisXL-v2.0 with LCM LoRA"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+
+        {
+         pathName: "lucataco/realvisxl-v2.0",
+        description: "Implementation of SDXL RealVisXL_V2.0",
+        title: "realvisxl-v2.0"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+
+         {
+         pathName: "fofr/sdxl-multi-controlnet-lora",
+        description: "Multi-controlnet, lora loading, img2img, inpainting",
+        title: "sdxl-multi-controlnet-lora"
+        category: "image-models"
+        link:...
+        }
+
+
+        {
+         pathName: "lucataco/dreamshaper-xl-turbo",
+        description: "DreamShaper is a general purpose SD model that aims at doing everything well, photos, art, anime, manga. It's designed to match Midjourney and DALL-E.",
+        title: "dreamshaper-xl-turbo"
+        category: "image-models"
+        link:...
+        }
+
+
+
+
+        //language-models
+
+        {
+        pathName: "ibm-granite/granite-3.0-8b-instruct",
+        description: "Granite-3.0-8B-Instruct is an 8B parameter open-source model optimized for tasks like summarization, problem-solving, translation, reasoning, and coding.",
+        title: "ibm-granite"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "meta/meta-llama-3-8b-instruct",
+        description: "An 8 billion parameter language model from Meta, fine tuned for chat completions",
+        title: "meta-llama-3-8b-instruct"
+        category: "language-models"
+        link:...
+        }
+
+
+
+        {
+        pathName: "meta/meta-llama-3-70b-instruct",
+        description: "A 70 billion parameter language model from Meta, fine tuned for chat completions",
+        title: "meta-llama-3-70b-instruct"
+        category: "language-models"
+        link:...
+        }
+
+
+
+        {
+        pathName: "meta/meta-llama-3-8b",
+        description: "Base version of Llama 3, an 8 billion parameter language model from Meta.",
+        title: "meta-llama-3-8b"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "meta/llama-2-7b-chat",
+        description: "A 7 billion parameter language model from Meta, fine tuned for chat completions",
+        title: "llama-2-7b-chat"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "meta/llama-2-70b-chat",
+        description: "A 70 billion parameter language model from Meta, fine tuned for chat completions",
+        title: "llama-2-70b-chat"
+        category: "language-models"
+        link:...
+        }
+
+
+
+         {
+        pathName: "meta/llama-2-13b-chat",
+        description: "A 13 billion parameter language model from Meta, fine tuned for chat completions",
+        title: "llama-2-13b-chat"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+
+
+        {
+        pathName: "mistralai/mistral-7b-v0.1",
+        description: "A 7 billion parameter language model from Mistral.",
+        title: "mistral-7b-v0.1"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "meta/meta-llama-3-70b",
+        description: "Base version of Llama 3, a 70 billion parameter language model from Meta.",
+        title: "meta-llama-3-70b"
+        category: "language-models"
+        link:...
+        }
+
+
+
+         {
+        pathName: "01-ai/yi-34b-chat",
+        description: "The Yi series models are large language models trained from scratch by developers at 01.AI.",
+        title: "yi-34b-chat"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "01-ai/yi-6b",
+        description: "The Yi series models are large language models trained from scratch by developers at 01.AI.",
+        title: "yi-34b-chat"
+        category: "language-models"
+        link:...
+        }
+
+
+
+         {
+        pathName: "replicate/flan-t5-xl",
+        description: "A language model by Google for tasks like classification, summarization, and more",
+        title: "flan-t5-xl"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+
+        {
+        pathName: "replicate/llama-7b",
+        description: "7 billion parameter version of Stability AI's language model",
+        title: "llama-7b"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+
+        {
+        pathName: "google-deepmind/gemma-2b-it",
+        description: "2B instruct version of Google’s Gemma model",
+        title: "gemma-2b-it"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+
+        {
+        pathName: "google-deepmind/gemma-7b-it",
+        description: "7B instruct version of Google’s Gemma model",
+        title: "gemma-7b-it"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "nateraw/nous-hermes-2-solar-10.7b",
+        description: "Nous Hermes 2 - SOLAR 10.7B is the flagship Nous Research model on the SOLAR 10.7B base model..",
+        title: "nous-hermes-2-solar-10.7b"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "kcaverly/nous-hermes-2-yi-34b-gguf",
+        description: "Nous Hermes 2 - Yi-34B is a state of the art Yi Fine-tune, fine tuned on GPT-4 generated synthetic data",
+        title: "nous-hermes-2-yi-34b-gguf"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "replicate/gpt-j-6b",
+        description: "A large language model by EleutherAI",
+        title: "gpt-j-6b"
+        category: "language-models"
+        link:...
+        }
+
+
+
+
+
+        //caption-image
+
+
+        {
+        pathName: "replicate/gpt-j-6b",
+        description: "Generate image captions",
+        title: "gpt-j-6b"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "salesforce/blip",
+        description: "Generate image captions",
+        title: "blip"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "salesforce/blip-2",
+        description: "Answers questions about images",
+        title: "blip"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+        {
+        pathName: "yorickvp/llava-13b",
+        description: "Visual instruction tuning towards large language and vision models with GPT-4 level capabilities",
+        title: "llava-13b"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "pharmapsychotic/clip-interrogator",
+        description: "The CLIP Interrogator combines OpenAI's CLIP and Salesforce's BLIP to generate optimized prompts for matching images, ideal for use with models like Stable Diffusion.",
+        title: "clip-interrogator"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+
+        {
+        pathName: "methexis-inc/img2prompt",
+        description: "Get an approximate text prompt, with style, matching an image. (Optimized for stable-diffusion (clip ViT-L/14))",
+        title: "img2prompt"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "rmokady/clip_prefix_caption",
+        description: "Simple image captioning model using CLIP and GPT-2",
+        title: "clip_prefix_caption"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+         {
+        pathName: "daanelson/minigpt-4",
+        description: "A model which generates text in response to an input image and prompt.",
+        title: "minigpt-4"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+
+         {
+        pathName: "j-min/clip-caption-reward",
+        description: "Fine-grained Image Captioning with CLIP Reward",
+        title: "clip-caption-reward"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "zsxkib/molmo-7b",
+        description: "allenai/Molmo-7B-D-0924, Answers questions and caption about images",
+        title: "molmo-7b"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+
+
+         {
+        pathName: "nohamoamary/image-captioning-with-visual-attention",
+        description: "datasets: Flickr8k",
+        title: "image-captioning-with-visual-attention"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+         {
+        pathName: "zsxkib/uform-gen",
+        description: "Super fast 1.5B Image Captioning/VQA Multimodal LLM (Image-to-Text)",
+        title: "uform-gen"
+        category: "caption-image"
+        link:...
+        }
+
+
+
+        // edit images
+
+
+
+
+        {
+        pathName: "tencentarc/gfpgan",
+        description: "Practical face restoration algorithm for *old photos* or *AI-generated faces*",
+        title: "gfpgan"
+        category: "edit-images" , "restore-images"
+        link:...
+        }
+
+
+
+         {
+        pathName: "sczhou/codeformer",
+        description: "Robust face restoration algorithm for old photos / AI-generated faces",
+        title: "codeformer"
+        category: "edit-images"
+        link:...
+        }
+        
+
+
+
+
+        {
+        pathName: "rossjillian/controlnet",
+        description: "Control diffusion models",
+        title: "controlnet"
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "cjwbw/rembg",
+        description: "Remove images background",
+        title: "rembg"
+        category: "edit-images"
+        link:...
+        }
+
+
+        {
+        pathName: "andreasjansson/stable-diffusion-inpainting",
+        description: "Inpainting using RunwayML's stable-diffusion-inpainting checkpoint",
+        title: "stable-diffusion-inpainting"
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "orpatashnik/styleclip",
+        description: "Text-Driven Manipulation of StyleGAN Imagery",
+        title: "styleclip"
+        category: "edit-images"
+        link:...
+        }
+
+
+
+        {
+        pathName: "timothybrooks/instruct-pix2pix",
+        description: "Edit images with human instructions",
+        title: "instruct-pix2pix" 
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "pollinations/modnet",
+        description: "A deep learning approach to remove background & adding new background image",
+        title: "modnet"  
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+
+        {
+        pathName: "logerzhu/ad-inpaint",
+        description: "Product advertising image generator",
+        title: "modnet"  
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "arielreplicate/deoldify_image",
+        description: "Add colours to old images",
+        title: "deoldify_image"   
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "adirik/t2i-adapter-sdxl-depth-midas",
+        description: "Modify images using depth maps",
+        title: "t2i-adapter-sdxl-depth-midas"    
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "adirik/t2i-adapter-sdxl-openpose",
+        description: "Modify images using human pose",
+        title: "t2i-adapter-sdxl-openpose"    
+        category: "edit-images"
+        link:...
+        }
+
+
+
+
+        // restore images
+
+        {
+        pathName: "sczhou/codeformer",
+        description: "Robust face restoration algorithm for old photos / AI-generated faces",
+        title: "codeformer"    
+        category: "restore-images"
+        link:...
+        }
+
+
+
+         {
+        pathName: "jingyunliang/swinir",
+        description: "Image Restoration Using Swin Transformer",
+        title: "swinir"     
+        category: "restore-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "megvii-research/nafnet",
+        description: "Nonlinear Activation Free Network for Image Restoration",
+        title: "nafnet"     
+        category: "restore-images"
+        link:...
+        }
+
+
+         {
+        pathName: "megvii-research/nafnet",
+        description: "Nonlinear Activation Free Network for Image Restoration",
+        title: "nafnet"     
+        category: "restore-images"
+        link:...
+        }
+
+
+
+        {
+        pathName: "cjwbw/bigcolor",
+        description: "Colorization using a Generative Color Prior for Natural Images",
+        title: "bigcolor"        
+        category: "restore-images"
+        link:...
+        }
+
+
+        {
+        pathName: "google-research/maxim",
+        description: "Multi-Axis MLP for Image Processing",
+        title: "maxim"        
+        category: "restore-images"
+        link:...
+        }
+
+
+
+        {
+        pathName: "cjwbw/supir",
+        description: "Practicing Model Scaling for Photo-Realistic Image Restoration In the Wild. This version uses LLaVA-13b for captioning.",
+        title: "supir"         
+        category: "restore-images"
+        link:...
+        }
+
+
+
+        {
+        pathName: "tencentarc/vqfr",
+        description: "Blind Face Restoration with Vector-Quantized Dictionary and Parallel Decoder",
+        title: "vqfr"         
+        category: "restore-images"
+        link:...
+        }
+        
+
+
+        // upscale images
+
+
+        {
+        pathName: "nightmareai/real-esrgan",
+        description: "Real-ESRGAN with optional face correction and adjustable upscale",
+        title: "real-esrgan"           
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "philz1337x/clarity-upscaler",
+        description: "High resolution image Upscaler and Enhancer. Use at ClarityAI.co. A free Magnific alternative.",
+        title: "clarity-upscaler"           
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "jingyunliang/swinir",
+        description: "Image Restoration Using Swin Transformer",
+        title: "swinir"           
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+         {
+        pathName: "mv-lab/swin2sr",
+        description: "3 Million Runs! AI Photorealistic Image Super-Resolution and Restoration",
+        title: "swin2sr"           
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+
+         {
+        pathName: "batouresearch/magic-image-refiner",
+        description: "A better alternative to SDXL refiners, providing a lot of quality and detail. Can also be used for inpainting or upscaling.",
+        title: "magic-image-refiner"            
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "cjwbw/rudalle-sr",
+        description: "Real-ESRGAN super-resolution model from ruDALL-E",
+        title: "rudalle-sr"               
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+        {
+        pathName: "jingyunliang/hcflow-sr",
+        description: "Image Super-Resolution",
+        title: "hcflow-sr"                
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+        {
+        pathName: "cjwbw/supir",
+        description: "Practicing Model Scaling for Photo-Realistic Image Restoration In the Wild. This version uses LLaVA-13b for captioning.",
+        title: "supir"                 
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+        {
+        pathName: "zsxkib/diffbir",
+        description: "DiffBIR: Towards Blind Image Restoration with Generative Diffusion Prior",
+        title: "diffbir"                  
+        category: "upscale-images"
+        link:...
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+        
+        
+
+
+
+
 
         */
         {
@@ -677,7 +1707,12 @@ function Home() {
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> 
+            {
+                models.map((model) => (     
+                    <ModelPreview key={model.id} title={model.title} description={model.description} />
+                ))
+            }
         </div>
     );
 }
