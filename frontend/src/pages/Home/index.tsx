@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, } from "react";
 import api from "../../api";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../../components/ui/card"
 import { Button } from "../../components/ui/button"
+import MostViewedModels from "./comp/MostViewedModels";
 
 
 
@@ -17,7 +18,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import ModelPreview from "./comp/ModelPreview";
 
 
-
+interface Model {
+    title: string;
+    runs: number;
+}
 
 
 function Home() {
@@ -1373,7 +1377,7 @@ function Home() {
             {/* Container für beide Cards */}
             <div className="flex flex-col lg:flex-row gap-6 justify-center mb-8">
                 {/* Hauptcard - volle Breite auf Mobile */}
-                <Card className="w-full lg:w-[70%] mb-8">
+                <Card className="w-full lg:w-[70%] mb-8 mt-4">
                     <CardHeader>
                         <CardTitle>Notes</CardTitle>
                         <CardDescription className="text-sm md:text-base">
@@ -1456,86 +1460,26 @@ function Home() {
                     </CardContent>
                 </Card>
                 
-                {/* Tag Card */}
-                <Card className="w-full lg:w-[300px] h-fit mb-8">
-                    <div className="flex h-full border rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 bg-black">
-                        <div className="flex-1 p-4">
-                            <div className="flex flex-col h-full">
-                                <div>
-                                    <h3 className="text-lg font-medium text-white mb-2">
-                                        Most Used Models
-                                    </h3>
-                                    <div className="space-y-2">
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>Stable Diffusion</span>
-                                            <span className="text-xs text-gray-400 ml-auto">2.5M</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>DALL-E 2</span>
-                                            <span className="text-xs text-gray-400 ml-auto">1.8M</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>Midjourney</span>
-                                            <span className="text-xs text-gray-400 ml-auto">1.2M</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>GPT-4</span>
-                                            <span className="text-xs text-gray-400 ml-auto">950K</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>Claude 2</span>
-                                            <span className="text-xs text-gray-400 ml-auto">780K</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>Adobe Firefly</span>
-                                            <span className="text-xs text-gray-400 ml-auto">650K</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>Google Vision</span>
-                                            <span className="text-xs text-gray-400 ml-auto">520K</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <input 
-                                                type="checkbox" 
-                                                className="w-4 h-4 rounded accent-purple-600 bg-purple-600"
-                                            />
-                                            <span>Runway ML</span>
-                                            <span className="text-xs text-gray-400 ml-auto">480K</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Card>
+
+                {/* MostViewedModels.tsx komponent */}
+
+
+                <div className="flex justify-end p-4">
+                <MostViewedModels 
+                    models={[
+                    { title: "Stable Diffusion", runs: 2500000 },
+                    { title: "DALL-E 2", runs: 1800000 },
+                    { title: "Midjourney", runs: 1200000 },
+                    { title: "GPT-4", runs: 950000 },
+                    { title: "Claude 2", runs: 780000 },
+                    { title: "Adobe Firefly", runs: 650000 },
+                    { title: "Google Vision", runs: 520000 },
+                    { title: "Runway ML", runs: 480000 }
+                ]} 
+            />
+            </div>
+                
+               
             </div>
 
             {/* Statistik-Banner */}
@@ -1659,24 +1603,10 @@ function Home() {
                     </ul>
                 </div>
             </div> 
-            
-            <div style={{ 
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '16px',
-                padding: '24px'
-            }}>
-                {models.map((model, index) => (
-                    <ModelPreview
-                    key={index}
-                    title={model.title}
-                    description={model.description}
-                    runs={model.runs}
-                    imageUrl={model.image}
-                    />
-                ))}
-            </div>
+
+           
         </div>
+        
     );
 }
 
