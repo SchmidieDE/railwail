@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../..
 import { Button } from "../../components/ui/button"
 
 
+
 import { 
     ImageIcon,  // für "Generate images"
     Type,       // für "Generate text"
@@ -90,6 +91,21 @@ function Home() {
 
     // Füge diese Modell-Daten am Anfang der Komponente hinzu
     const models = [
+
+
+       
+            {
+                id: 1,
+                title: "Stable Diffusion",
+                description: "Generate high-quality images...",
+                image: "/images/chatgpt.jpg",
+                category: "Generate images",
+                link: "/image-models/stable-diffusion",
+                runs: 0  // Add this property
+            },
+            // ... other models ...
+        
+
         // Generate images
         /*
 
@@ -1708,11 +1724,23 @@ function Home() {
                     </ul>
                 </div>
             </div> 
-            {
-                models.map((model) => (     
-                    <ModelPreview key={model.id} title={model.title} description={model.description} />
-                ))
-            }
+            
+            <div style={{ 
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '16px',
+                padding: '24px'
+            }}>
+                {models.map((model, index) => (
+                    <ModelPreview
+                    key={index}
+                    title={model.title}
+                    description={model.description}
+                    runs={model.runs}
+                    imageUrl={model.image}
+                    />
+                ))}
+            </div>
         </div>
     );
 }
