@@ -8,8 +8,8 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
 }) => {
   return (
     <Card sx={{ 
-      width: 500,
-      height: 300,
+      width: 400,
+      height: 250,
       display: 'flex',
       m: 1,
       bgcolor: 'background.paper',
@@ -18,14 +18,18 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
     }}>
       <div style={{ 
         display: 'flex',
+        flexWrap: 'wrap',
+        
         width: '100%',
         padding: 0,
-        gap: '16px'
+        gap: '16px',
+        
+      
       }}>
         {/* Linke Seite - Bild */}
         <div style={{
-          width: '250px',
-          height: '300px',
+          width: '200px',
+          height: '250px',
           overflow: 'hidden',
           flexShrink: 0,
           borderRadius: 0
@@ -33,7 +37,18 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
           <img 
             src={imageUrl}
             alt={title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              objectFit: 'cover',
+              transition: 'transform 0.3s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
           />
         </div>
 

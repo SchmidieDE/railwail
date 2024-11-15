@@ -1433,95 +1433,30 @@ function Home() {
                             </div>
                         </div>
 
-                        {/* Modell-Karten Container */}
-                        <div 
-                            ref={containerRef}
-                            className="flex-1 cursor-grab active:cursor-grabbing overflow-x-auto"
-                            onMouseDown={handleMouseDown}
-                            onMouseUp={handleMouseUp}
-                            onMouseLeave={handleMouseUp}
-                            onMouseMove={handleMouseMove}
-                            style={{ 
-                                scrollbarWidth: 'none',
-                                msOverflowStyle: 'none',
-                                WebkitOverflowScrolling: 'touch',
-                            }}
-                        >
-                            <AnimatePresence mode="wait">
-                                <motion.div 
-                                    key={selectedCategory}
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.22 }}
-                                    className="flex gap-4 py-4 px-4 min-w-max"
-                                >
-                                    {filteredModels.map((model) => (
-                                        <motion.div
-                                            key={model.id}
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            transition={{ duration: 0.22 }}
-                                            className="flex-none w-[280px] md:w-[400px] h-[160px] md:h-[180px] 
-                                                border rounded-lg shadow-sm hover:shadow-lg 
-                                                transition-all duration-300 ease-in-out 
-                                                bg-white select-none overflow-hidden"
-                                        >
-                                            <div className="flex h-full">
-                                                {/* Bild-Container - Feste Breite */}
-                                                <div className="w-24 md:w-32 flex-shrink-0 overflow-hidden">
-                                                    <img 
-                                                        src={model.image} 
-                                                        alt={model.title}
-                                                        className="w-full h-full object-cover rounded-l-lg
-                                                            transition-all duration-300
-                                                            hover:scale-110
-                                                            filter saturate-75 hover:saturate-100"
-                                                        draggable="false"
-                                                        onDragStart={(e) => e.preventDefault()}
-                                                    />
-                                                </div>
-                                                
-                                                {/* Content Container - Flex mit fester Struktur */}
-                                                <div className="flex-1 p-3 md:p-4 flex flex-col justify-between">
-                                                    {/* Text Content */}
-                                                    <div>
-                                                        <h3 className="text-sm md:text-lg font-medium mb-2 text-gray-800">
-                                                            {model.title}
-                                                        </h3>
-                                                        <p className="text-xs md:text-sm text-gray-600 line-clamp-2">
-                                                            {model.description}
-                                                        </p>
-                                                    </div>
+                        {/* komponent ModelPreview.tsx */}
 
-                                                    {/* Footer mit Stats und Button - Immer am unteren Rand */}
-                                                    <div className="mt-auto pt-2 flex items-center justify-between">
-                                                        <span className="text-xs md:text-sm text-gray-500">
-                                                            {formatVisits(visitCounts[model.id] || 0)}
-                                                        </span>
-                                                        <Button
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                window.open(model.link, '_blank');
-                                                                handleVisit(model.id);
-                                                            }}
-                                                            className="bg-primary hover:bg-primary/90 text-white text-xs 
-                                                                md:text-sm px-3 py-1 min-w-[80px] md:min-w-[90px]"
-                                                        >
-                                                            Open →
-                                                        </Button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
-                            </AnimatePresence>
+                        <div style={{ 
+                            display: 'flex',
+                            flexWrap: 'wrap',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '16px',
+                            padding: '20px'
+                        }}>
+                            {models.map((model, index) => (
+                                <ModelPreview
+                                    key={index}
+                                    title={model.title}
+                                    description={model.description}
+                                    runs={model.runs}
+                                    imageUrl={model.image}
+                                />
+                            ))}
                         </div>
                     </CardContent>
                 </Card>
-
-                {/* Tag Card - jetzt auch auf Mobile sichtbar */}
+                
+                {/* Tag Card */}
                 <Card className="w-full lg:w-[300px] h-fit mb-8">
                     <div className="flex h-full border rounded-lg shadow-sm hover:shadow-lg transition-all duration-300 bg-black">
                         <div className="flex-1 p-4">
