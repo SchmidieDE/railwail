@@ -1398,67 +1398,27 @@ const categories = [
             </div>
 
             {/* Container für beide Cards */}
-            <div className="flex flex-col lg:flex-row gap-6 justify-center mb-8">
+            <div className="flex flex-col lg:flex-row gap-6 justify-center mb-8 bg-transparent shadow-none border-none">
                 {/* Hauptcard - volle Breite auf Mobile */}
                 <Card className="w-full lg:w-[70%] mb-8 mt-4">
                     <CardHeader>
-                        <CardTitle>Notes</CardTitle>
+                        <CardTitle>Explore</CardTitle>
                         <CardDescription className="text-sm md:text-base">
-                            Write your text here.
+                            Featured Models
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent>
-                        {/* Kategorie-Buttons Container */}
-                        <div 
-                            ref={categoriesRef}
-                            className="mb-6 cursor-grab active:cursor-grabbing overflow-x-auto select-none"
-                            onMouseDown={handleCategoryMouseDown}
-                            onMouseLeave={handleCategoryMouseUp}
-                            onMouseUp={handleCategoryMouseUp}
-                            onMouseMove={handleCategoryMouseMove}
-                            onClick={(e) => e.stopPropagation()}
-                            style={{ 
-                                scrollbarWidth: 'none',
-                                msOverflowStyle: 'none',
-                                WebkitOverflowScrolling: 'touch'
-                            }}
-                        >
-                            <div className="flex gap-2 py-2 min-w-max px-2">
-                                {[
-                                    { name: "All", icon: <LayoutGrid className="w-4 h-4" /> },
-                                    { name: "Generate images", icon: <ImageIcon className="w-4 h-4" /> },
-                                    { name: "Generate text", icon: <Type className="w-4 h-4" /> },
-                                    { name: "Caption images", icon: <FileImage className="w-4 h-4" /> },
-                                    { name: "Edit images", icon: <Pencil className="w-4 h-4" /> },
-                                    { name: "Restore images", icon: <RefreshCw className="w-4 h-4" /> }
-                                ].map((category) => (
-                                    <Button
-                                        key={category.name}
-                                        variant="outline"
-                                        className={`
-                                            transition-colors
-                                            whitespace-nowrap
-                                            px-4 py-2
-                                            text-sm md:text-base
-                                            flex items-center gap-2
-                                            select-none
-                                            ${selectedCategory === category.name 
-                                                ? 'bg-primary text-white' 
-                                                : 'text-gray-800 hover:bg-primary/90 hover:text-white'
-                                            }
-                                        `}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            selectCategory(category.name);
-                                        }}
-                                    >
-                                        {category.icon}
-                                        {category.name}
-                                    </Button>
-                                ))}
-                            </div>
+
+
+                        {/* CategoriesList.tsx komponent */}
+                        <div className="flex flex-row justify-center gap-4 mt-4 mb-4 text-black">
+                            {categories.map((categorymodels) => (
+                                <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
+                            ))}
                         </div>
+                       
+
 
                         {/* komponent ModelPreview.tsx */}
 
@@ -1627,7 +1587,7 @@ const categories = [
                 </div>
             </div> 
            
-<div>
+<div className="flex flex-row justify-center gap-4 mt-4 mb-4">
     {categories.map((categorymodels) => (
         <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
     ))}
