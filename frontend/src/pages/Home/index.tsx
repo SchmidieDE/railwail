@@ -1327,24 +1327,24 @@ const categories = [
         );
     };
 
-    const handleMouseDown = (e) => {
+    const handleMouseDown = (e: React.MouseEvent) => {
         setIsDragging(true);
-        setStartX(e.pageX - containerRef.current.offsetLeft);
-        setScrollLeft(containerRef.current.scrollLeft);
-        setDragDistance(0);
+        setStartX(e.pageX - (containerRef.current?.offsetLeft || 0));
+        setScrollLeft(containerRef.current?.scrollLeft || 0);
     };
 
     const handleMouseUp = () => {
         setIsDragging(false);
     };
 
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: React.MouseEvent) => {
         if (!isDragging) return;
         e.preventDefault();
-        const x = e.pageX - containerRef.current.offsetLeft;
-        const walk = (x - startX); // Bewegung weniger empfindlich
-        setDragDistance(Math.abs(walk)); // Speichere die Drag-Distanz
-        containerRef.current.scrollLeft = scrollLeft - walk;
+        const x = e.pageX - (containerRef.current?.offsetLeft || 0);
+        const walk = (x - startX);
+        if (containerRef.current) {
+            containerRef.current.scrollLeft = scrollLeft - walk;
+        }
     };
 
     const handleCardClick = (e, link) => {
@@ -1397,95 +1397,126 @@ const categories = [
                 </div>
             </div>
 
-            {/* Container für beide Cards */}
-            <div className="flex flex-col lg:flex-row gap-6 justify-center mb-8 bg-transparent shadow-none border-none">
-                {/* Hauptcard - volle Breite auf Mobile */}
-                <Card className="w-full lg:w-[70%] mb-8 mt-4">
-                    <CardHeader>
-                        <CardTitle>Explore</CardTitle>
-                        <CardDescription className="text-sm md:text-base">
-                            Featured Models
-                        </CardDescription>
-                    </CardHeader>
+<div className="flex flex-col">
+    {/* Hauptbereich - ModelPreviews */}
+    <div className="w-full mb-8 mt-4">
+        {/* CategoriesList Komponente */}
+        <div className="flex flex-row justify-center gap-4 mt-4 mb-4 text-black">
+            {categories.map((categorymodels) => (
+                <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
+            ))}
+        </div>
 
-                    <CardContent>
-
-
-                        {/* CategoriesList.tsx komponent */}
-                        <div className="flex flex-row justify-center gap-4 mt-4 mb-4 text-black">
-                            {categories.map((categorymodels) => (
-                                <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
-                            ))}
-                        </div>
-                       
-
-
-                        {/* komponent ModelPreview.tsx */}
-
-                        <div style={{ 
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            gap: '16px',
-                            padding: '20px'
-                        }}>
-                            {models.map((model, index) => (
-                                <ModelPreview
-                                    key={index}
-                                    title={model.title}
-                                    description={model.description}
-                                    runs={model.runs}
-                                    imageUrl={model.image}
-                                />
-                            ))}
-                        </div>
-                    </CardContent>
-                </Card>
-                
-
-                {/* MostViewedModels.tsx komponent */}
+        {/* ModelPreviews Container */}
+        <div 
+            ref={containerRef}
+            style={{ 
+                display: 'flex',
+                overflowX: 'hidden',
+                gap: '16px',
+                padding: '20px',
+                cursor: isDragging ? 'grabbing' : 'grab',
+                userSelect: 'none',
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onMouseMove={handleMouseMove}
+        >
+            {models.map((model, index) => (
+                <div key={index} style={{ flexShrink: 0 }}>
+                    <ModelPreview
+                        title={model.title}
+                        description={model.description}
+                        runs={model.runs}
+                        imageUrl={model.image}
+                    />
+                </div>
+            ))}
+        </div>
+    </div>
 
 
-                <div className="flex justify-end p-4">
-                <MostViewedModels 
-                    models={[
+    <div className="flex justify-center gap-8 p-4">
+        {/* Linke Seite - Frage Input */}
+        <div className="w-1/2 bg-transparent shadow-none border-none rounded-xl p-6">
+            <h2 
+                className="text-2xl font-bold mb-4 text-center"
+                style={{
+                    background: 'linear-gradient(90deg, rgb(157, 0, 255) 0%, rgb(77, 148, 255) 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                }}
+            >
+                Please let me know if there are additional notes
+            </h2>
+            <textarea 
+                className="w-full p-3 rounded-lg bg-white text-black mb-4 resize-none "
+                placeholder="Type your message here"
+                rows={4}
+                style={{ 
+                    borderRadius: '10px',
+                    outline: 'none',
+                    border: '1px solid black'
+                }}
+            />
+            <button className="w-full bg-black text-white py-2 rounded-xl hover:bg-[#3c3c7c] transition-colors hover:shadow-purple-500/20" >
+                Send message
+            </button>
+        </div>
+
+        {/* Rechte Seite - MostViewedModels */}
+        <div className="w-1/2 shadow-purple-500/20 shadow-xl rounded-xl ">
+            <MostViewedModels 
+                models={[
                     { title: "Stable Diffusion", runs: 2500000 },
-                    { title: "DALL-E 2", runs: 1800000 },
                     { title: "Midjourney", runs: 1200000 },
-                    { title: "GPT-4", runs: 950000 },
                     { title: "Claude 2", runs: 780000 },
-                    { title: "Adobe Firefly", runs: 650000 },
                     { title: "Google Vision", runs: 520000 },
+                    { title: "DALL-E", runs: 21800000 },
+                    { title: "GPT-4", runs: 950000 },
+                    { title: "Adobe Firefly", runs: 650000 },
                     { title: "Runway ML", runs: 480000 }
                 ]} 
             />
-            </div>
-                
-               
-            </div>
+        </div>
+    </div>
+</div>
 
             {/* Statistik-Banner */}
-            <div className="mt-16 p-8 bg-gradient-to-r from-blue-500 to-purple-500 border border-purple-500/20 rounded-xl">
+            <div className="mt-16 p-8 bg-gradient-to-r from-purple-500 to-blue-500 border border-purple-500/20 rounded-xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div className="space-y-2">
-                        <div className="text-4xl font-bold text-purple-900">100K+</div>
-                        <div className="text-zinc-300">Active Users</div>
+                        <div className="text-6xl font-bold text-black">100K+</div>
+                        <div className="text-2xl text-white">Active Users</div>
                     </div>
                     <div className="space-y-2">
-                        <div className="text-4xl font-bold text-purple-900">50M+</div>
-                        <div className="text-zinc-300">API Calls Daily</div>
+                        <div className="text-6xl font-bold text-black">50M+</div>
+                        <div className="text-2xl text-white">API Calls Daily</div>
                     </div>
                     <div className="space-y-2">
-                        <div className="text-4xl font-bold text-purple-900">99.9%</div>
-                        <div className="text-zinc-300">Uptime</div>
+                        <div className="text-6xl font-bold text-black">99.9%</div>
+                        <div className="text-2xl text-white">Uptime</div>
                     </div>
                 </div>
             </div>
 
             {/* Feature Showcase */}
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="p-6 bg-black border-2 border-purple-500/30 rounded-xl hover:border-purple-500/50 transition-all">
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8    ">
+            <div className="bg-[#1f1f38] rounded-xl p-6
+            
+            border-[1px] border-white
+            shadow-[0_0_20px_rgba(168,85,247,0.3)]
+            shadow-primary/50
+            relative
+            before:absolute before:inset-0
+            before:rounded-xl
+            before:shadow-[0_0_30px_rgba(168,85,247,0.4)]
+            before:-z-10
+            after:absolute after:inset-0
+            after:rounded-xl
+            after:shadow-[0_0_40px_rgba(168,85,247,0.2)]
+            after:-z-20">
                     <div className="flex items-center gap-4 mb-4">
                         <div className="p-3 bg-purple-500/10 rounded-lg">
                             <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1497,7 +1528,20 @@ const categories = [
                     <p className="text-zinc-400">Response times under 100ms. Built for scale and performance.</p>
                 </div>
 
-                <div className="p-6 bg-black border-2 border-purple-500/30 rounded-xl hover:border-purple-500/50 transition-all">
+                <div className="bg-[#1f1f38] rounded-xl p-6
+            
+            border-[1px] border-white
+            shadow-[0_0_20px_rgba(168,85,247,0.3)]
+            shadow-primary/50
+            relative
+            before:absolute before:inset-0
+            before:rounded-xl
+            before:shadow-[0_0_30px_rgba(168,85,247,0.4)]
+            before:-z-10
+            after:absolute after:inset-0
+            after:rounded-xl
+            after:shadow-[0_0_40px_rgba(168,85,247,0.2)]
+            after:-z-20">
                     <div className="flex items-center gap-4 mb-4">
                         <div className="p-3 bg-purple-500/10 rounded-lg">
                             <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
