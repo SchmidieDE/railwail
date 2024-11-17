@@ -3,6 +3,9 @@ import api from "../../api";
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../../components/ui/card"
 import { Button } from "../../components/ui/button"
 import MostViewedModels from "./comp/MostViewedModels";
+import CategoriesList from "./comp/CategoriesList";
+
+
 
 
 
@@ -12,7 +15,8 @@ import {
     FileImage,  // für "Caption images"
     Pencil,     // für "Edit images"
     RefreshCw,  // für "Restore images"
-    LayoutGrid  // für "All"
+    LayoutGrid,  // für "All"
+    Languages   // für "Language models"
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ModelPreview from "./comp/ModelPreview";
@@ -21,6 +25,12 @@ import ModelPreview from "./comp/ModelPreview";
 interface Model {
     title: string;
     runs: number;
+}
+
+interface CategoryModel {
+    title: string;
+    icons: React.ReactNode;
+    // ... other properties
 }
 
 
@@ -93,6 +103,19 @@ function Home() {
         setSelectedCategory(category);
     };
 
+const categories = [
+    {category: "Generate images",
+        icons: <ImageIcon />
+    }, 
+    {category: "Generate text",
+        icons: <Type />
+    }, 
+    {category: "Language models",
+        icons: <Languages />
+    }
+]
+
+
     // Füge diese Modell-Daten am Anfang der Komponente hinzu
     const models = [
 
@@ -105,7 +128,7 @@ function Home() {
                 image: "/images/chatgpt.jpg",
                 category: "Generate images",
                 link: "/image-models/stable-diffusion",
-                runs: 0  // Add this property
+                runs: 0 
             },
             // ... other models ...
         
@@ -1603,11 +1626,20 @@ function Home() {
                     </ul>
                 </div>
             </div> 
-
            
-        </div>
+<div>
+    {categories.map((categorymodels) => (
+        <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
+    ))}
+    </div>
+
+    
+</div>
+       
         
     );
+
+    
 }
 
 export default Home;
