@@ -1,5 +1,7 @@
 import { Card, CardContent, Typography, Button } from '@mui/material';
-import { useState } from 'react';
+
+
+
 
 const ModelPreview = ({ title, description, runs, imageUrl }: { 
   title: string;
@@ -7,8 +9,6 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
   runs: number;
   imageUrl: string;
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <Card sx={{ 
       width: 400,
@@ -35,8 +35,7 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
           height: '250px',
           overflow: 'hidden',
           flexShrink: 0,
-          borderRadius: 0,
-          position: 'relative',
+          borderRadius: 0
         }}>
           <img 
             src={imageUrl}
@@ -47,14 +46,15 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
               objectFit: 'cover',
               transition: 'transform 0.3s ease',
               pointerEvents: 'none',
-              WebkitUserDrag: 'none',
-              userDrag: 'none',
-              WebkitUserSelect: 'none',
-              userSelect: 'none',
-              transform: isHovered ? 'scale(1.2)' : 'scale(1.0)',
+             
+             
             }}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.1)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
           />
         </div>
 

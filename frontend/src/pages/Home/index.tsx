@@ -1142,6 +1142,7 @@ const categories = [
 
 
 
+
         
 
 
@@ -1438,8 +1439,8 @@ const categories = [
 
 
     <div className="flex flex-col md:flex-row justify-center gap-8 p-4">
-        {/* Linke Seite - Frage Input */}
-        <div className="w-full md:w-1/2 bg-transparent shadow-none border-none rounded-xl p-6">
+        {/* Frage Input - order-2 auf Mobile, order-1 auf Desktop */}
+        <div className="w-full md:w-1/2 bg-transparent shadow-none border-none rounded-xl p-6 order-2 md:order-1">
             <h2 
                 className="text-2xl font-bold mb-4 text-center"
                 style={{
@@ -1465,8 +1466,8 @@ const categories = [
             </button>
         </div>
 
-        {/* Rechte Seite - MostViewedModels */}
-        <div className="w-full md:w-1/2 shadow-purple-500/20 shadow-xl rounded-xl">
+        {/* Most Viewed Box - order-1 auf Mobile, order-2 auf Desktop */}
+        <div className="w-full md:w-1/2 shadow-purple-500/20 shadow-xl rounded-xl order-1 md:order-2">
             <MostViewedModels 
                 models={[
                     { title: "Stable Diffusion", runs: 2500000 },
@@ -1555,8 +1556,22 @@ const categories = [
             </div>
 
             {/* Call-to-Action Section */}
-            <div className="mt-16 text-center p-8 bg-gradient-to-b from-purple-500/10 to-transparent rounded-xl">
-                <h2 className="text-3xl font-bold text-purple-900 mb-4">Ready to Get Started?</h2>
+            <div className="mt-16 text-center p-8 pb-12 bg-gradient-to-b from-purple-500/10 to-transparent rounded-xl">
+                <div className="relative pb-4">  {/* Added container with padding-bottom */}
+                    <h2 
+                        className="text-5xl font-bold mb-4 text-center"
+                        style={{
+                            background: 'linear-gradient(90deg, rgb(157, 0, 255) 0%, rgb(77, 148, 255) 100%)',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            paddingBottom: '0.1em',  // Added small padding at bottom
+                            lineHeight: '1.2',       // Adjusted line height
+                            display: 'inline-block'  // Changed to inline-block
+                        }}
+                    >
+                        Ready to Get Started?
+                    </h2>
+                </div>
                 <p className="text-zinc-400 max-w-2xl mx-auto mb-8">
                     Join thousands of developers already using our API platform.
                     Get 10,000 free API calls when you sign up today.
@@ -1573,7 +1588,7 @@ const categories = [
 
             {/* Trust Indicators */}
             <div className="mt-16">
-                <p className="text-center text-zinc-500 mb-6">Trusted by leading companies worldwide</p>
+                <p className="text-center  text-zinc-500 mb-6">Trusted by leading companies worldwide</p>
                 <div className="flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all">
                     {/* Ersetzen Sie dies durch echte Logos */}
                     <div className="h-8">Company Logo 1</div>

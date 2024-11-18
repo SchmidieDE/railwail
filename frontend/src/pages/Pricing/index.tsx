@@ -27,15 +27,15 @@ const Pricing = () => {
             
             <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch">
                 {/* Basic Plan */}
-                <Card className="w-full md:w-[300px] flex flex-col">
+                <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
                     <CardHeader className="text-center">
                         <CardTitle>Basic</CardTitle>
                         <div className="mt-2">
-                            <span className="text-gray-500 line-through text-lg">€14.99</span>
+                            <span className=" line-through text-lg">€14.99</span>
                             <p className="text-3xl font-bold">
                                 €9.99<span className="text-sm font-normal">/month</span>
                             </p>
-                            <span className="text-green-600 text-sm font-medium">Save 33%</span>
+                            <span className=" text-sm font-medium">Save 33%</span>
                         </div>
                     </CardHeader>
                     <CardContent className="flex flex-col flex-grow">
@@ -43,33 +43,33 @@ const Pricing = () => {
                             <div className="space-y-2">
                                 <h3 className="font-semibold mb-2">Includes:</h3>
                                 <div className="flex items-center gap-2">
-                                    <Clock className="text-green-500 w-5 h-5" />
+                                    <Clock className=" w-5 h-5" />
                                     <span>5 API calls per minute</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Box className="text-green-500 w-5 h-5" />
+                                    <Box className=" w-5 h-5" />
                                     <span>Basic model access</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Mail className="text-green-500 w-5 h-5" />
+                                    <Mail className=" w-5 h-5" />
                                     <span>Email support</span>
                                 </div>
                             </div>
                             
                             <div className="space-y-2">
-                                <h3 className="font-semibold text-red-500">Limitations:</h3>
+                                <h3 className="font-semibold">Limitations:</h3>
                                 <div className="flex items-center gap-2">
-                                    <Shield className="text-red-500 w-5 h-5" />
-                                    <span className="text-gray-500">No priority access</span>
+                                    <Shield className=" w-5 h-5" />
+                                    <span>No priority access</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Box className="text-red-500 w-5 h-5" />
-                                    <span className="text-gray-500">Limited model selection</span>
+                                    <Box className=" w-5 h-5" />
+                                    <span>Limited model selection</span>
                                 </div>
                             </div>
                         </div>
                         <Button 
-                            className="w-full mt-4 bg-primary hover:bg-primary/90"
+                            className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
                             onClick={() => window.location.href = STRIPE_BASIC_URL}
                         >
                             Get Started
@@ -78,15 +78,15 @@ const Pricing = () => {
                 </Card>
 
                 {/* Pro Plan */}
-                <Card className="w-full md:w-[300px] flex flex-col border-blue-500">
+                <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
                     <CardHeader className="text-center">
                         <CardTitle>Pro</CardTitle>
                         <div className="mt-2">
-                            <span className="text-gray-500 line-through text-lg">€49.99</span>
+                            <span className="line-through text-lg">€49.99</span>
                             <p className="text-3xl font-bold">
                                 €29.99<span className="text-sm font-normal">/month</span>
                             </p>
-                            <span className="text-green-600 text-sm font-medium">Save 40%</span>
+                            <span className="text-sm font-medium">Save 40%</span>
                         </div>
                     </CardHeader>
                     <CardContent className="flex flex-col flex-grow">
@@ -94,33 +94,33 @@ const Pricing = () => {
                             <div className="space-y-2">
                                 <h3 className="font-semibold mb-2">Includes:</h3>
                                 <div className="flex items-center gap-2">
-                                    <Zap className="text-green-500 w-5 h-5" />
+                                    <Zap className="w-5 h-5" />
                                     <span>20 API calls per minute</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <FileCode className="text-green-500 w-5 h-5" />
+                                    <FileCode className="w-5 h-5" />
                                     <span>Advanced model access</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Headphones className="text-green-500 w-5 h-5" />
+                                    <Headphones className="w-5 h-5" />
                                     <span>Priority email support</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <BadgeCheck className="text-green-500 w-5 h-5" />
+                                    <BadgeCheck className="w-5 h-5" />
                                     <span>Custom API integration</span>
                                 </div>
                             </div>
                             
                             <div className="space-y-2">
-                                <h3 className="font-semibold text-red-500">Limitations:</h3>
+                                <h3 className="font-semiboid">Limitations:</h3>
                                 <div className="flex items-center gap-2">
-                                    <X className="text-red-500 w-5 h-5" />
-                                    <span className="text-gray-500">No 24/7 support</span>
+                                    <X className=" w-5 h-5" />
+                                    <span>No 24/7 support</span>
                                 </div>
                             </div>
                         </div>
                         <Button 
-                            className="w-full mt-4 bg-blue-500 hover:bg-blue-600"
+                             className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
                             onClick={() => window.location.href = STRIPE_PRO_URL}
                         >
                             Upgrade to Pro
@@ -129,55 +129,53 @@ const Pricing = () => {
                 </Card>
 
                 {/* Enterprise Plan - Highlighted */}
-                <Card className="w-full md:w-[300px] flex flex-col 
-                    bg-gradient-to-b from-blue-900 to-blue-950 
-                    border-blue-700 border-2 text-white">
+                <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
                     <CardHeader className="text-center">
                         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            <span className="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                            <span className=" text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
                                 Premium
                             </span>
                         </div>
                         <CardTitle className="text-white text-2xl font-bold">Enterprise</CardTitle>
                         <div className="mt-2">
-                            <span className="text-blue-300 line-through text-lg">€199.99</span>
+                            <span className=" line-through text-lg">€199.99</span>
                             <p className="text-3xl font-bold text-white">
-                                €99.99<span className="text-sm font-normal text-blue-300">/month</span>
+                                €99.99<span className="text-sm font-normal">/month</span>
                             </p>
-                            <span className="text-green-400 text-sm font-medium">Save 50%</span>
+                            <span className="text-sm font-medium">Save 50%</span>
                         </div>
                     </CardHeader>
                     <CardContent className="flex flex-col flex-grow">
                         <div className="space-y-4 flex-grow">
                             <div className="space-y-2">
-                                <h3 className="font-semibold mb-2 text-blue-300">All Pro features plus:</h3>
+                                <h3 className="font-semibold mb-2">All Pro features plus:</h3>
                                 <div className="space-y-3">
                                     <div className="flex items-center gap-2">
-                                        <Zap className="text-blue-300 w-5 h-5" />
+                                        <Zap className="w-5 h-5" />
                                         <span className="text-white">Unlimited API calls</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <Headphones className="text-blue-300 w-5 h-5" />
+                                        <Headphones className="w-5 h-5" />
                                         <span className="text-white">24/7 Premium support</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <FileCode className="text-blue-300 w-5 h-5" />
+                                        <FileCode className=" w-5 h-5" />
                                         <span className="text-white">Custom model training</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <Award className="text-blue-300 w-5 h-5" />
+                                        <Award className=" w-5 h-5" />
                                         <span className="text-white">Dedicated account manager</span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <Users className="text-blue-300 w-5 h-5" />
+                                        <Users className=" w-5 h-5" />
                                         <span className="text-white">SLA guarantee</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <Button 
-                            className="w-full mt-4 bg-blue-600 hover:bg-blue-700"
-                            onClick={() => window.location.href = '/contact'}
+                             className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
+                            onClick={() => window.location.href = STRIPE_PRO_URL}
                         >
                             Contact Sales
                         </Button>
