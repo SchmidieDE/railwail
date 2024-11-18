@@ -1405,7 +1405,7 @@ const categories = [
             {categories.map((categorymodels) => (
                 <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
             ))}
-        </div>
+                </div>
 
         {/* ModelPreviews Container */}
         <div 
@@ -1433,13 +1433,13 @@ const categories = [
                     />
                 </div>
             ))}
+            </div>
         </div>
-    </div>
 
 
-    <div className="flex justify-center gap-8 p-4">
+    <div className="flex flex-col md:flex-row justify-center gap-8 p-4">
         {/* Linke Seite - Frage Input */}
-        <div className="w-1/2 bg-transparent shadow-none border-none rounded-xl p-6">
+        <div className="w-full md:w-1/2 bg-transparent shadow-none border-none rounded-xl p-6">
             <h2 
                 className="text-2xl font-bold mb-4 text-center"
                 style={{
@@ -1451,7 +1451,7 @@ const categories = [
                 Please let me know if there are additional notes
             </h2>
             <textarea 
-                className="w-full p-3 rounded-lg bg-white text-black mb-4 resize-none "
+                className="w-full p-3 rounded-lg bg-white text-black mb-4 resize-none"
                 placeholder="Type your message here"
                 rows={4}
                 style={{ 
@@ -1460,13 +1460,13 @@ const categories = [
                     border: '1px solid black'
                 }}
             />
-            <button className="w-full bg-black text-white py-2 rounded-xl hover:bg-[#3c3c7c] transition-colors hover:shadow-purple-500/20" >
+            <button className="w-full bg-black text-white py-2 rounded-xl hover:bg-[#3c3c7c] transition-colors hover:shadow-purple-500/20">
                 Send message
             </button>
         </div>
 
         {/* Rechte Seite - MostViewedModels */}
-        <div className="w-1/2 shadow-purple-500/20 shadow-xl rounded-xl ">
+        <div className="w-full md:w-1/2 shadow-purple-500/20 shadow-xl rounded-xl">
             <MostViewedModels 
                 models={[
                     { title: "Stable Diffusion", runs: 2500000 },
@@ -1631,11 +1631,7 @@ const categories = [
                 </div>
             </div> 
            
-<div className="flex flex-row justify-center gap-4 mt-4 mb-4">
-    {categories.map((categorymodels) => (
-        <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
-    ))}
-    </div>
+
 
     
 </div>
