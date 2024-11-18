@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardContent, Typography, Button, Box } from '@mui/material';
 
 
 
@@ -11,28 +11,37 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
 }) => {
   return (
     <Card sx={{ 
-      width: 400,
-      height: 250,
+      width: {xs: 125, sm: 300, md: 400}, 
+      height: {xs: 260, sm: 200, md: 250},
       display: 'flex',
+      flexDirection: {
+        xs: 'column',
+        sm: 'row'
+      },
       m: 1,
       bgcolor: 'background.paper',
       borderRadius: 2,
       overflow: 'hidden'
     }}>
-      <div style={{ 
+      <Box sx={{ 
         display: 'flex',
         flexWrap: 'wrap',
-        
         width: '100%',
         padding: 0,
         gap: '16px',
-        
-      
       }}>
         {/* Linke Seite - Bild */}
-        <div style={{
-          width: '200px',
-          height: '250px',
+        <Box sx={{
+          width:{
+            xs: '125px',
+            sm: '150px',
+            md: '200px'
+          },
+          height: {
+            xs: '130px',
+            sm: '200px',
+            md: '250px'
+          },
           overflow: 'hidden',
           flexShrink: 0,
           borderRadius: 0
@@ -56,51 +65,108 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
               e.currentTarget.style.transform = 'scale(1)';
             }}
           />
-        </div>
+        </Box>
 
         {/* Rechte Seite - Content */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div style={{ padding: '16px' }}>
-            <Typography variant="h6" sx={{ fontSize: '1.1rem', fontWeight: 'bold', mb: 0.5 }}>
+        <Box sx={{ 
+          flex: 1, 
+          display: 'flex', 
+          flexDirection: 'column',
+          p: {
+              xs: 1,
+              sm: 1.5,
+              md: 2
+          }
+        }}>
+          {/* Title und Description */}
+          <Box sx={{ flex: 1 }}>
+            <Typography variant="h6" sx={{ 
+              fontSize:{ 
+                xs:'0.8rem',
+                sm:'0.9rem',
+                md:'1.1rem'
+              }, 
+              fontWeight: 'bold', 
+              mb: 0.5
+            }}>
               {title}
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{
-              fontSize: '0.875rem',
-              display: '-webkit-box',
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden'
-            }}>
+            <Typography 
+              variant="body2" 
+              color="text.secondary" 
+              sx={{
+                fontSize: {
+                  xs: '0.7rem',
+                  sm: '0.8rem',
+                  md: '0.875rem'
+                },
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden'
+              }}
+            >
               {description}
             </Typography>
-          </div>
+          </Box>
           
-          <div style={{ 
+          {/* Footer */}
+          <Box sx={{ 
             display: 'flex', 
             justifyContent: 'space-between', 
             alignItems: 'center',
-            marginTop: '8px'
+            mt: 'auto',  // Dies drückt den Footer nach unten
+            pt: 1        // Etwas Abstand nach oben
           }}>
-            <Typography variant="body2" color="text.secondary" paddingLeft='16px'>
+            <Typography 
+              variant="body2" 
+              color="text.secondary" 
+              sx={{
+                fontSize: {
+                  xs: '0.6rem',
+                  sm: '0.75rem',
+                  md: '0.875rem'
+                }
+              }}
+            >
               {runs} runs
             </Typography>
             <Button 
-             
               variant="contained" 
               color="primary"
-              size="large"
+              size="small"
               sx={{ 
                 bgcolor: '#9333EA',
                 '&:hover': { bgcolor: '#7E22CE' },
                 textTransform: 'none',
-                borderRadius: 1
+                borderRadius: 1,
+                fontSize: {
+                  xs: '0.6rem',
+                  sm: '0.6rem',
+                  md: '0.875rem'
+                },
+                py: {
+                  xs: 0.5,
+                  sm: 0.5,
+                  md: 1
+                },
+                px: {
+                  xs: 1,
+                  sm: 1,
+                  md: 2
+                },
+                minWidth: {
+                  xs: '60px',
+                  sm: '60px',
+                  md: '80px'
+                }
               }}
             >
               Open →
             </Button>
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+      </Box>
     </Card>
   );
 };
