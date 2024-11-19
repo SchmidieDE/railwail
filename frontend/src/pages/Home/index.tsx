@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "../..
 import { Button } from "../../components/ui/button"
 import MostViewedModels from "./comp/MostViewedModels";
 import CategoriesList from "./comp/CategoriesList";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 
 
@@ -30,6 +31,7 @@ interface Model {
 interface CategoryModel {
     title: string;
     icons: React.ReactNode;
+    className?: string;
     // ... other properties
 }
 
@@ -112,6 +114,11 @@ const categories = [
     }, 
     {category: "Language models",
         icons: <Languages />
+    },
+    {
+        category: "More",
+        icons: <MoreHorizIcon />
+                
     }
 ]
 
@@ -1143,6 +1150,7 @@ const categories = [
 
 
 
+
         
 
 
@@ -1402,11 +1410,16 @@ const categories = [
     {/* Hauptbereich - ModelPreviews */}
     <div className="w-full mb-8 mt-4">
         {/* CategoriesList Komponente */}
-        <div className="flex flex-row justify-center gap-4 mt-4 mb-4 text-black">
-            {categories.map((categorymodels) => (
-                <CategoriesList title={categorymodels.category} icons={categorymodels.icons} />
-            ))}
-                </div>
+        <div className="px-4 md:px-6 lg:px-8">
+            <div className="flex flex-row justify-center gap-1 md:gap-3 lg:gap-4 mt-4 mb-4 text-black">
+                {categories.map((categorymodels) => (
+                    <CategoriesList 
+                        title={categorymodels.category} 
+                        icons={categorymodels.icons} 
+                    />
+                ))}
+            </div>
+        </div>
 
         {/* ModelPreviews Container */}
         <div 
@@ -1442,7 +1455,7 @@ const categories = [
         {/* Frage Input - order-2 auf Mobile, order-1 auf Desktop */}
         <div className="w-full md:w-1/2 bg-transparent shadow-none border-none rounded-xl p-6 order-2 md:order-1">
             <h2 
-                className="text-2xl font-bold mb-4 text-center"
+                className="text-xl md:text-2xl font-bold mb-4 text-center"
                 style={{
                     background: 'linear-gradient(90deg, rgb(157, 0, 255) 0%, rgb(77, 148, 255) 100%)',
                     WebkitBackgroundClip: 'text',
@@ -1488,16 +1501,16 @@ const categories = [
             <div className="mt-16 p-8 bg-gradient-to-r from-purple-500 to-blue-500 border border-purple-500/20 rounded-xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div className="space-y-2">
-                        <div className="text-6xl font-bold text-black">100K+</div>
-                        <div className="text-2xl text-white">Active Users</div>
+                        <div className="text-5xl md:text-6xl font-bold text-black">100K+</div>
+                        <div className=" text-xl md:text-2xl text-white">Active Users</div>
                     </div>
                     <div className="space-y-2">
-                        <div className="text-6xl font-bold text-black">50M+</div>
-                        <div className="text-2xl text-white">API Calls Daily</div>
+                        <div className="text-4xl md:text-6xl font-bold text-black">50M+</div>
+                        <div className="text-xl md:text-2xl text-white">API Calls Daily</div>
                     </div>
                     <div className="space-y-2">
-                        <div className="text-6xl font-bold text-black">99.9%</div>
-                        <div className="text-2xl text-white">Uptime</div>
+                        <div className="text-4xl md:text-6xl font-bold text-black">99.9%</div>
+                        <div className="text-xl md:text-2xl text-white">Uptime</div>
                     </div>
                 </div>
             </div>
@@ -1559,7 +1572,7 @@ const categories = [
             <div className="mt-16 text-center p-8 pb-12 bg-gradient-to-b from-purple-500/10 to-transparent rounded-xl">
                 <div className="relative pb-4">  {/* Added container with padding-bottom */}
                     <h2 
-                        className="text-5xl font-bold mb-4 text-center"
+                        className="text-3xl md:text-5xl font-bold mb-4 text-center"
                         style={{
                             background: 'linear-gradient(90deg, rgb(157, 0, 255) 0%, rgb(77, 148, 255) 100%)',
                             WebkitBackgroundClip: 'text',
@@ -1577,10 +1590,12 @@ const categories = [
                     Get 10,000 free API calls when you sign up today.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="px-8 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
+                    <button className="px-8 py-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors">
                         Start Free Trial
                     </button>
-                    <button className="px-8 py-3 border border-purple-500 text-purple-400 rounded-lg hover:bg-purple-500/10 transition-all">
+                    
+                    
+                    <button className="px-8 py-3 border border-purple-500 text-purple-400 rounded-xl hover:bg-purple-500/10 transition-all">
                         View Documentation
                     </button>
                 </div>

@@ -132,7 +132,7 @@ const Pricing = () => {
                 <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
                     <CardHeader className="text-center">
                         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                            <span className=" text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md">
+                            <span className=" text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md bg-primary">
                                 Premium
                             </span>
                         </div>

@@ -1,4 +1,6 @@
 import { useState } from 'react'; 
+import { Box } from '@mui/material';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 interface CategoryModel {
     title: string;
@@ -14,14 +16,39 @@ const CategoriesList = ({ title, icons}: { title: string, icons: React.ReactNode
   };
   
   return <div>
-    <div 
-      style={{
+    <Box
+      sx={{
+        
+        fontWeight: 'bold',
+        fontSize: {
+          xs: '6px',
+          sm: '14px',
+          md: '16px'
+        },
         display: 'flex', 
         alignItems: 'center', 
         justifyContent: 'center',
-        gap: '10px', 
+        gap: {
+          xs: '4px',
+          sm: '10px',
+          md: '10px'
+        },
         cursor: 'pointer',
-        padding: '8px 16px',
+        padding: {
+          xs: '8px 12px',
+          sm: '8px 16px',
+          md: '8px 16px'
+        },
+        height: {
+          xs: '28px',
+          sm: '40px',
+          md: '48px'
+        },
+        minWidth: {
+          xs: '70px',
+          sm: '100px',
+          md: '120px'
+        },
         borderRadius: '20px',
         border: '3px solid',
         borderColor: isSelected ? 'rgb(157, 0, 255)' : '#e0e0e0',
@@ -29,8 +56,6 @@ const CategoriesList = ({ title, icons}: { title: string, icons: React.ReactNode
         color: isSelected ? 'rgb(157, 0, 255)' : 'inherit',
         boxShadow: isSelected ? '0 2px 8px rgba(157, 0, 255, 0.2)' : 'none',
         transition: 'all 0.3s ease',
-        height: '40px',
-        width: '200px'
       }} 
       onMouseOver={(e) => {
         if (!isSelected) {
@@ -48,8 +73,9 @@ const CategoriesList = ({ title, icons}: { title: string, icons: React.ReactNode
       onClick={() => handleClick(title)}
     >
       {title} {icons}
-    </div>
+    </Box>
   </div>
+  
 }
 
 export default CategoriesList
