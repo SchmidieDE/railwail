@@ -14,7 +14,7 @@ function Register() {
         <div className="flex items-center justify-center p-4">
             <Card className="w-full max-w-md bg-black border-2 border-purple-500 
                            hover:border-purple-400 transition-all duration-300 
-                           shadow-lg shadow-purple-500/20">
+                           shadow-lg shadow-purple-500/20 rounded-xl">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center text-white mb-2">
                         Create Account
@@ -33,7 +33,7 @@ function Register() {
                             type="text"
                             placeholder="Choose a username"
                             className="bg-gray-900 border-gray-800 text-white 
-                                     focus:border-purple-500 focus:ring-purple-500/20"
+                                     focus:border-purple-500 focus:ring-purple-500/20 rounded-xl"
                         />
                     </div>
 
@@ -46,7 +46,7 @@ function Register() {
                             type="email"
                             placeholder="Enter your email"
                             className="bg-gray-900 border-gray-800 text-white 
-                                     focus:border-purple-500 focus:ring-purple-500/20"
+                                     focus:border-purple-500 focus:ring-purple-500/20 rounded-xl"
                         />
                     </div>
 
@@ -59,7 +59,7 @@ function Register() {
                             type="password"
                             placeholder="Create a password"
                             className="bg-gray-900 border-gray-800 text-white 
-                                     focus:border-purple-500 focus:ring-purple-500/20"
+                                     focus:border-purple-500 focus:ring-purple-500/20 rounded-xl"
                         />
                     </div>
 
@@ -72,14 +72,14 @@ function Register() {
                             type="password"
                             placeholder="Confirm your password"
                             className="bg-gray-900 border-gray-800 text-white 
-                                     focus:border-purple-500 focus:ring-purple-500/20"
+                                     focus:border-purple-500 focus:ring-purple-500/20 rounded-xl"
                         />
                     </div>
 
                     <Button 
                         className="w-full bg-purple-500 hover:bg-purple-600 text-white
                                  font-semibold py-2 transition-colors duration-200
-                                 shadow-lg shadow-purple-500/20"
+                                 shadow-lg shadow-purple-500/20 rounded-xl"
                         onClick={handleRegister}
                     >
                         Register

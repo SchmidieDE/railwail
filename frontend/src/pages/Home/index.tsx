@@ -1501,7 +1501,7 @@ const categories = [
             <div className="mt-16 p-8 bg-gradient-to-r from-purple-500 to-blue-500 border border-purple-500/20 rounded-xl">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
                     <div className="space-y-2">
-                        <div className="text-5xl md:text-6xl font-bold text-black">100K+</div>
+                        <div className="text-4xl md:text-6xl font-bold text-black">100K+</div>
                         <div className=" text-xl md:text-2xl text-white">Active Users</div>
                     </div>
                     <div className="space-y-2">

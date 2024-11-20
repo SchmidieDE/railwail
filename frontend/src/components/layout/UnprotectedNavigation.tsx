@@ -57,7 +57,7 @@ const UnProtectedNavigation = () => {
             </Link>
           ))}
           <Button 
-            className="bg-primary hover:bg-primary/90 text-white px-6 border border-white shadow-primary/50 shadow-lg w-full md:w-auto"
+            className="bg-primary hover:bg-primary/90 text-white rounded-xl px-6 border border-white shadow-primary/50 shadow-lg w-full md:w-auto"
             onClick={() => setIsMenuOpen(false)}
           >
             Get Started

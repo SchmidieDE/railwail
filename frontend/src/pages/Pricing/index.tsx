@@ -23,11 +23,11 @@ const Pricing = () => {
 
     return (
         <div className="p-4 md:p-8">
-            <h1 className="text-3xl font-bold mb-8 text-center">Choose Your Plan</h1>
+            <h1 className="text-3xl font-bold mb-8 text-center text-black">Choose Your Plan</h1>
             
             <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch">
                 {/* Basic Plan */}
-                <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
+                <Card className="w-full md:w-[300px] flex flex-col rounded-xl transform transition-all duration-300 hover:scale-105 mb-5">
                     <CardHeader className="text-center">
                         <CardTitle>Basic</CardTitle>
                         <div className="mt-2">
@@ -78,7 +78,7 @@ const Pricing = () => {
                 </Card>
 
                 {/* Pro Plan */}
-                <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
+                <Card className="w-full md:w-[300px] flex flex-col rounded-xl transform transition-all duration-300 hover:scale-105 mb-5">
                     <CardHeader className="text-center">
                         <CardTitle>Pro</CardTitle>
                         <div className="mt-2">
@@ -129,7 +129,7 @@ const Pricing = () => {
                 </Card>
 
                 {/* Enterprise Plan - Highlighted */}
-                <Card className="w-full md:w-[300px] flex flex-col rounded-xl">
+                <Card className="w-full md:w-[300px] flex flex-col rounded-xl transform transition-all duration-300 hover:scale-105 mb-5">
                     <CardHeader className="text-center">
                         <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                             <span className=" text-white px-4 py-1 rounded-full text-sm font-semibold shadow-md bg-primary">

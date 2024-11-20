@@ -27,7 +27,7 @@ function Login() {
         <div className="flex items-center justify-center p-4">
             <Card className="w-full max-w-md bg-black border-2 border-purple-500 
                            hover:border-purple-400 transition-all duration-300 
-                           shadow-lg shadow-purple-500/20">
+                           shadow-lg shadow-purple-500/20 rounded-xl">
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold text-center text-white mb-2">
                         Welcome Back
@@ -46,7 +46,7 @@ function Login() {
                             type="text"
                             placeholder="Enter your username"
                             className="bg-gray-900 border-gray-800 text-white 
-                                     focus:border-purple-500 focus:ring-purple-500/20"
+                                     focus:border-purple-500 focus:ring-purple-500/20 rounded-xl"
                         />
                     </div>
                     <div className="space-y-2">
@@ -58,7 +58,7 @@ function Login() {
                             type="password"
                             placeholder="Enter your password"
                             className="bg-gray-900 border-gray-800 text-white 
-                                     focus:border-purple-500 focus:ring-purple-500/20"
+                                     focus:border-purple-500 focus:ring-purple-500/20 rounded-xl"
                         />
                     </div>
 
@@ -66,7 +66,7 @@ function Login() {
                         <div className="flex items-center space-x-2">
                             <Checkbox 
                                 id="remember"
-                                className="border-purple-500 data-[state=checked]:bg-purple-500"
+                                className="border-purple-500 data-[state=checked]:bg-purple-500 rounded-xl"
                             />
                             <label
                                 htmlFor="remember"
@@ -87,7 +87,7 @@ function Login() {
 
                     <Button 
                         className="w-full bg-purple-500 hover:bg-purple-600 text-white
-                                 font-semibold py-2 transition-colors duration-200"
+                                 font-semibold py-2 transition-colors duration-200 rounded-xl"
                         onClick={handleFetch}
                     >
                         Sign In
