@@ -1,7 +1,5 @@
 import { Card, CardContent, Typography, Button, Box } from '@mui/material';
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 const ModelPreview = ({ title, description, runs, imageUrl }: { 
   title: string;
@@ -9,6 +7,8 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
   runs: number;
   imageUrl: string;
 }) => {
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ 
       width: {xs: 125, sm: 300, md: 400}, 
@@ -135,6 +135,7 @@ const ModelPreview = ({ title, description, runs, imageUrl }: {
               variant="contained" 
               color="primary"
               size="small"
+              onClick={() => navigate(`/model/${title}`)}
               sx={{ 
                 bgcolor: '#9333EA',
                 '&:hover': { bgcolor: '#7E22CE' },
