@@ -1395,6 +1395,11 @@ const categories = [
         return model.category === selectedCategory;
     });
 
+    // Add this handler
+    const handleCategoryClick = (category: string) => {
+        setSelectedCategory(category);
+    };
+
     return (
         <div className="w-full px-4 md:px-6 lg:px-8">
             <div className="px-4 md:px-6 lg:px-8">
@@ -1412,10 +1417,13 @@ const categories = [
         {/* CategoriesList Komponente */}
         <div className="px-4 md:px-6 lg:px-8">
             <div className="flex flex-row justify-center gap-1 md:gap-3 lg:gap-4 mt-4 mb-4 text-black">
-                {categories.map((categorymodels) => (
+                {categories.map((categoryModel) => (
                     <CategoriesList 
-                        title={categorymodels.category} 
-                        icons={categorymodels.icons} 
+                        key={categoryModel.category}
+                        title={categoryModel.category} 
+                        icons={categoryModel.icons}
+                        onClick={() => handleCategoryClick(categoryModel.category)}
+                        isSelected={selectedCategory === categoryModel.category}
                     />
                 ))}
             </div>
@@ -1437,7 +1445,7 @@ const categories = [
             onMouseLeave={handleMouseUp}
             onMouseMove={handleMouseMove}
         >
-            {models.map((model, index) => (
+            {filteredModels.map((model, index) => (
                 <div key={index} style={{ flexShrink: 0 }}>
                     <ModelPreview
                         title={model.title}
