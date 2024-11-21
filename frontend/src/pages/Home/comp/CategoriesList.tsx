@@ -65,19 +65,6 @@ export default function CategoriesList({ title, icons, onClick, isSelected, clas
                     boxShadow: isSelected ? '0 2px 8px rgba(157, 0, 255, 0.2)' : 'none',
                     transition: 'all 0.3s ease',
                 }} 
-                onMouseOver={(e) => {
-                    if (!isSelected) {
-                        e.currentTarget.style.color = 'rgb(157, 0, 255)';
-                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(157, 0, 255, 0.2)';
-                    }
-                }}
-                onMouseOut={(e) => {
-                    if (!isSelected) {
-                        e.currentTarget.style.borderColor = '#e0e0e0';
-                        e.currentTarget.style.color = 'inherit';
-                        e.currentTarget.style.boxShadow = 'none';
-                    }
-                }}
             >
                 {title} {icons}
             </Box>
