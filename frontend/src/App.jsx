@@ -14,7 +14,7 @@ import ReactGA from "react-ga4";
 import ImageModelsOverview from "./pages/ImageModels/index.tsx"
 import ImageModel from "./pages/ImageModels/ImageModel/index.tsx"
 import Pricing from "./pages/Pricing"
-
+import ModelPage from "./pages/Home/modelPage.tsx"
 
 ReactGA.initialize("G-QS3J0FX7ZC"); 
 
@@ -79,6 +79,10 @@ const routes = createBrowserRouter([
         element: <ImageModel />
       },
       {
+        path: "/model/:id",
+        element: <ModelPage />
+      },
+      {
         path: "*",
         element: <NotFound />
       }
@@ -96,6 +100,7 @@ function App() {
     <>
     <RouterProvider router={routes} />
     </>
+    
   )
 }
 
