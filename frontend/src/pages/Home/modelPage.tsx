@@ -19,13 +19,13 @@ return (
   <div>
     <h1>Model Page</h1>
 
+<div className='flex flex-row justify-between mx-60 my-5'>  {/* äußere div photo und prompt*/}
 
-
-    <div className="flex flex-col m-10">   {/* äußere div */}
-       
+    <div className="flex flex-col gap-5">   {/* äußere div */}
+    <h1 className='text-4xl mb-5'>Input</h1>
         
         <div className="flex flex-col gap-2 mb-10"> {/* input div */}
-        <h1 className="flex flex-row gap-2 text-lg font-bold "> <TextFieldsIcon />Prompt <span className="text-red-500">*</span><span className="text-sm font-normal opacity-50">String</span></h1>
+        <h2 className="flex flex-row gap-2 text-lg font-bold "> <TextFieldsIcon />Prompt <span className="text-red-500">*</span><span className="text-sm font-normal opacity-50">String</span></h2>
         <input className="border-2 border-black rounded-xl p-1 w-80 h-[48px] px-3 placeholder:opacity-50 placeholder:text-black" type="text" placeholder="A beautiful image of a cat" />
         </div>
 
@@ -91,8 +91,23 @@ return (
 
         </div>
 
+        <div>
+            <h1 className='text-4xl mb-5'>Output</h1>
+<img
+src="/images/chatgpt.jpg" alt=""
+style={{
+    width: "500px",
+    height: "450px",
+    objectFit: "cover",
+    display: "block"
+  }}
 
-        
+
+/>
+        </div>
+
+</div>
+
 
 
   </div>
