@@ -25,7 +25,7 @@ return (
     <h1 className='text-4xl mb-5'>Input</h1>
         
         <div className="flex flex-col gap-2 mb-10"> {/* input div */}
-        <h2 className="flex flex-row gap-2 text-lg font-bold "> <TextFieldsIcon />Prompt <span className="text-red-500">*</span><span className="text-sm font-normal opacity-50">String</span></h2>
+        <label className="flex flex-row gap-2 text-lg font-bold "> <TextFieldsIcon />Prompt <span className="text-red-500">*</span><span className="text-sm font-normal opacity-50">String</span></label>
         <input className="border-2 border-black rounded-xl p-1 w-80 h-[48px] px-3 placeholder:opacity-50 placeholder:text-black" type="text" placeholder="A beautiful image of a cat" />
         </div>
 
