@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 function ModelPage() {          	
 
-
+    
 
 
 return (
@@ -33,7 +33,7 @@ return (
 
 
         <div className="flex flex-col gap-2 mb-10"> {/* Size div */}
-        <h1 className="flex flex-row gap-2 text-lg font-bold "><AspectRatioIcon/>Size <span className="text-sm font-normal opacity-50">String</span></h1>
+        <label className="flex flex-row gap-2 text-lg font-bold "><AspectRatioIcon/>Size <span className="text-sm font-normal opacity-50">String</span></label>
         <Accordion className="w-80 border-2 border-black"
          sx={{ 
             borderRadius: '12px !important',
@@ -91,8 +91,19 @@ return (
 
         </div>
 
+        <div
+      style={{
+        width: '2px', // Breite der Linie
+        height: '600px', // Höhe der Linie
+        backgroundColor: 'black', // Farbe der Linie
+        margin: '0 10px', // optionaler Abstand
+      }}
+    />
         <div>
+
+        
             <h1 className='text-4xl mb-5'>Output</h1>
+           
 <img
 src="/images/chatgpt.jpg" alt=""
 style={{
@@ -104,6 +115,8 @@ style={{
 
 
 />
+
+
         </div>
 
 </div>
