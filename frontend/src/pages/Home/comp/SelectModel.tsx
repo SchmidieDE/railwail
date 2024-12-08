@@ -30,80 +30,110 @@ type Model = {
 
 
 const Models : Model[] = [
+  // Image Models 
   {
     slug: "/stable-diffusion",
     model: "Stable Diffusion",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image1.jpg"]
   },
   {
-    slug: "/stable-diffusion",
-    model: "Stable Diffusion",
+    slug: "/luma/photon-flash",
+    model: "Photon Flash",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image2.jpg"]
   },
   {
-    slug: "/stable-diffusion",
-    model: "Stable Diffusion",
+    slug: "/luma/photon",
+    model: "Photon",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image3.jpg"]
   },
   {
-    slug: "/stable-diffusion",
-    model: "Stable Diffusion",
+    slug: "/recraft-ai/recraft-v3",
+    model: "Recraft V3",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image4.jpg"]
   },
   {
-    slug: "/stable-diffusion",
-    model: "Stable Diffusion",
+    slug: "/ideogram-ai/ideogram-v2",
+    model: "Ideogram V2",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image5.jpg"]
   },
   {
-    slug: "/stable-diffusion",
-    model: "Stable Diffusion",
+    slug: "/black-forest-labs/flux-1.1-pro-ultra",
+    model: "Flux 1.1 Pro Ultra",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image6.jpg"]
   },
   {
-    slug: "/stable-diffusion",
-    model: "Stable Diffusion",
+    slug: "/nvidia/sana:c6b5d2b7459910fec94432e9e1203c3cdce92d6db20f714f1355747990b52fa6",
+    model: "Nvidia Sana",
     type: "image",
-    samples: ["https://images.squarespace-cdn.com/content/v1/6213c340453c3f502425776e/c24904d4-f0f0-4a26-9470-fec227dde15c/image-90.png?format=2500w"]
+    samples: ["image7.jpg"]
   },
+
+  // Text Models 
+  {
+    slug: "/google-deepmind/gemma-7b:2ca65f463a2c0cfef4dbc4ba70d227ed96455ef6020c1f6983b2a4c4f3ecb4ec",
+    model: "Google Deepmind Gemma 7B",
+    type: "text",
+    samples: ["text1.jpg"]
+  }, 
+  {
+    slug: "/meta/meta-llama-3-70b",
+    model: "Meta Llama 3 70B",
+    type: "text",
+    samples: ["text2.jpg"]
+  },
+  {
+    slug: "/lucataco/qwen1.5-72b:f919d3c43a8758de744cf2908426dd744154120f0a22e457a3fa647acdfe33be",
+    model: "Qwen 1.5 72B",
+    type: "text",
+    samples: ["text3.jpg"]
+  },
+  {
+    slug: "/adirik/mamba-790m:77782448285ebc03a24c2e90cc12b6cebbdaf325c071eaee2e315320308d9748",
+    model: "Mamba 790M",
+    type: "text",
+    samples: ["text4.jpg"]
+  }
+
+
+  // Video Models 
+
+
+
+  // Audio Models 
+
+
 ];
 
 const modelTypes : ModelType[] = [
   {
     type: "image",
-    title: "Bilder generieren",
-    description: "Erstelle Bilder mit künstlicher Intelligenz",
+    title: "Image generation",
+    description: "Create images with AI",
     icon: <ImageIcon />,
   },
   {
     type: "text",
-    title: "Text generieren",
-    description: "Erstelle Texte, Geschichten und Inhalte",
+    title: "Text generation",
+    description: "Create text, stories and content",
     icon: <Type />
   },
   {
     type: "video",
-    title: "Videos generieren",
-    description: "Erstelle Videos und Animationen",
+    title: "Video generation",
+    description: "Create videos and animations",
     icon: <Video />
   },
   {
     type: "audio",
-    title: "Audio generieren",
-      description: "Erstelle Musik, Sprache und Soundeffekte",
+    title: "Audio generation",
+    description: "Create music, speech and sound effects",
     icon: <AudioLines />
-  },
-  {
-    type: "translation",
-    title: "Übersetzung",
-    description: "Übersetze Texte in verschiedene Sprachen",
-    icon: <Languages />
   }
 ]
 
@@ -190,7 +220,7 @@ const SelectModel = () => {
         models.map((model, index) => (
           <div key={index+"asss"} onClick={() => setSelectedModel(model)} className={`
             relative flex flex-col items-center justify-center gap-2 
-            rounded-lg p-4 w-26 lg:w-96 h-48 cursor-pointer
+            rounded-lg p-4 w-26 lg:w-96 h-48 cursor-pointer select-none
             mb-3 overflow-hidden group flex-shrink-0
             transition-all duration-200 hover:scale-105
             ${selectedModel === model 
@@ -199,7 +229,7 @@ const SelectModel = () => {
             }
           `}>
             <img 
-              src={model.samples[0]} 
+              src={`/models/${model.type}/${model.samples[0]}`} 
               alt={model.model} 
               className="absolute inset-0 w-full h-full object-cover opacity-80"
             /> 
