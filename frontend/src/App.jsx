@@ -2,7 +2,7 @@ import react from "react"
 import { BrowserRouter, Routes, Route, Navigate, createBrowserRouter } from "react-router-dom"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
-import Home from "./pages/Home"
+import Home from "./pages/Home/index.tsx"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import Dashboard from "./pages/Dashboard"
@@ -14,20 +14,16 @@ import ReactGA from "react-ga4";
 import ImageModelsOverview from "./pages/ImageModels/index.tsx"
 import ImageModel from "./pages/ImageModels/ImageModel/index.tsx"
 import Pricing from "./pages/Pricing"
-import ModelPage from "./pages/Home/modelPage.tsx"
 
 ReactGA.initialize("G-QS3J0FX7ZC"); 
 
 
-function Logout() {
+const Logout = () => {
+  // clear cookie and get redirecte
   localStorage.clear()
   return <Navigate to="/login" />
 }
 
-function RegisterAndLogout() {
-  localStorage.clear()
-  return <Register />
-}
 
 
 
@@ -59,13 +55,13 @@ const routes = createBrowserRouter([
         element: <Login />
       },
       {
+        path: "/register",
+        element: <Register />
+      },
+      {
         path: "/logout",
         element: <Logout />
       },
-      {
-        path: "/register",
-        element: <RegisterAndLogout />
-      }, 
       {
         path: "/pricing",
         element: <Pricing />
@@ -77,10 +73,6 @@ const routes = createBrowserRouter([
       {
         path: "/image-models/:modelName",
         element: <ImageModel />
-      },
-      {
-        path: "/model/:id",
-        element: <ModelPage />
       },
       {
         path: "*",

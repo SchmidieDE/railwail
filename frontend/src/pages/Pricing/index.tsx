@@ -12,19 +12,17 @@ import {
     Award,
     FileCode,
     Headphones,
-    BadgeCheck 
+    BadgeCheck,
+    Component
 } from "lucide-react"; // Importiere Icons
 
 
 const Pricing = () => {
-    // Stripe Checkout URLs - Diese URLs musst du in deinem Stripe Dashboard erstellen
     const STRIPE_BASIC_URL = "https://buy.stripe.com/test_yourBasicPlanLink";
     const STRIPE_PRO_URL = "https://buy.stripe.com/test_yourProPlanLink";
-
     return (
         <div className="p-4 md:p-8">
             <h1 className="text-3xl font-bold mb-8 text-center text-black">Choose Your Plan</h1>
-            
             <div className="flex flex-col md:flex-row gap-6 justify-center items-stretch">
                 {/* Basic Plan */}
                 <Card className="w-full md:w-[300px] flex flex-col rounded-xl transform transition-all duration-300 hover:scale-105 mb-5">
@@ -44,11 +42,11 @@ const Pricing = () => {
                                 <h3 className="font-semibold mb-2">Includes:</h3>
                                 <div className="flex items-center gap-2">
                                     <Clock className=" w-5 h-5" />
-                                    <span>5 API calls per minute</span>
+                                    <span>1500 Tokens per month</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Box className=" w-5 h-5" />
-                                    <span>Basic model access</span>
+                                    <span>Access to every base model</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Mail className=" w-5 h-5" />
@@ -59,12 +57,12 @@ const Pricing = () => {
                             <div className="space-y-2">
                                 <h3 className="font-semibold">Limitations:</h3>
                                 <div className="flex items-center gap-2">
-                                    <Shield className=" w-5 h-5" />
+                                    <X className=" w-5 h-5" />
                                     <span>No priority access</span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Box className=" w-5 h-5" />
-                                    <span>Limited model selection</span>
+                                    <X className=" w-5 h-5" />
+                                    <span>No custom model training</span>
                                 </div>
                             </div>
                         </div>
@@ -76,8 +74,6 @@ const Pricing = () => {
                         </Button>
                     </CardContent>
                 </Card>
-
-                {/* Pro Plan */}
                 <Card className="w-full md:w-[300px] flex flex-col rounded-xl transform transition-all duration-300 hover:scale-105 mb-5">
                     <CardHeader className="text-center">
                         <CardTitle>Pro</CardTitle>
@@ -95,11 +91,11 @@ const Pricing = () => {
                                 <h3 className="font-semibold mb-2">Includes:</h3>
                                 <div className="flex items-center gap-2">
                                     <Zap className="w-5 h-5" />
-                                    <span>20 API calls per minute</span>
+                                    <span>2000 Tokens per month</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <FileCode className="w-5 h-5" />
-                                    <span>Advanced model access</span>
+                                    <span>Access to base models and fine-tuned models</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Headphones className="w-5 h-5" />
@@ -107,7 +103,7 @@ const Pricing = () => {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <BadgeCheck className="w-5 h-5" />
-                                    <span>Custom API integration</span>
+                                    <span>API support</span>
                                 </div>
                             </div>
                             
@@ -116,6 +112,10 @@ const Pricing = () => {
                                 <div className="flex items-center gap-2">
                                     <X className=" w-5 h-5" />
                                     <span>No 24/7 support</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <X className=" w-5 h-5" />
+                                    <span>No custom model fine-tuning</span>
                                 </div>
                             </div>
                         </div>
@@ -146,31 +146,32 @@ const Pricing = () => {
                         </div>
                     </CardHeader>
                     <CardContent className="flex flex-col flex-grow">
-                        <div className="space-y-4 flex-grow">
+                    <div className="space-y-4 flex-grow">
                             <div className="space-y-2">
-                                <h3 className="font-semibold mb-2">All Pro features plus:</h3>
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-2">
-                                        <Zap className="w-5 h-5" />
-                                        <span className="text-white">Unlimited API calls</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <Headphones className="w-5 h-5" />
-                                        <span className="text-white">24/7 Premium support</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <FileCode className=" w-5 h-5" />
-                                        <span className="text-white">Custom model training</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <Award className=" w-5 h-5" />
-                                        <span className="text-white">Dedicated account manager</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                        <Users className=" w-5 h-5" />
-                                        <span className="text-white">SLA guarantee</span>
-                                    </div>
+                                <h3 className="font-semibold mb-2">Includes:</h3>
+                                <div className="flex items-center gap-2">
+                                    <Zap className="w-5 h-5" />
+                                    <span>100000 Tokens per month</span>
                                 </div>
+                                <div className="flex items-center gap-2">
+                                    <FileCode className="w-5 h-5" />
+                                    <span>Access to every model</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Component className="w-5 h-5" />
+                                    <span>Custom model fine-tuning</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Headphones className="w-5 h-5" />
+                                    <span>24/7 Priority email support</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <BadgeCheck className="w-5 h-5" />
+                                    <span>API support</span>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <h3 className="font-semiboid">No Limitations</h3>
                             </div>
                         </div>
                         <Button 
@@ -182,7 +183,6 @@ const Pricing = () => {
                     </CardContent>
                 </Card>
             </div>
-
             {/* Nach den drei Preiskarten fügen Sie diesen Abschnitt hinzu */}
             <div className="mt-16 max-w-6xl mx-auto">
                 {/* Hauptvorteil-Banner */}
@@ -190,7 +190,6 @@ const Pricing = () => {
                     <h2 className="text-2xl font-bold mb-3">Why Choose Our API Service?</h2>
                     <p className="text-gray-600">Market leading performance at the most competitive prices</p>
                 </div>
-
                 {/* Vorteilskarten */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
@@ -200,7 +199,6 @@ const Pricing = () => {
                             Our optimized infrastructure allows us to offer premium services at half the market price
                         </p>
                     </div>
-
                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
                         <div className="text-primary text-xl mb-3">⚡</div>
                         <h3 className="font-bold mb-2">Superior Performance</h3>
@@ -208,7 +206,6 @@ const Pricing = () => {
                             99.9% uptime guarantee with response times under 100ms
                         </p>
                     </div>
-
                     <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
                         <div className="text-primary text-xl mb-3">🛡️</div>
                         <h3 className="font-bold mb-2">Risk-Free Trial</h3>
@@ -217,7 +214,6 @@ const Pricing = () => {
                         </p>
                     </div>
                 </div>
-
                 {/* Vertrauensleiste */}
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
                     <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-gray-600">
@@ -235,7 +231,6 @@ const Pricing = () => {
                         </div>
                     </div>
                 </div>
-
                 {/* FAQ Section */}
                 <div className="mt-12 text-center">
                     <h3 className="text-lg font-semibold mb-4">Still have questions?</h3>

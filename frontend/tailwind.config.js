@@ -5,9 +5,9 @@ module.exports = {
   theme: {
   	extend: {
   		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+				lg: '0.5rem',
+				md: '0.375rem',
+				sm: '0.25rem',
   		},
   		colors: {
 			black: {
@@ -39,7 +39,7 @@ module.exports = {
 					darkish: '#F0326E',
 				},
 				tertiary: {
-					DEFAULT: '#F07130',
+					DEFAULT: '#262642',
 					light: '#F0326E',
 					lightish: '#F0326E',
 					dark: '#F0326E',
@@ -79,5 +79,5 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar')],
 }
