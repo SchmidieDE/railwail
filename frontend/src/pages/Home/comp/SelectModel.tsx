@@ -221,7 +221,7 @@ const SelectModel = () => {
               onClick={() => setSelectedModelType(modelType.type as ModelTypeOutput)}
               className={`
                 flex flex-col items-center justify-center gap-2 
-                rounded-lg p-4 w-full cursor-pointer
+                rounded-lg p-4 w-full cursor-pointer select-none
                 mb-3 
                 transition-all duration-200 hover:scale-105
                 ${selectedModelType === modelType.type 
