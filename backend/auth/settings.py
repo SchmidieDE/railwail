@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(BASE_DIR, '.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,9 +42,17 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Libraries
+    "rest_framework",
+    "corsheaders",
+    # Custom Apps
+    "users",
 ]
 
 MIDDLEWARE = [
+    # Libraries
+    "corsheaders.middleware.CorsMiddleware",
+    # Interne 
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -47,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    
 ]
 
 ROOT_URLCONF = "auth.urls"
@@ -73,11 +87,18 @@ WSGI_APPLICATION = "auth.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+     "default": {
+         "ENGINE": "django.db.backends.postgresql",
+         "NAME": os.getenv("DB_NAME"),
+         "USER": os.getenv("DB_USER"),
+         "PASSWORD": os.getenv("DB_PWD"),
+         "HOST": os.getenv("DB_HOST"),
+         "PORT": os.getenv("DB_PORT"),
+     }
 }
 
 
@@ -111,6 +132,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+
+
+# Override the default user model with my custom user model 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:4173",
+    "https://railwail.com",
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
