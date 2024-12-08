@@ -8,7 +8,7 @@ import {
     Video,
     AudioLines
 } from "lucide-react";
-import ImageModel from "./ModelTypes";
+import {TextModel, ImageModel, VideoModel, AudioModel} from "./ModelTypes";
 
 type ModelTypeOutput = "image" | "text" | "video" | "audio" | "translation";
 
@@ -98,15 +98,50 @@ const Models : Model[] = [
     model: "Mamba 790M",
     type: "text",
     samples: ["text4.jpg"]
-  }
+  },
 
 
   // Video Models 
-
-
-
+  {
+    slug: "/tencent/hunyuan-video:847dfa8b01e739637fc76f480ede0c1d76408e1d694b830b5dfb8e547bf98405",
+    model: "Tencent HunYuan Video",
+    type: "video",
+    samples: ["video1.jpg"]
+  },
+  {
+    slug: "/minimax/video-01",
+    model: "Minimax Video 01",
+    type: "video",
+    samples: ["video2.jpg"]
+  },
+  {
+    slug: "/fofr/ltx-video:983ec70a06fd872ef4c29bb6b728556fc2454125a5b2c68ab51eb8a2a9eaa46a",
+    model: "FofR LTX Video",
+    type: "video",
+    samples: ["video3.jpg"]
+  },
+  
+  
   // Audio Models 
-
+  {
+    slug: "/declare-lab/tango:740e4f5e59bd3b871c9e5b4efbff7ded516d40aa6abf4e95fd5e8dd149b7bc3f",
+    model: "Declare Tango",
+    type: "audio",
+    samples: ["audio1.jpg"]
+  }, 
+  {
+    slug: "/nateraw/musicgen-songstarter-v0.2:020ac56a613f4494065e2e5544c7377788a8abcfbe645ecb8146634de0bc383e",
+    model: "MusicGen Songstarter V0.2",
+    type: "audio",
+    samples: ["audio2.jpg"]
+  },
+  {
+    slug: "/sakemin/musicgen-stereo-chord:fbdc5ef7200220ed300015d9b4fd3f8e620f84547e970b23aa2be7f2ff366a5b",
+    model: "MusicGen Stereo Chord",
+    type: "audio",
+    samples: ["audio3.jpg"]
+  }
+  
 
 ];
 
@@ -147,21 +182,11 @@ const ModelInput = ({type}: {type: ModelTypeOutput}) => {
     case "image":
       return <ImageModel />
     case "text":
-      return <div>
-        <Input />
-      </div>
+      return <TextModel />
     case "video":
-      return <div>
-        <Input />
-      </div>
+      return <VideoModel />
     case "audio":
-      return <div>
-        <Input />
-      </div>
-    case "translation":
-      return <div>
-        <Input />
-      </div>
+      return <AudioModel />
   }
   
 }
@@ -179,6 +204,7 @@ const SelectModel = () => {
   
 
   useEffect(() => {
+    setSelectedModel(Models.find(model => model.type === selectedModelType) || Models[0]);
     setModels(Models.filter(model => model.type === selectedModelType));
   }, [selectedModelType]);
 

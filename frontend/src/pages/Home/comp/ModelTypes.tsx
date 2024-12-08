@@ -4,9 +4,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { Download, ImageIcon, Loader2, Maximize, Minimize, WandSparkles, ArrowDownToLine } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useToast } from "@/hooks/use-toast";
+import { toast, useToast } from "@/hooks/use-toast";
 
 
+
+const GenerateButton = ({loading, onClick}: {loading: boolean, onClick: () => void}) => {
+  return <Button onClick={onClick} disabled={loading} className="text-xl transition-all hover:scale-105 hover:shadow-lg hover:drop-shadow-[1_1_1rem_primary] bg-gradient-to-r from-primary via-primary/60 to-secondary text-white">
+    {loading ? <>Generating...<Loader2 className="animate-spin ml-1" /></> : <>Generate <WandSparkles className="ml-1" /></>}  
+  </Button>
+}
 
 
 const ImageGenerated = ({image, index}: {image: string | null, index: number}) => {
@@ -141,18 +147,8 @@ const ImageModel = () => {
 
     setGenerateLoading(true);
     setGeneratedImages([null, ...generatedImages] );
-    // Check if all fields are filled 
-    
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    const imageSizes = [
-      "https://upload.wikimedia.org/wikipedia/commons/f/f8/Aspect-ratio-16x9.svg",
-      "https://g2.img-dpreview.com/DB98322612CD4259830FEC9067CB8E89.jpg",
-      "https://s3.amazonaws.com/www-inside-design/uploads/2020/10/aspect-ratios-blogpost-1x1-1.png"
-
-    ]
-
-    setGeneratedImages([ "https://upload.wikimedia.org/wikipedia/commons/f/f8/Aspect-ratio-16x9.svg", ...generatedImages, ...imageSizes]);
+    setGeneratedImages([ "https://upload.wikimedia.org/wikipedia/commons/f/f8/Aspect-ratio-16x9.svg", ...generatedImages]);
 
     setGenerateLoading(false);
     toast({
@@ -201,9 +197,7 @@ const ImageModel = () => {
           </Select>
         </div>
       </div>
-      <Button onClick={handleGenerate} disabled={generateLoading} className="transition-all hover:scale-105 hover:shadow-lg hover:drop-shadow-[1_1_1rem_primary] bg-gradient-to-r from-primary via-primary/60 to-secondary text-white">
-        {generateLoading ? <>Generating...<Loader2 className="animate-spin ml-1" /></> : <>Generate <WandSparkles className="ml-1" /></>}  
-      </Button> 
+      <GenerateButton loading={generateLoading} onClick={handleGenerate} />
       <div className="my-2 flex flex-row gap-2 overflow-x-auto scrollbar-thin scrollbar-thumb-primary scrollbar-track-secondary overflow-y-hidden pb-4">
         {generatedImages.map((image, index) => (
           <ImageGenerated 
@@ -218,7 +212,162 @@ const ImageModel = () => {
 }
 
 const TextModel = () => {
-  return <div>TextModel</div>
+
+
+  const {toast} = useToast(); 
+
+  const [generateLoading, setGenerateLoading] = useState(false);
+  const [generatedText, setGeneratedText] = useState<(string | null)[]>([]);
+
+  const [promptSettings, setPromptSettings] = useState({
+    prompt: ""
+  });
+
+
+
+  const handleGenerate = async() => {
+
+
+    // Could be improved by checking aspect ratio and format 
+    if (promptSettings.prompt === "") {
+      toast({
+        title: "Prompt is required",
+        variant: "destructive",
+        description: "Please enter a prompt to generate text",
+      });
+      return;
+    }
+
+
+
+    setGenerateLoading(true);
+    setGeneratedText([null, ...generatedText] );
+    
+    setGenerateLoading(false);
+    toast({
+      title: "Text generated",
+      description: "Your text has been generated successfully",
+    });
+  }
+
+  
+
+
+
+  return (
+    <div className="flex flex-col gap-2">
+    <Label>Prompt</Label> 
+    <Textarea placeholder="Describe the text you want to generate" value={promptSettings.prompt} onChange={(e) => setPromptSettings({...promptSettings, prompt: e.target.value})} />
+    <GenerateButton loading={generateLoading} onClick={handleGenerate} />
+    </div>
+
+  )
 }
 
-export default ImageModel;
+
+
+const VideoModel = () => {
+
+
+  const {toast} = useToast(); 
+
+  const [generateLoading, setGenerateLoading] = useState(false);
+  const [generatedText, setGeneratedText] = useState<(string | null)[]>([]);
+
+  const [promptSettings, setPromptSettings] = useState({
+    prompt: ""
+  });
+
+
+
+  const handleGenerate = async() => {
+
+
+    // Could be improved by checking aspect ratio and format 
+    if (promptSettings.prompt === "") {
+      toast({
+        title: "Prompt is required",
+        variant: "destructive",
+        description: "Please enter a prompt to generate text",
+      });
+      return;
+    }
+
+
+    setGenerateLoading(true);
+    setGeneratedText([null, ...generatedText] );
+    
+    setGenerateLoading(false);
+    toast({
+      title: "Text generated",
+      description: "Your text has been generated successfully",
+    });
+  }
+
+
+
+
+  return (
+    <div className="flex flex-col gap-2">
+    <Label>Prompt</Label> 
+    <Textarea placeholder="Describe the video you want to generate" value={promptSettings.prompt} onChange={(e) => setPromptSettings({...promptSettings, prompt: e.target.value})} />
+    <GenerateButton loading={generateLoading} onClick={handleGenerate} />
+    </div>
+  )
+}
+
+
+const AudioModel = () => {
+
+
+  const {toast} = useToast(); 
+
+  const [generateLoading, setGenerateLoading] = useState(false);
+  const [generatedText, setGeneratedText] = useState<(string | null)[]>([]);
+
+  const [promptSettings, setPromptSettings] = useState({
+    prompt: ""
+  });
+
+
+
+  const handleGenerate = async() => {
+
+
+    // Could be improved by checking aspect ratio and format 
+    if (promptSettings.prompt === "") {
+      toast({
+        title: "Prompt is required",
+        variant: "destructive",
+        description: "Please enter a prompt to generate audio",
+      });
+      return;
+    }
+
+
+    setGenerateLoading(true);
+    setGeneratedText([null, ...generatedText] );
+    
+    setGenerateLoading(false);
+    toast({
+      title: "Text generated",
+      description: "Your audio has been generated successfully",
+    });
+  }
+
+
+
+
+
+
+
+  return (
+  <div className="flex flex-col gap-2">
+    <Label>Prompt</Label> 
+    <Textarea placeholder="Describe the audio you want to generate" value={promptSettings.prompt} onChange={(e) => setPromptSettings({...promptSettings, prompt: e.target.value})} />
+    <GenerateButton loading={generateLoading} onClick={handleGenerate} />
+  </div>
+  )
+}
+
+export {ImageModel, TextModel, VideoModel, AudioModel};

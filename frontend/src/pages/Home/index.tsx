@@ -45,7 +45,7 @@ const Home = () => {
         <button className="px-8 py-3 bg-purple-500 text-white rounded-xl hover:bg-purple-600 transition-colors">
           Start Free Trial
         </button>  
-        <button className="px-8 py-3 border border-purple-500 text-purple-400 rounded-xl hover:bg-purple-500/10 transition-all">
+        <button className="text px-8 py-3 border border-purple-500 text-purple-400 rounded-xl hover:bg-purple-500/10 transition-all">
           View Documentation
         </button>
       </div>
