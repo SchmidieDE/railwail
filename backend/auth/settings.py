@@ -36,6 +36,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Custom Apps - For overwirte of admin
+    "users",
+    # DJANGO APP
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -45,8 +48,7 @@ INSTALLED_APPS = [
     # Libraries
     "rest_framework",
     "corsheaders",
-    # Custom Apps
-    "users",
+    
 ]
 
 MIDDLEWARE = [
