@@ -4,7 +4,6 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from "./pages/Home/index.tsx"
 import NotFound from "./pages/NotFound"
-import ProtectedRoute from "./components/ProtectedRoute"
 import Dashboard from "./pages/Dashboard"
 import ProtectedLayout from "./components/layout/ProtectedLayout"
 import UnProtectedLayout from "./components/layout/UnprotectedLayout"
@@ -30,11 +29,11 @@ const Logout = () => {
 const routes = createBrowserRouter([
   {
     path: "/dashboard",
-    element: <ProtectedLayout/>,
+    element: <ProtectedLayout/>, // All Routes in ProtectedLayout are protected automatically
     children: [
       {
         path: "/dashboard",
-        element: <ProtectedRoute><Dashboard /></ProtectedRoute>
+        element: <Dashboard />
       }
     ]
   },

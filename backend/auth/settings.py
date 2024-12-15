@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # Libraries
     "rest_framework",
     "corsheaders",
+    "knox"
     
 ]
 
@@ -84,6 +85,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "auth.wsgi.application"
+REST_FRAMEWORK = {
+    # Knowx is doing token authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
+}
 
 
 # Database
@@ -138,6 +143,11 @@ USE_TZ = True
 
 # Override the default user model with my custom user model 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# Use custom user auth 
+AUTHENTICATION_BACKENDS = [
+    'users.auth_backend.EmailAuthBackend',
+]
 
 
 CORS_ORIGIN_ALLOW_ALL = True
