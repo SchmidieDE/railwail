@@ -6,7 +6,6 @@ const UnProtectedNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    ["Home", "/"],
     ["Pricing", "/pricing"],
     ["Login", "/login"],
     ["Register", "/register"]
@@ -16,11 +15,13 @@ const UnProtectedNavigation = () => {
     <header className="w-full h-auto md:h-[80px] bg-black border-b border-white shadow-primary/50 shadow-lg">
       <nav className="flex flex-col md:flex-row justify-between items-center text-secondary max-w-6xl w-full mx-auto h-full px-6 py-4 md:py-0">
         <div className="flex w-full md:w-auto justify-between items-center">
-          <img 
-            src={"./logo/Logowhite.svg"} 
-            alt="logo" 
-            className="w-28 md:w-32 h-auto" 
-          />
+          <Link to="/">
+            <img 
+              src={"./logo/Logowhite.svg"} 
+              alt="logo" 
+              className="w-28 md:w-32 h-auto cursor-pointer hover:opacity-80 transition-opacity" 
+            />
+          </Link>
           <Button 
             className="md:hidden text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -54,7 +55,9 @@ const UnProtectedNavigation = () => {
             className="bg-primary hover:bg-primary/90 text-white rounded-xl text-lg px-6 border border-white shadow-primary/50 shadow-lg w-full md:w-auto"
             onClick={() => setIsMenuOpen(false)}
           >
-            Start Generating 
+            <Link to="/">
+              Start Generating 
+            </Link>
           </Button>
         </div>
       </nav>

@@ -17,10 +17,9 @@ const ProtectedLayout = () => {
   return (
   <>
     <ProtectedNavigation />
-    <main>
+    <main className="min-h-screen">
       <Outlet />
     </main>
-    <Footer />
   </>
   )
     

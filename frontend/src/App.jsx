@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate, createBrowserRouter } from "rea
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Home from "./pages/Home/index.tsx"
+import Account from "./pages/Dashboard/Account"
+import Usage from "./pages/Dashboard/Usage"
 import NotFound from "./pages/NotFound"
 import Dashboard from "./pages/Dashboard"
 import ProtectedLayout from "./components/layout/ProtectedLayout"
@@ -35,6 +37,14 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard",
         element: <Dashboard />
+      },
+      {
+        path: "/dashboard/account",
+        element: <Account />
+      },
+      {
+        path: "/dashboard/usage",
+        element: <Usage />
       }
     ]
   },
