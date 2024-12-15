@@ -140,16 +140,18 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://localhost:4173",
-    "https://railwail.com",
-    "https://railwail-backend.vercel.app"  # Url where backend is deployed 
-]
+CORS_ALLOW_ALL_ORIGINS = True
+#CORS_ALLOWED_ORIGINS = [
+#    "http://localhost:5173",
+#    "http://localhost:4173",
+#    "https://railwail.com",
+#    "https://railwail-backend.vercel.app"  # Url where backend is deployed 
+#]
+
+# Erlaubt Credentials
 CORS_ALLOW_CREDENTIALS = True
 
-# Add these settings after your existing CORS settings
-
+# Erlaubt alle Methoden
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -159,17 +161,14 @@ CORS_ALLOW_METHODS = [
     "PUT",
 ]
 
+# Erlaubt alle Headers
 CORS_ALLOW_HEADERS = [
-    "accept",
-    "accept-encoding",
-    "authorization",
-    "content-type",
-    "dnt",
-    "origin",
-    "user-agent",
-    "x-csrftoken",
-    "x-requested-with",
+    "*"
 ]
+
+# Weitere hilfreiche Einstellungen
+CORS_EXPOSE_HEADERS = ["*"]
+CORS_PREFLIGHT_MAX_AGE = 86400  # 24 Stunden
 
 # If you're using sessions/cookies
 SESSION_COOKIE_SAMESITE = 'None'
