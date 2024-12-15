@@ -140,15 +140,38 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 ALLOWED_HOSTS = ['*']
-#CORS_ALLOWED_ORIGINS = [
-#    "http://localhost:5173",
-#    "http://localhost:4173",
-#    "https://railwail.com",
-#    "https://railwail-backend.vercel.app"  # Url where backend is deployed 
-#]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:4173",
+    "https://railwail.com",
+    "https://railwail-backend.vercel.app"  # Url where backend is deployed 
+]
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+CORS_ALLOW_HEADERS = [
+    "accept",
+    "accept-encoding",
+    "authorization",
+    "content-type",
+    "dnt",
+    "origin",
+    "user-agent",
+    "x-csrftoken",
+    "x-requested-with",
+]
 
 
 STATIC_URL = "static/"
