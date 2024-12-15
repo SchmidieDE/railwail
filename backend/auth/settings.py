@@ -140,7 +140,8 @@ USE_TZ = True
 AUTH_USER_MODEL = 'users.CustomUser'
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = ['*']
 #CORS_ALLOWED_ORIGINS = [
 #    "http://localhost:5173",
 #    "http://localhost:4173",
@@ -148,40 +149,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 #    "https://railwail-backend.vercel.app"  # Url where backend is deployed 
 #]
 
-# Erlaubt Credentials
-CORS_ALLOW_CREDENTIALS = True
 
-# Erlaubt alle Methoden
-CORS_ALLOW_METHODS = [
-    "DELETE",
-    "GET",
-    "OPTIONS",
-    "PATCH",
-    "POST",
-    "PUT",
-]
 
-# Erlaubt alle Headers
-CORS_ALLOW_HEADERS = [
-    "*"
-]
 
-# Weitere hilfreiche Einstellungen
-CORS_EXPOSE_HEADERS = ["*"]
-CORS_PREFLIGHT_MAX_AGE = 86400  # 24 Stunden
-
-# If you're using sessions/cookies
-SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = "static/"
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
