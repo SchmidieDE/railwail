@@ -26,7 +26,7 @@ const api = {
       options.body = JSON.stringify(data)
     }
 
-    return fetch(`${baseUrl}${url}`, options)
+    return fetch(`/api${url}`, options)
   },
 
   get: (url: string) => {
