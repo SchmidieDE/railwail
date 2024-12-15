@@ -150,6 +150,7 @@ ALLOWED_HOSTS = ['*']
 #]
 
 
+STATIC_URL = "static/"
 
 
 
