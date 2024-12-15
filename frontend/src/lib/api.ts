@@ -17,16 +17,15 @@ const api = {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'mode': 'cors',
-        'credentials': 'include'
-      }
+      },
+      mode: 'cors',
+      credentials: 'include'
     }
 
     if (data) {
       options.body = JSON.stringify(data)
     }
 
-    
     return fetch(`${baseUrl}${url}`, options)
   },
 
