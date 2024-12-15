@@ -19,10 +19,11 @@ class LoginViewset(viewsets.ViewSet):
   serializer_class = LoginSerializer
 
   def create(self, request):
+    
     serializer = self.serializer_class(data=request.data) #pointing to LoginSerializer 
     
     if serializer.is_valid():  
-      email=serializer.validated_data['email']
+      email=serializer.validated_data['email'].lower()
       password=serializer.validated_data['password']
       user = authenticate(request, email=email, password=password)
       if user:
@@ -48,7 +49,11 @@ class RegisterViewsets(viewsets.ViewSet):
   
   
   def create(self, request):
-    serializer = self.serializer_class(data=request.data) 
+    data = request.data.copy()
+    if 'email' in data:
+        data['email'] = data['email'].lower()
+    
+    serializer = self.serializer_class(data=data)
 
     if serializer.is_valid(): # Only use if no input error from frontend 
       serializer.save()

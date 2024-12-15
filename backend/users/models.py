@@ -59,9 +59,9 @@ class CustomUser(AbstractUser):
 def password_reset_token_created(reset_password_token, *args, **kwargs):
   base_url = os.getenv("BASE_URL")
   
-  paramter_token = f"?token={reset_password_token.key}"
+  #paramter_token = f"?token={reset_password_token.key}"
   
-  full_url = f"{base_url}password-reset/{paramter_token}"
+  full_url = f"{base_url}passwort-reset/{reset_password_token.key}"
   
   print(full_url)
   

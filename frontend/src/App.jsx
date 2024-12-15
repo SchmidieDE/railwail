@@ -14,6 +14,7 @@ import ImageModelsOverview from "./pages/ImageModels/index.tsx"
 import ImageModel from "./pages/ImageModels/ImageModel/index.tsx"
 import Pricing from "./pages/Pricing"
 import PasswortReset from "./pages/PasswortReset"
+import PasswortResetToken from "./pages/PasswordResetToken"
 ReactGA.initialize("G-QS3J0FX7ZC"); 
 
 
@@ -38,10 +39,6 @@ const routes = createBrowserRouter([
     ]
   },
   {
-    path: "/test",
-    element: <div>test</div>
-  },
-  {
     path: "/",
     element: <UnProtectedLayout />,
     children: [
@@ -56,6 +53,10 @@ const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/passwort-reset/:token", //dynamic route 
+        element: <PasswortResetToken />
       },
       {
         path: "/passwort-reset",

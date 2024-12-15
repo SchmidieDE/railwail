@@ -44,7 +44,11 @@ const api = {
     const response = await fetch(`/api${url}`, options)
     if (response.status === 401) {
       localStorage.removeItem('token')
-      window.location.href = '/login' // user will be redirected of token is tampered instantly not after next request 
+      if (url !== '/login/') {
+        //console.log('redirecting to login', url)
+        // only if user is not already on login page 
+        window.location.href = '/login' // user will be redirected of token is tampered instantly not after next request 
+      }
       return new Response('Unauthorized', { status: 401 })
     }
     return response
