@@ -144,6 +144,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:4173",
     "https://railwail.com",
+    "https://railwail-backend.vercel.app"  # Url where backend is deployed 
 ]
 CORS_ALLOW_CREDENTIALS = True
 
