@@ -16,7 +16,9 @@ const api = {
       method,
       headers: {
         'Content-Type': 'application/json',
-        accept: 'application/json'
+        'Accept': 'application/json',
+        'mode': 'cors',
+        'credentials': 'include'
       }
     }
 
