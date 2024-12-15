@@ -145,6 +145,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4173",
     "https://railwail.com",
 ]
+CORS_ALLOW_CREDENTIALS = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/

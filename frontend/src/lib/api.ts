@@ -1,21 +1,48 @@
+/// <reference types="vite/client" />
 
+interface ImportMetaEnv {
+  readonly VITE_BASE_URL: string
+}
 
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}
 
-const baseUrl = process.env.VITE_BASE_URL
+const baseUrl = import.meta.env.VITE_BASE_URL
 
-const api = async (method: string, url: string, data: any) => {
-  
-  
-
-  
-  return fetch(url, {
-      method: method,
+const api = {
+  request: async (method: string, url: string, data?: any) => {
+    const options: RequestInit = {
+      method,
       headers: {
         'Content-Type': 'application/json',
-        accept: "application/json"
-      },
-      body: JSON.stringify(data)
-  })
+        accept: 'application/json'
+      }
+    }
+
+    if (data) {
+      options.body = JSON.stringify(data)
+    }
+
+    
+    return fetch(`${baseUrl}${url}`, options)
+  },
+
+  get: (url: string) => {
+    return api.request('GET', url)
+  },
+
+  post: (url: string, data: any) => {
+    return api.request('POST', url, data)
+  },
+
+  put: (url: string, data: any) => {
+    return api.request('PUT', url, data)
+  },
+
+  delete: (url: string) => {
+    return api.request('DELETE', url)
+  }
 }
 
 export default api

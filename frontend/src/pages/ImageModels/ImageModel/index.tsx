@@ -9,7 +9,8 @@ const ImageModel = () => {
 
 
   const handleGenerateImage = async () => {
-    const response = await api("POST", "/image-models/generate", {
+    console.log(modelName, "MODEL NAME ")
+    const response = await api.post("/image-models/generate", {
       //model: modelName
     })
 

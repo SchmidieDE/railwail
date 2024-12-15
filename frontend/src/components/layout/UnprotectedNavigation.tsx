@@ -21,7 +21,7 @@ const UnProtectedNavigation = () => {
             alt="logo" 
             className="w-28 md:w-32 h-auto" 
           />
-          <button 
+          <Button 
             className="md:hidden text-white p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -34,7 +34,7 @@ const UnProtectedNavigation = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
-          </button>
+          </Button>
         </div>
         
         <div className={`${

@@ -6,6 +6,8 @@
     }
   ],
   "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
@@ -14,4 +16,4 @@
       "@/*": ["./src/*"]
     }
   }
-} 
+}

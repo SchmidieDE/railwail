@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Download, ImageIcon, Loader2, Maximize, Minimize, WandSparkles, ArrowDownToLine } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast, useToast } from "@/hooks/use-toast";
+import api from "@/lib/api";
 
 
 
@@ -132,6 +133,12 @@ const ImageModel = () => {
 
   const handleGenerate = async() => {
 
+
+    api.post("/image-models/generate", {
+      prompt: promptSettings.prompt,
+      format: promptSettings.format,
+      aspectRatio: promptSettings.aspectRatio
+    })
 
     // Could be improved by checking aspect ratio and format 
     if (promptSettings.prompt === "" || promptSettings.format === "" || promptSettings.aspectRatio === "") {

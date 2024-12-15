@@ -8,5 +8,6 @@ from .views import *
 router = DefaultRouter()
 router.register(r'register', RegisterViewsets, basename='register') 
 
+
 urlpatterns = router.urls 
 
