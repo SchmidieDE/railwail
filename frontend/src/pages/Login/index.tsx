@@ -117,13 +117,14 @@ const Login = () => {
                 )}
               />
               <div className="flex items-center justify-between">
-                <Button 
-                  variant="link" 
-                  className="text-sm text-purple-400 hover:text-purple-300 p-0"
-                  onClick={() => {/* Hier Logik für Passwort vergessen */}}
-                >
-                  Forgot password?
-                </Button>
+                <div className="text-center">
+                  <Link 
+                    to="/passwort-reset" 
+                    className="text-sm text-purple-400 hover:text-purple-300"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
               </div>
               <Button 
                 type="submit"

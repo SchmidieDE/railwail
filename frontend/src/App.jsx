@@ -13,7 +13,7 @@ import ReactGA from "react-ga4";
 import ImageModelsOverview from "./pages/ImageModels/index.tsx"
 import ImageModel from "./pages/ImageModels/ImageModel/index.tsx"
 import Pricing from "./pages/Pricing"
-
+import PasswortReset from "./pages/PasswortReset"
 ReactGA.initialize("G-QS3J0FX7ZC"); 
 
 
@@ -56,6 +56,10 @@ const routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />
+      },
+      {
+        path: "/passwort-reset",
+        element: <PasswortReset />
       },
       {
         path: "/logout",

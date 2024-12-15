@@ -2,7 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 # To remove username 
 from django.contrib.auth.base_user import BaseUserManager
-
+# Password reset  
+from django_rest_passwordreset.signals import reset_password_token_created 
+from django.dispatch import receiver
+from django.template.loader import render_to_string 
+import os 
+import resend 
 
 
 class CustomUserManager(BaseUserManager):
@@ -46,3 +51,44 @@ class CustomUser(AbstractUser):
   
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = []
+
+
+
+# Trigger, checks if new entry into DB, if yes check and then send email to user relation
+@receiver(reset_password_token_created)
+def password_reset_token_created(reset_password_token, *args, **kwargs):
+  base_url = os.getenv("BASE_URL")
+  
+  paramter_token = f"?token={reset_password_token.key}"
+  
+  full_url = f"{base_url}password-reset/{paramter_token}"
+  
+  print(full_url)
+  
+  context = {
+    'full_url': full_url, 
+    'email_address': reset_password_token.user.email,
+  }
+  
+  #Load file from template check if specified correclty in settings.py 
+  html_message = render_to_string('email.html', context)
+  
+  
+  
+  resend.api_key = os.environ["RESEND_API_KEY"]
+
+  params: resend.Emails.SendParams = {
+      "from": "Railwail <noreply@railwail.com>",
+      "to": [reset_password_token.user.email],
+      "subject": "Password Reset Request - Railwail.com",
+      "html": html_message, 
+  }
+
+  email = resend.Emails.send(params)
+  print(email)
+
+
+  
+
+
+
