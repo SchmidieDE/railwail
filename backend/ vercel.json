@@ -1,8 +1,14 @@
 {
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/backend/auth/wsgi.py"
-        }
-    ]
+  "builds": [
+    {
+      "src": "backend/auth/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "backend/auth/wsgi.py"
+    }
+  ]
 }
