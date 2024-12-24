@@ -61,16 +61,3 @@ class RegisterViewsets(viewsets.ViewSet):
     else: #other theis 
       return Response(serializer.errors, status=400) # 400 Clienterror, 401 Unauthorized, 403 Forbidden, 404 Not Found, 500 Internal Server ...
 
-
-class UserViewset(viewsets.ViewSet):
-  permission_classes = [permissions.AllowAny]
-  queryset = User.objects.all()
-  serializer_class = RegisterSerializer
-
-  def list(self, request):
-    queryset = User.objects.all()
-    serializer = self.serializer_class(queryset, many=True)
-    return Response(serializer.data)
-    
-    
-    

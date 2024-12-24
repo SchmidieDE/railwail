@@ -32,11 +32,12 @@ const ProtectedNavigation = () => {
   <header className="w-full h-auto md:h-[80px] bg-black border-b border-white shadow-primary/50 shadow-lg">
     <nav className="flex flex-col md:flex-row justify-between items-center text-secondary max-w-6xl w-full mx-auto h-full px-6 py-4 md:py-0">
       <div className="flex w-full md:w-auto justify-between items-center">
-        <Link to="/dashboard">
+        <Link to="/dashboard" className="select-none draggable-none">
           <img 
             src={"./logo/Logowhite.svg"} 
             alt="logo" 
-            className="w-28 md:w-32 h-auto cursor-pointer hover:opacity-80 transition-opacity" 
+            draggable={false}
+            className="w-28 md:w-32 h-auto cursor-pointer hover:opacity-80 transition-opacity select-none draggable-none" 
           />
         </Link>
         <Button 
@@ -61,7 +62,7 @@ const ProtectedNavigation = () => {
             <Link 
               key={path}
               to={path} 
-              className={`text-lg md:text-xl hover:text-primary hover:drop-shadow-[0_0_1rem_#5AC0FE] transition-all duration-300 w-full md:w-auto text-center py-2 md:py-0 bg-transparent ${
+              className={`text-lg md:text-xl select-none hover:text-primary hover:drop-shadow-[0_0_1rem_#5AC0FE] transition-all duration-300 w-full md:w-auto text-center py-2 md:py-0 bg-transparent ${
                 location.pathname === link ? 'text-purple-500' : 'text-gray-200'
               }`}
               onClick={() => setIsMenuOpen(false)}

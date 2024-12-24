@@ -15,11 +15,12 @@ const UnProtectedNavigation = () => {
     <header className="w-full h-auto md:h-[80px] bg-black border-b border-white shadow-primary/50 shadow-lg">
       <nav className="flex flex-col md:flex-row justify-between items-center text-secondary max-w-6xl w-full mx-auto h-full px-6 py-4 md:py-0">
         <div className="flex w-full md:w-auto justify-between items-center">
-          <Link to="/">
+          <Link to="/" className="select-none draggable-none">
             <img 
               src={"./logo/Logowhite.svg"} 
               alt="logo" 
-              className="w-28 md:w-32 h-auto cursor-pointer hover:opacity-80 transition-opacity" 
+              draggable={false}
+              className="w-28 md:w-32 h-auto cursor-pointer hover:opacity-80 transition-opacity select-none draggable-none" 
             />
           </Link>
           <Button 
@@ -45,7 +46,7 @@ const UnProtectedNavigation = () => {
             <Link 
               key={path}
               to={path} 
-              className="text-gray-200 text-lg md:text-xl hover:text-primary hover:drop-shadow-[0_0_1rem_#5AC0FE] transition-all duration-300  w-full md:w-auto text-center py-2 md:py-0 bg-transparent"
+              className="text-gray-200 select-none  text-lg md:text-xl hover:text-primary hover:drop-shadow-[0_0_1rem_#5AC0FE] transition-all duration-300  w-full md:w-auto text-center py-2 md:py-0 bg-transparent"
               onClick={() => setIsMenuOpen(false)}
             >
               {text}

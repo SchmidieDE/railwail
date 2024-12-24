@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string 
 import os 
 import resend 
+from ai.models import Image, Video, Audio
 
 
 class CustomUserManager(BaseUserManager):
@@ -45,12 +46,21 @@ class CustomUser(AbstractUser):
   # Can be defined later 
   username = models.CharField(max_length=255, null=True, blank=True)
   
+  # Add relationships
+  # One user can have multiple images, videos, audios
+
+  
   
   objects = CustomUserManager()
+  
+
 
   
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = []
+
+  def __str__(self):
+    return self.email
 
 
 

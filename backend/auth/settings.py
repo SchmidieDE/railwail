@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # Custom Apps - For overwirte of admin
     "users",
+    "ai",
     # DJANGO APP
     "django.contrib.admin",
     "django.contrib.auth",
@@ -50,7 +51,8 @@ INSTALLED_APPS = [
     "django_rest_passwordreset",
     "corsheaders",
     "knox",
-    "resend"
+    "resend",
+    "supabase"
     
 ]
 

@@ -14,8 +14,12 @@ urlpatterns = [
     path("auth/", include("knox.urls")), # Know is storing session, auth tokens in DB => knox_authtoken table (login, logout, logoutall, etc.)
     
     
-    path("", include("users.urls")),
+    path("ai/", include("ai.urls")), # Everything related to models, storage, etc. 
     
     
-    path("image-models/generate", lambda request: print("Image-models wurde aufgerufen!") or include("image_models.urls")(request)),
+    
+    path("", include("users.urls")),# Login, Register. etc.
+    
+    
+    
 ]

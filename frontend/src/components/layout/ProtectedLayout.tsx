@@ -2,6 +2,9 @@ import Footer from "./Footer"
 import ProtectedNavigation from "./ProtectedNavigation"
 import { Navigate, Outlet } from "react-router-dom"
 
+import { Toaster } from "@/components/ui/toaster";
+
+
 const ProtectedLayout = () => {
 
 
@@ -17,7 +20,8 @@ const ProtectedLayout = () => {
   return (
   <>
     <ProtectedNavigation />
-    <main className="min-h-screen">
+    <Toaster />
+    <main className="min-h-screen my-6">
       <Outlet />
     </main>
   </>

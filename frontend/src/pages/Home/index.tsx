@@ -1,4 +1,3 @@
-import SelectModel from "./comp/SelectModel";
 
 
 
@@ -19,7 +18,7 @@ const Home = () => {
           
         </h2>
       </div>
-      <SelectModel />
+      
       <div className="mt-16 text-center p-8 pb-12 bg-gradient-to-b from-purple-500/10 to-transparent rounded-xl">
         <div className="relative pb-4">  
           <h2 
