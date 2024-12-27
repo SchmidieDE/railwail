@@ -15,6 +15,7 @@ import {
     BadgeCheck,
     Component
 } from "lucide-react"; // Importiere Icons
+import { Link } from "react-router-dom";
 
 
 const Pricing = () => {
@@ -66,12 +67,13 @@ const Pricing = () => {
                                 </div>
                             </div>
                         </div>
+                        <Link to={STRIPE_BASIC_URL}>
                         <Button 
                             className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
-                            onClick={() => window.location.href = STRIPE_BASIC_URL}
                         >
                             Get Started
                         </Button>
+                        </Link>
                     </CardContent>
                 </Card>
                 <Card className="w-full md:w-[300px] flex flex-col rounded-xl transform transition-all duration-300 hover:scale-105 mb-5">
@@ -119,12 +121,14 @@ const Pricing = () => {
                                 </div>
                             </div>
                         </div>
+                        <Link to={STRIPE_PRO_URL}>
                         <Button 
-                             className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
-                            onClick={() => window.location.href = STRIPE_PRO_URL}
+                            className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
+                            
                         >
                             Upgrade to Pro
                         </Button>
+                        </Link>
                     </CardContent>
                 </Card>
 
@@ -174,12 +178,13 @@ const Pricing = () => {
                                 <h3 className="font-semiboid">No Limitations</h3>
                             </div>
                         </div>
-                        <Button 
-                             className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
-                            onClick={() => window.location.href = STRIPE_PRO_URL}
-                        >
-                            Contact Sales
-                        </Button>
+                        <Link to={STRIPE_PRO_URL as string}>
+                            <Button 
+                                className="w-full mt-4 bg-primary hover:bg-primary/90 rounded-xl"
+                            >
+                                Contact Sales
+                            </Button>
+                        </Link>
                     </CardContent>
                 </Card>
             </div>
