@@ -5,6 +5,23 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
+class UserSerializer(serializers.ModelSerializer):
+  class Meta:
+      model = User
+      fields = ('id', 'email', 'tokens', 'tokensused', 'username','first_name', 'last_name')  # Add any other fields you want to expose
+  
+  def put(self, instance, validated_data):
+    non_updatable_fields = ('tokens', 'tokensused')
+    # Remove non-updatable fields from validated_data
+    for field in non_updatable_fields:
+      validated_data.pop(field, None)
+    # Update user instance with validated data
+    for attr, value in validated_data.items():
+      setattr(instance, attr, value)
+    instance.save()
+    return instance
+
 class LoginSerializer(serializers.Serializer):
   email = serializers.EmailField()
   password = serializers.CharField()

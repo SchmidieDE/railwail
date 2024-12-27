@@ -10,6 +10,7 @@ import os
 import resend 
 from ai.models import Image, Video, Audio
 
+  
 
 class CustomUserManager(BaseUserManager):
   def create_user(self, email, password=None, **extra_fields):
@@ -32,6 +33,7 @@ class CustomUserManager(BaseUserManager):
   def create_staffuser():
     pass 
   
+
     
 
 

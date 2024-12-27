@@ -21,4 +21,32 @@ export type Model = {
 }
 
 
+export type BaseAIContent = {
+  id: string;  
+  prompt: string;
+  format: string;
+  url: string;
+  saved: boolean;
+  name: string;
+  modelId: string; 
+  userId: number;
+}
+
+
+// Will add additional fields later on
+export type AIAudio = BaseAIContent;
+
+export type AIImage = BaseAIContent & {
+  aspectRatio: string;
+}
+
+// Will add additional fields later on
+export type AIVideo = BaseAIContent;
+
+
+
+
+
+
+
 

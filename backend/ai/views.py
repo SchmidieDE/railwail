@@ -9,7 +9,7 @@ import os
 import requests
 from supabase import create_client, Client
 import uuid
-
+from .serializers import ImageSerializer, VideoSerializer, AudioSerializer
 supabase_url = os.getenv("SUPABASE_URL")
 supabase_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 supabase = create_client(supabase_url, supabase_key)
@@ -27,6 +27,21 @@ def ReplicateErrorHandler(e):
       return Response({'message': 'Model not found', 'status': 'error'}, status=400)
 
 
+class GeneratedFileViewSet(viewsets.ViewSet):
+  permission_classes = [permissions.IsAuthenticated]
+  
+  def list(self, request):
+    user_id = request.user.id
+    images = Image.objects.filter(user_id=user_id)
+    videos = Video.objects.filter(user_id=user_id)
+    audios = Audio.objects.filter(user_id=user_id)
+
+    images_data = ImageSerializer(images, many=True).data
+    videos_data = VideoSerializer(videos, many=True).data
+    audios_data = AudioSerializer(audios, many=True).data
+    
+    # Return all generated files for the user
+    return Response({'images': images_data, 'videos': videos_data, 'audios': audios_data}, status=200)
 
 class GenerateImageViewSet(viewsets.ViewSet):
     
@@ -164,9 +179,7 @@ class GenerateVideoViewSet(viewsets.ViewSet):
           )
           
           video = requests.get(output)
-          print(output, "The format")
           format = str(output).split('.')[-1]
-          print(format, "The format")
           
           # We save the vidoe seperatly in an S3 bucket 
           # We want to scale the project later on, thats why it 
@@ -190,7 +203,7 @@ class GenerateVideoViewSet(viewsets.ViewSet):
           # Update the user's tokens and tokens used if successful
           CustomUser.objects.update(tokens=user_tokens - cost, tokensused=user_tokens_used + cost)
           
-          return Response({'message': 'Image generated successfully', 'status': 'success', 'vidoe_url': f"{video_url}.{format}", 'user_id': user_id}, status=200)
+          return Response({'message': 'Image generated successfully', 'status': 'success', 'video_url': f"{video_url}.{format}", 'user_id': user_id}, status=200)
           
           
         
@@ -243,48 +256,60 @@ class GenerateAudioViewSet(viewsets.ViewSet):
         
         
         try:
+          
+          
           output = replicate.run(
             get_AI_Model.slug,
             input={
-                "prompt": prompt,
+                "beta": 0.7,
+                "seed": 0,
+                "text": prompt,
+                "alpha": 0.3,
+                "diffusion_steps": 10,
+                "embedding_scale": 1.5
             }
           )
           
-          image = requests.get(output)
+        
+
+          print(output, "The output")
+          audio = requests.get(output)
+          format = str(output).split('.')[-1]
           
 
-          # We save the image seperatly in an S3 bucket 
+          # We save the audio seperatly in an S3 bucket 
           # We want to scale the project later on, thats why it 
           # doesnt make sense to save the image locally on the server 
-          image_url = uuid.uuid4()
+          audio_url = uuid.uuid4()
           
           supabase.storage.from_("railwail").upload(
-            file=image.content,
-            path=f"user_{user_id}/{image_url}.{format}",
-            file_options={"content-type": f"audio/{output.split('.')[1]}"}
+            file=audio.content,
+            path=f"user_{user_id}/{audio_url}.{format}",
+            file_options={"content-type": f"audio/{format}"}
           )
           # Save the image in the image folder which is linked to the user 
           Audio.objects.create(
             model=get_AI_Model,
             user=get_user,
             prompt=prompt,
-            aspect_ratio=aspectRatio,
             format=format,
-            url=f"{image_url}.{format}"
+            url=f"{audio_url}.{format}"
           )
           
           # Update the user's tokens and tokens used if successful
           CustomUser.objects.update(tokens=user_tokens - cost, tokensused=user_tokens_used + cost)
           
-          return Response({'message': 'Image generated successfully', 'status': 'success', 'image_url': f"{image_url}.{format}", 'user_id': user_id}, status=200)
+          return Response({'message': 'Audio generated successfully', 'status': 'success', 'audio_url': f"{audio_url}.{format}", 'user_id': user_id}, status=200)
           
           
         
         except Exception as e:
+          print(e, "The error")
           return ReplicateErrorHandler(e)
         
 
       except Exception as e:
+        print(e, "The error")
         # Model not found, or other error
         return Response({'message': 'Invalid request', 'status': 'error'}, status=400)
         

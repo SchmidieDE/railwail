@@ -6,11 +6,57 @@ from rest_framework.response import Response
 from rest_framework import status  
 from django.contrib.auth import get_user_model, authenticate
 from knox.models import AuthToken
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 
 
 # Get the user model that is cura ative   
 User = get_user_model() 
+
+
+
+@method_decorator(csrf_exempt, name='dispatch') 
+class UserViewset(viewsets.ModelViewSet):
+    
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    
+    http_method_names = ['get','put']
+
+    # GET user information
+    def list(self, request, *args, **kwargs):
+      serializer = self.serializer_class(request.user)
+      return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+    # PUT to update user information
+    def put(self, request, *args, **kwargs):
+      """Handle PATCH requests"""
+      
+      user_id = request.user.id
+      if not user_id:
+        return Response({"error": "User ID is required"}, status=status.HTTP_400_BAD_REQUEST)
+      
+      try:
+        user = CustomUser.objects.get(id=user_id)
+        serializer = self.get_serializer(user, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+      except CustomUser.DoesNotExist:
+        return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+      
+      
+      return Response({"message": "User updated successfully"}, status=status.HTTP_200_OK)
+      
+      
+      
+      
+      
+      
+      
+    
 
 
 

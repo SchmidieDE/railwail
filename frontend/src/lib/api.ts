@@ -68,6 +68,10 @@ const api = {
 
   delete: (url: string) => {
     return api.request('DELETE', url)
+  },
+
+  patch: (url: string, data: any) => {
+    return api.request('PATCH', url, data)
   }
 }
 

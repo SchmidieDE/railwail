@@ -102,37 +102,22 @@ def seed_models(sender, **kwargs):
         'description': 'Video-01 is a powerful video generation model that can create high-quality videos with a wide range of styles and subjects.'
       },
       {
-        'slug': 'minimax/video-01-live',
-        'name': 'Video-01-live',
-        'cost': 50,
-        'type': 'video',
-        'samples': ["video2.jpg"],
-        'description': 'Video-01-live is a powerful video generation model that can create high-quality videos with a wide range of styles and subjects.'
-      },
-      {
         'slug': 'luma/ray',
         'name': 'Luma Ray',
         'cost': 45,
         'type': 'video',
-        'samples': ["video3.jpg"],
+        'samples': ["video2.jpg"],
         'description': 'Luma Ray is a powerful video generation model that can create high-quality videos with a wide range of styles and subjects.'
       },
       {
-        'slug': 'minimax/music-01',
-        'name': 'Music-01',
-        'cost': 4,
+        'slug': 'adirik/styletts2:989cb5ea6d2401314eb30685740cb9f6fd1c9001b8940659b406f952837ab5ac',
+        'name': 'Bark',
+        'cost': 3,
         'type': 'audio',
         'samples': ["audio1.jpg"],
-        'description': 'Music-01 is a powerful audio generation model that can create high-quality audio with a wide range of styles and subjects.'
-      },
-      {
-        'slug': 'zsxkib/flux-music:eebfed4a1749bb1172f005f71fac5a1e0377502ec149c9d02b56ac1de3aa9f07',
-        'name': 'Flux-music',
-        'cost': 10,
-        'type': 'audio',
-        'samples': ["audio2.jpg"],
-        'description': 'Flux-music is a powerful audio generation model that can create high-quality audio with a wide range of styles and subjects.'
+        'description': 'Bark is a powerful text-to-speech model that can generate highly realistic voice outputs with various speaker profiles and emotions.'
       }
+      
     ]
         
     for model in models_to_create:
