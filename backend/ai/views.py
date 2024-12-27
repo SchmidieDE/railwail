@@ -254,19 +254,16 @@ class GenerateAudioViewSet(viewsets.ViewSet):
             return Response({'message': 'Insufficient credits', 'status': 'error'}, status=400)
         
         
-        
+        print(get_AI_Model.slug, "The model slug")
         try:
-          
           
           output = replicate.run(
             get_AI_Model.slug,
             input={
-                "beta": 0.7,
-                "seed": 0,
-                "text": prompt,
-                "alpha": 0.3,
-                "diffusion_steps": 10,
-                "embedding_scale": 1.5
+                "lyrics": prompt,
+                "bitrate": 256000,
+                "song_file": "https://replicate.delivery/pbxt/M9zum1Y6qujy02jeigHTJzn0lBTQOemB7OkH5XmmPSC5OUoO/MiniMax-Electronic.wav",
+                "sample_rate": 44100
             }
           )
           

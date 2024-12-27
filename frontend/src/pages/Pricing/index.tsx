@@ -19,8 +19,8 @@ import { Link } from "react-router-dom";
 
 
 const Pricing = () => {
-    const STRIPE_BASIC_URL = "https://buy.stripe.com/test_yourBasicPlanLink";
-    const STRIPE_PRO_URL = "https://buy.stripe.com/test_yourProPlanLink";
+    const STRIPE_BASIC_URL = import.meta.env.VITE_STRIPE_BASIC_URL;
+    const STRIPE_PRO_URL = import.meta.env.VITE_STRIPE_PRO_URL;
     return (
         <div className="p-4 md:p-8">
             <h1 className="text-3xl font-bold mb-8 text-center text-black">Choose Your Plan</h1>
