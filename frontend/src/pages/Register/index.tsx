@@ -47,7 +47,6 @@ const Register = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await api.post('/register/', values)
     // If error on Server Side
-    // DONT FORGET THE FUCKING trailing slash because of django 
     if (response.ok) {
       toast({
         title: "Account created",

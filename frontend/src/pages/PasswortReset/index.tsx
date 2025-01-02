@@ -38,7 +38,7 @@ const PasswortReset = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const response = await api.post('/password-reset/', values)
-    console.log(await response.json())
+    
     if (response.ok) {
       toast({
         title: "Success",

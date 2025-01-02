@@ -74,7 +74,7 @@ const ImageModel = ({model}: {model: Model}) => {
       });
       setGenerateLoading(false);
       setGeneratedImages([...generatedImages]);
-      console.log("ERROR");
+      
       return;
       
     }
@@ -230,9 +230,7 @@ const VideoModel = ({model}: {model: Model}) => {
   });
 
 
-  useEffect(() => {
-    console.log(generatedVideo, "GENERATED VIDEO");
-  }, [generatedVideo]);
+  
 
 
   const handleGenerate = async() => {
@@ -266,7 +264,7 @@ const VideoModel = ({model}: {model: Model}) => {
       });
       setGenerateLoading(false);
       setGeneratedVideo([...generatedVideo]);
-      console.log("ERROR");
+      
       return;
       
     }
@@ -274,7 +272,7 @@ const VideoModel = ({model}: {model: Model}) => {
     const data = await resp.json();
     const {user_id, video_url} = data;
 
-    console.log(data, "DATA");
+    
 
     // correct src url because we are fetching it from supabase bucket 
     const videoUrl = `${import.meta.env.VITE_SUPABASE_BASE_URL}/user_${user_id}/${video_url}`;

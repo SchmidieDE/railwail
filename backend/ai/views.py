@@ -47,15 +47,8 @@ class GenerateImageViewSet(viewsets.ViewSet):
     
     # Authentication needed
     permission_classes = [permissions.IsAuthenticated]
-    
-  
   
     def create(self, request): # Post request   
-      
-      
-      print(request, "The request")
-      
-      
       
       try:
         data = request.data
@@ -64,13 +57,10 @@ class GenerateImageViewSet(viewsets.ViewSet):
         format = data.get('format', 'jpg')
         aspectRatio = data.get('aspectRatio', '3:2')
         
-        
         # If not found error is thrown
         get_AI_Model = AiModel.objects.get(slug=model_slug)
         # make sure to get the cost from db not the user input 
         cost = get_AI_Model.cost
-
-      
 
         # check if user has enough credits
         user_id = request.user.id
@@ -80,9 +70,7 @@ class GenerateImageViewSet(viewsets.ViewSet):
         user_tokens_used = get_user.tokensused
         if user_tokens <= cost:
             return Response({'message': 'Insufficient credits', 'status': 'error'}, status=400)
-        
-        
-        
+              
         try:
           output = replicate.run(
             get_AI_Model.slug,
@@ -208,14 +196,14 @@ class GenerateVideoViewSet(viewsets.ViewSet):
           
         
         except Exception as e:
-          print(e, "The error")
+        
           return ReplicateErrorHandler(e)
         
         
 
       except Exception as e:
         # Model not found, or other error
-        print(e, "The error")
+        
         return Response({'message': 'Invalid request', 'status': 'error'}, status=400)
         
         
@@ -254,7 +242,7 @@ class GenerateAudioViewSet(viewsets.ViewSet):
             return Response({'message': 'Insufficient credits', 'status': 'error'}, status=400)
         
         
-        print(get_AI_Model.slug, "The model slug")
+        
         try:
           
           output = replicate.run(
@@ -269,7 +257,7 @@ class GenerateAudioViewSet(viewsets.ViewSet):
           
         
 
-          print(output, "The output")
+          
           audio = requests.get(output)
           format = str(output).split('.')[-1]
           
@@ -301,12 +289,12 @@ class GenerateAudioViewSet(viewsets.ViewSet):
           
         
         except Exception as e:
-          print(e, "The error")
+          
           return ReplicateErrorHandler(e)
         
 
       except Exception as e:
-        print(e, "The error")
+        
         # Model not found, or other error
         return Response({'message': 'Invalid request', 'status': 'error'}, status=400)
         

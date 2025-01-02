@@ -78,16 +78,8 @@ const Account = () => {
       // get the information from the images, videos,
       const respGenerated = await api.get('/ai/generated-files/');
       const generated = await respGenerated.json();
-
-      console.log(generated, "GET GENERATED", user, "GET USER");
-
       setUser({user, images: generated.images, videos: generated.videos, audios: generated.audios});
-
-
     })();
-    
-
-
   }, []);
 
 

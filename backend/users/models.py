@@ -19,6 +19,9 @@ class CustomUserManager(BaseUserManager):
     if not email:
       raise ValueError("Email is a required field")
     
+    if not password:
+      raise ValueError("Password is a required field")
+    
     email = self.normalize_email(email) # Lowercase, remove spaces, etc. 
     user = self.model(email=email, **extra_fields)
     user.set_password(password)
@@ -47,16 +50,7 @@ class CustomUser(AbstractUser):
   tokensused = models.IntegerField(default=0)
   # Can be defined later 
   username = models.CharField(max_length=255, null=True, blank=True)
-  
-  # Add relationships
-  # One user can have multiple images, videos, audios
-
-  
-  
   objects = CustomUserManager()
-  
-
-
   
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = []
@@ -75,7 +69,7 @@ def password_reset_token_created(reset_password_token, *args, **kwargs):
   
   full_url = f"{base_url}passwort-reset/{reset_password_token.key}"
   
-  print(full_url)
+  
   
   context = {
     'full_url': full_url, 
@@ -97,7 +91,7 @@ def password_reset_token_created(reset_password_token, *args, **kwargs):
   }
 
   email = resend.Emails.send(params)
-  print(email)
+  
 
 
   

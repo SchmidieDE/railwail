@@ -17,7 +17,7 @@ User = get_user_model()
 
 
 @method_decorator(csrf_exempt, name='dispatch') 
-class UserViewset(viewsets.ModelViewSet):
+class  UserViewset(viewsets.ModelViewSet):
     
     queryset = User.objects.all()
     serializer_class = UserSerializer

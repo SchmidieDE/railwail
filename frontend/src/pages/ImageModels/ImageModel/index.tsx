@@ -9,13 +9,13 @@ const ImageModel = () => {
 
 
   const handleGenerateImage = async () => {
-    console.log(modelName, "MODEL NAME ")
+    
     const response = await api.post("/image-models/generate", {
       //model: modelName
     })
 
     const convertedJson = await response.json()
-    console.log(await convertedJson)
+    
     setImageUrl(convertedJson.data.image_url)
     
   }

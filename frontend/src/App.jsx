@@ -20,10 +20,16 @@ import PasswortResetToken from "./pages/PasswordResetToken"
 ReactGA.initialize("G-QS3J0FX7ZC"); 
 
 
-const Logout = () => {
-  // clear cookie and get redirecte
-  localStorage.clear()
-  return <Navigate to="/login" />
+const Logout = async () => {
+  // clear localStorage, clear DB and get redirected to login page
+  const resp = await api.post('/logout/')
+  if (resp.ok) {
+    localStorage.clear()
+    return <Navigate to="/login" />
+  } else {
+    return <Navigate to="/dashboard" />
+  }
+  
 }
 
 
