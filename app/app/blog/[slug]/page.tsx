@@ -1,6 +1,6 @@
 "use server"
 
-
+import { H1, P } from "@/components/custom/text"
 const beispielBlog = {
   slug: "ki-modelle",
   title: "Was sind KI-Modelle und wie verändern sie unsere Welt?",
@@ -54,9 +54,9 @@ const BlogPostPage = ({ params }: { params: { blog: string } }) => {
 
   return <div>BlogPostPage Hier sehen sie einen einzelnen blog post: {params.blog}
     <div>
-      <h1>{beispielBlog.title}</h1>
-      <p>{beispielBlog.reaadTime} Minuten Lesezeit</p>
-      <p>{beispielBlog.author}</p>
+      <H1>{beispielBlog.title}</H1>
+      <P>{beispielBlog.reaadTime} Minuten Lesezeit</P>
+      <P>{beispielBlog.author}</P>
     </div>
     {
       beispielBlog.content.map((content) => {
