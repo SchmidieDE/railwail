@@ -1,1 +1,54 @@
 // schreib hier rein was ein blog artikel alles wichtig ist SEO ASPEKTE und wie du diese umgesetzt hast 
+
+SEO freundliche Artikel:
+
+1. Das richtige Keyword finden
+bevor du schreibst, überlege: Was suchen Leute auf Google?
+Nutze Keyword-Tools wie: 
+Google Keyword Planner(kostenlos)
+Ubersuggest (https://neilpatel.com/ubersuggest/)
+AnswerThePublic (https://answerthepublic.com/)
+
+Wichtig:
+Nutze dein Haupt-Keyword im Titel, in der Einleitung und 2–3x im Text.
+Vermeide Keyword-Stuffing (unnatürlich viele Keywords).
+
+
+2. starke Überschrift (Title-Tag)
+Google zeigt nur ~60 Zeichen an -> Halte den Titel kurz & spannend
+Tipp: Nutze eine Zahl oder Klammern -> wirkt klickstark!
+(z.B. "Die 7 besten Tipps für SEO [Anfänger-Guide]")
+
+
+3. Strukturierter & leicht lesbarer Text
+Absätze & zwischenüberschriften (H2, H3) nutzen!
+Bulletpoints & Listen einfügen -> Leser scannen den Text schneller.
+Fett und Kursiv nutzen -> wichtige Infos hervorheben.
+
+
+4. Interne & Externe Links einbauen
+Interne Links: Verlinke auf andere Artikel deiner Website
+Externe Links: Verweise auf seriöse Quellen(Wikipedia, Fachartikel)
+
+
+5. Bilder & Alt-Texte nutzen 
+Schlecht: alt="bild1.jpg"
+Gut: alt="Dudelsack-Spieler auf einer schottischen Wiese"
+
+
+6. Meta-Beschreibung optimieren(Meta Description)
+Max. 155 Zeichen
+Keyword enthalten 
+Zum Klichen animieren!
+
+
+7. Ladezeit & Mobile Optimierung 
+Schnelle Ladezeiten verbessern dein Google-Ranking.
+Nutze komprimierte Bilder (z.B. WebP statt JPG).
+Prüfe Mobile-Freundlichkeit mit: Google Mobile Test
+
+
+8. Artikel regelmäßig aktualiseren 
+Ergänze neue Infos & Trends regelmäßig 
+Setze "(2025)" im Titel -> signalisiert Aktualität
+
