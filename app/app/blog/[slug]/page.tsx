@@ -1,7 +1,7 @@
 "use server"
 
 import { H1, P } from "@/components/custom/text"
-const beispielBlog = {
+ const beispielBlog = {
   slug: "ki-modelle",
   title: "Was sind KI-Modelle und wie verändern sie unsere Welt?",
   reaadTime: 6,
@@ -15,6 +15,11 @@ const beispielBlog = {
     {
       type: "paragraph",
       content: "Ein KI-Modell ist ein mathematisches System, das darauf trainiert wird, Muster in großen Datenmengen zu erkennen und basierend darauf Vorhersagen oder Entscheidungen zu treffen. Dabei nutzen KI-Modelle Algorithmen aus dem Bereich des maschinellen Lernens, um sich eigenständig weiterzuentwickeln und ihre Genauigkeit stetig zu verbessern."
+    },
+    {   // Bild hinzufügen um bessere SEO zu haben
+      type: "photo",          
+      content: "https://example.com/ki-modelle.jpg",
+      alt: "KI-Modelle"                             
     },
     {
       type: "heading 2",
@@ -65,6 +70,8 @@ const BlogPostPage = ({ params }: { params: { blog: string } }) => {
             return <h2 key={content.type}>{content.content}</h2>
           case "paragraph":
             return <p key={content.type}>{content.content}</p>
+          case "photo":
+            return <img key={content.type} src={content.content} alt={content.alt} />   
           default:
             return null
         }
