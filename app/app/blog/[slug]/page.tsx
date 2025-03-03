@@ -38,9 +38,9 @@ const beispielBlog = {
   ],
 };
 
-// No need to define a custom type; Next.js provides this implicitly for App Router
+
 const BlogPostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params; // Params is already resolved by Next.js, no await needed
+  const { slug } = await params; // 
 
   return (
     <div>
