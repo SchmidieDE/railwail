@@ -1,20 +1,26 @@
-"use server"
+import { H1, P } from "@/components/custom/text";
 
+<<<<<<< HEAD
 import { H1, P } from "@/components/custom/text"
  const beispielBlog = {
+=======
+// Example blog data
+const beispielBlog = {
+>>>>>>> bd21938df1fc1c2d8bab57cbbcdab7ac36f6d108
   slug: "ki-modelle",
   title: "Was sind KI-Modelle und wie verändern sie unsere Welt?",
-  reaadTime: 6,
+  readTime: 6,
   author: "Max Mustermann",
   keywords: ["KI", "Modelle", "Welt", "Vorhersagen", "Entscheidungen"],
-  content:[
+  content: [
     {
       type: "heading 2",
-      content: "Was ist ein KI-Modell?"
+      content: "Was ist ein KI-Modell?",
     },
     {
       type: "paragraph",
-      content: "Ein KI-Modell ist ein mathematisches System, das darauf trainiert wird, Muster in großen Datenmengen zu erkennen und basierend darauf Vorhersagen oder Entscheidungen zu treffen. Dabei nutzen KI-Modelle Algorithmen aus dem Bereich des maschinellen Lernens, um sich eigenständig weiterzuentwickeln und ihre Genauigkeit stetig zu verbessern."
+      content:
+        "Ein KI-Modell ist ein mathematisches System, das darauf trainiert wird, Muster in großen Datenmengen zu erkennen und basierend darauf Vorhersagen oder Entscheidungen zu treffen. Dabei nutzen KI-Modelle Algorithmen aus dem Bereich des maschinellen Lernens, um sich eigenständig weiterzuentwickeln und ihre Genauigkeit stetig zu verbessern.",
     },
     {   // Bild hinzufügen um bessere SEO zu haben
       type: "photo",          
@@ -23,61 +29,52 @@ import { H1, P } from "@/components/custom/text"
     },
     {
       type: "heading 2",
-      content: "Anwendungsbereiche von KI-Modellen"
+      content: "Anwendungsbereiche von KI-Modellen",
     },
     {
       type: "paragraph",
-      content: "KI-Modelle werden heute in zahlreichen Bereichen eingesetzt. Von personalisierten Empfehlungen in Online-Shops über autonome Fahrzeuge bis hin zu medizinischen Diagnosesystemen – die Einsatzmöglichkeiten sind enorm vielfältig und nehmen kontinuierlich zu. Dabei verändern KI-Modelle zunehmend ganze Branchen und ermöglichen innovative Lösungen, die vorher nicht denkbar waren."
+      content:
+        "KI-Modelle werden heute in zahlreichen Bereichen eingesetzt. Von personalisierten Empfehlungen in Online-Shops über autonome Fahrzeuge bis hin zu medizinischen Diagnosesystemen – die Einsatzmöglichkeiten sind enorm vielfältig und nehmen kontinuierlich zu. Dabei verändern KI-Modelle zunehmend ganze Branchen und ermöglichen innovative Lösungen, die vorher nicht denkbar waren.",
     },
     {
       type: "heading 2",
-      content: "Zukunftsaussichten von KI-Modellen"
+      content: "Zukunftsaussichten von KI-Modellen",
     },
     {
       type: "paragraph",
-      content: "Die Zukunft von KI-Modellen ist vielversprechend und bietet großes Potenzial für weitere bahnbrechende Entwicklungen. Gleichzeitig ist es entscheidend, ethische und gesellschaftliche Fragen zu berücksichtigen. Transparenz, Datenschutz und Fairness werden dabei entscheidend sein, um das Vertrauen der Menschen in KI-Technologien langfristig zu sichern."
-    }
-  ]
+      content:
+        "Die Zukunft von KI-Modelle ist vielversprechend und bietet großes Potenzial für weitere bahnbrechende Entwicklungen. Gleichzeitig ist es entscheidend, ethische und gesellschaftliche Fragen zu berücksichtigen. Transparenz, Datenschutz und Fairness werden dabei entscheidend sein, um das Vertrauen der Menschen in KI-Technologien langfristig zu sichern.",
+    },
+  ],
 };
 
-const BlogPostPage = ({ params }: { params: { blog: string } }) => {
 
+const BlogPostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params; // 
 
-
-  /*
-  Frag ChatGPT wie man SEO freundliche Aritkel machen kann 
-  welche Meta Tags man setzen muss, strukturierte Daten (jsonp), wie man diese in nextjs umsetzen kann 
-  in Blog Artikel   
-  -> Meta SEO FREUNDLICH WAS MUSS HTML ALLES DRIN SIND 
-  -> Strukturierte Daten (jsonp) 
-
-  MIT OPENAI API FUNKTION SCHREIBEN WIE MAN AUTOAMTISIERT blog Posts bekommt, es sollen auch dabei Bilder generiert werden  
-
-  
-  */
-
-
-  return <div>BlogPostPage Hier sehen sie einen einzelnen blog post: {params.blog}
+  return (
     <div>
       <H1>{beispielBlog.title}</H1>
-      <P>{beispielBlog.reaadTime} Minuten Lesezeit</P>
+      <P>{beispielBlog.readTime} Minuten Lesezeit</P>
       <P>{beispielBlog.author}</P>
-    </div>
-    {
-      beispielBlog.content.map((content) => {
-        switch (content.type) {
+      {beispielBlog.content.map((item, index) => {
+        switch (item.type) {
           case "heading 2":
-            return <h2 key={content.type}>{content.content}</h2>
+            return <h2 key={index}>{item.content}</h2>;
           case "paragraph":
+<<<<<<< HEAD
             return <p key={content.type}>{content.content}</p>
           case "photo":
             return <img key={content.type} src={content.content} alt={content.alt} />   
+=======
+            return <p key={index}>{item.content}</p>;
+>>>>>>> bd21938df1fc1c2d8bab57cbbcdab7ac36f6d108
           default:
-            return null
+            return null;
         }
-      })
-    }
-  </div>;
+      })}
+    </div>
+  );
 };
 
 export default BlogPostPage;
