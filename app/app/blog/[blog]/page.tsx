@@ -48,7 +48,8 @@ const BlogPostPage = ({ params }: { params: { blog: string } }) => {
 
   MIT OPENAI API FUNKTION SCHREIBEN WIE MAN AUTOAMTISIERT blog Posts bekommt, es sollen auch dabei Bilder generiert werden  
 
-  
+  NEXTJS AI BLOG ARTICEL SEO GENERATION 
+  SEO GENERATION NEXTJS 
   */
 
 
