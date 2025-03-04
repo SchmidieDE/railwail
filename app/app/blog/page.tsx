@@ -1,7 +1,10 @@
 
+const Blog = () => {
 
-const BlogPage = () => {
-  return <div>BlogPage Hier sehen sie alle blog posts</div>;
-};
 
-export default BlogPage;
+  return <div>
+    Blog
+  </div>
+}
+
+export default Blog

@@ -1,69 +1,50 @@
-import { H1, P } from "@/components/custom/text";
+const BlogPost = {
+  title: "My Blog Post",
+  slug: "my-blog-post",
+  content: [{
+    type: "paragraph",
+    value: "This is the content of my blog post" 
+  }, {
+    type: "image",
+    value: "https://via.placeholder.com/150"
+  }, {
+    type: "h2",
+    value: "This is the content of my blog post"
+  }, {
+    type: "h2",
+    value: "This is the content of my blog post"
+  }, {
+    type: "paragraph",
+    value: "This is the content of my blog post"
+  }, {
+    type: "paragraph",
+    value: "This is the content of my blog post"
+  }
 
-// Example blog data
-const beispielBlog = {
-  slug: "ki-modelle",
-  title: "Was sind KI-Modelle und wie verändern sie unsere Welt?",
-  readTime: 6,
-  author: "Max Mustermann",
-  keywords: ["KI", "Modelle", "Welt", "Vorhersagen", "Entscheidungen"],
-  content: [
-    {
-      type: "heading 2",
-      content: "Was ist ein KI-Modell?",
-    },
-    {
-      type: "paragraph",
-      content:
-        "Ein KI-Modell ist ein mathematisches System, das darauf trainiert wird, Muster in großen Datenmengen zu erkennen und basierend darauf Vorhersagen oder Entscheidungen zu treffen. Dabei nutzen KI-Modelle Algorithmen aus dem Bereich des maschinellen Lernens, um sich eigenständig weiterzuentwickeln und ihre Genauigkeit stetig zu verbessern.",
-    },
-    {   // Bild hinzufügen um bessere SEO zu haben
-      type: "photo",          
-      content: "https://example.com/ki-modelle.jpg",
-      alt: "KI-Modelle"                             
-    },
-    {
-      type: "heading 2",
-      content: "Anwendungsbereiche von KI-Modellen",
-    },
-    {
-      type: "paragraph",
-      content:
-        "KI-Modelle werden heute in zahlreichen Bereichen eingesetzt. Von personalisierten Empfehlungen in Online-Shops über autonome Fahrzeuge bis hin zu medizinischen Diagnosesystemen – die Einsatzmöglichkeiten sind enorm vielfältig und nehmen kontinuierlich zu. Dabei verändern KI-Modelle zunehmend ganze Branchen und ermöglichen innovative Lösungen, die vorher nicht denkbar waren.",
-    },
-    {
-      type: "heading 2",
-      content: "Zukunftsaussichten von KI-Modellen",
-    },
-    {
-      type: "paragraph",
-      content:
-        "Die Zukunft von KI-Modelle ist vielversprechend und bietet großes Potenzial für weitere bahnbrechende Entwicklungen. Gleichzeitig ist es entscheidend, ethische und gesellschaftliche Fragen zu berücksichtigen. Transparenz, Datenschutz und Fairness werden dabei entscheidend sein, um das Vertrauen der Menschen in KI-Technologien langfristig zu sichern.",
-    },
   ],
-};
+  author: "John Doe",
+  date: "2021-01-01",
+  tags: ["blog", "post", "example"],
+  image: "https://via.placeholder.com/150",
+}
 
 
-const BlogPostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
-  const { slug } = await params; // 
-
-  return (
-    <div>
-      <H1>{beispielBlog.title}</H1>
-      <P>{beispielBlog.readTime} Minuten Lesezeit</P>
-      <P>{beispielBlog.author}</P>
-      {beispielBlog.content.map((item, index) => {
-        switch (item.type) {
-          case "heading 2":
-            return <h2 key={index}>{item.content}</h2>;
+const Page = async ({params}: {params: Promise<{slug: string}>}) => {
+  const resolvedParams = await params
+  
+  return <div>
+    {resolvedParams.slug}
+    {
+      BlogPost.content.map((content) => {
+        switch(content.type) {
           case "paragraph":
-            return <p key={index}>{item.content}</p>;
-          default:
-            return null;
-        }
-      })}
-    </div>
-  );
-};
+          return <p>{BlogPost.content[0].value}</p>
+        case "image":
+          return <img src={BlogPost.content[0].value} alt="Blog Post Image" />
+      }
+    })
+    }
+  </div>
+}
 
-export default BlogPostPage;
+export default Page 
