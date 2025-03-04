@@ -83,3 +83,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media (max-width: 768px) {
+  .blog-image-container {
+    width: 100%;  /* Bild passt sich an */
+  }
+}
