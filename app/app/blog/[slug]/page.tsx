@@ -1,12 +1,7 @@
 import { H1, P } from "@/components/custom/text";
 
-<<<<<<< HEAD
-import { H1, P } from "@/components/custom/text"
- const beispielBlog = {
-=======
 // Example blog data
 const beispielBlog = {
->>>>>>> bd21938df1fc1c2d8bab57cbbcdab7ac36f6d108
   slug: "ki-modelle",
   title: "Was sind KI-Modelle und wie verändern sie unsere Welt?",
   readTime: 6,
@@ -62,13 +57,7 @@ const BlogPostPage = async ({ params }: { params: Promise<{ slug: string }> }) =
           case "heading 2":
             return <h2 key={index}>{item.content}</h2>;
           case "paragraph":
-<<<<<<< HEAD
-            return <p key={content.type}>{content.content}</p>
-          case "photo":
-            return <img key={content.type} src={content.content} alt={content.alt} />   
-=======
             return <p key={index}>{item.content}</p>;
->>>>>>> bd21938df1fc1c2d8bab57cbbcdab7ac36f6d108
           default:
             return null;
         }
