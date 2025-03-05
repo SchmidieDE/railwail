@@ -95,27 +95,27 @@ const Page = async ({params}: {params: Promise<{slug: string}>}) => {
   <meta property="og:image" content={BlogPost.image} />
   <meta property="og:site_name" content="Your Website" />
   <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content={BlogPost.title} />
-<meta name="twitter:description" content={BlogPost.content.find(c => c.type === "paragraph")?.value.slice(0, 160) || "Default description"} />
-<meta name="twitter:image" content={BlogPost.image} />
+  <meta name="twitter:title" content={BlogPost.title} />
+  <meta name="twitter:description" content={BlogPost.content.find(c => c.type === "paragraph")?.value.slice(0, 160) || "Default description"} />
+  <meta name="twitter:image" content={BlogPost.image} />
 
 
 
-<script type='application/ld+json'>
-{JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": BlogPost.title,
-  "author": {
-    "@type": "Person",
-    "name": BlogPost.author
-  },
-  "datePublished": BlogPost.date,
-  "image": BlogPost.image,
-  "description": "This is the description of the blog post",
-  "articleBody": BlogPost.content.map(content => content.value).join(" ")
-})}
-</script>
+  <script type='application/ld+json'>
+  {JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": BlogPost.title,
+    "author": {
+      "@type": "Person",
+      "name": BlogPost.author
+    },
+    "datePublished": BlogPost.date,
+    "image": BlogPost.image,
+    "description": "This is the description of the blog post",
+    "articleBody": BlogPost.content.map(content => content.value).join(" ")
+  })}
+  </script>
 </Head>
 
   

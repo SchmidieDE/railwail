@@ -18,6 +18,14 @@ const config = {
   		}
   	},
   	extend: {
+			fontSize: {
+				'sm': ['0.875rem', { lineHeight: '1.25rem' }],
+				'base': ['1rem', { lineHeight: '1.5rem' }],
+				'lg': ['1.4rem', { lineHeight: '1.75rem' }],
+				'xl': ['1.6rem', { lineHeight: '1.75rem' }],
+				'2xl': ['1.8rem', { lineHeight: '2rem' }],
+				// etc.
+			},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
@@ -25,7 +33,7 @@ const config = {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			primary: {
-  				DEFAULT: '#B247FE',
+  				DEFAULT: '#9159E1',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
   			secondary: {
