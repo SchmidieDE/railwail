@@ -1,0 +1,30 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model BlogArticle {
+  id           String   @id @default(uuid())
+  title        String
+  content      Json[]     // Array of content blocks with type, value, and optional fields
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  keywords     String[]
+  slug         String   @unique
+  image        String?
+  author       String
+  category     String
+  tags         String[]
+  description  String?
+  readingTime  String?
+  publishedAt  DateTime?
+}
+
+

@@ -40,7 +40,8 @@ const BlogPost = {
     value: "Another Important Aspect"
   },
   {
-    type: "main image",
+    type: "image",
+    alt: "Another Important Aspect",
     value: "https://vektropol.dk/wp-content/uploads/2023/01/Webp-webdesign.webp"
   },
   {
@@ -52,17 +53,22 @@ const BlogPost = {
     value: "Final thoughts and a summary of the key points of the blog post"
   },
   {
-    type: "small image",
+    type: "image",
+    alt: "Conclusion & next steps",
     value: "https://vektropol.dk/wp-content/uploads/2023/01/Webp-webdesign.webp"
   },
+  {
+    type: "list",
+    value: ["Item 1", "Item 2", "Item 3"]
+  }
 
   ],
   author: "John Doe",
-  date: "2021-01-01",
-  tags: ["blog", "post", "example"],
+  date: "12.03.2025",
+  keywords: ["blog", "post", "example"],
   readingTime: "5 min",
   image: "https://vektropol.dk/wp-content/uploads/2023/01/Webp-webdesign.webp",
-  
+  description: "This is the description of the blog post",
 }
 
 
@@ -82,8 +88,8 @@ const Page = async ({params}: {params: Promise<{slug: string}>}) => {
   
   <Head> 
   <title>{BlogPost.title}</title>
-  <meta name="description" content={BlogPost.content.find(c => c.type === "paragraph")?.value.slice(0, 160) || "Default description"} />
-  <meta name="keywords" content="blog, post, example" />
+  <meta name="description" content={BlogPost.description} />
+  <meta name="keywords" content={BlogPost.keywords.join(", ")} />
   <meta name="author" content={BlogPost.author} />
   <meta name="date" content={BlogPost.date} />
   <meta name="robots" content="index, follow" />
@@ -96,7 +102,7 @@ const Page = async ({params}: {params: Promise<{slug: string}>}) => {
   <meta property="og:site_name" content="Your Website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={BlogPost.title} />
-  <meta name="twitter:description" content={BlogPost.content.find(c => c.type === "paragraph")?.value.slice(0, 160) || "Default description"} />
+  <meta name="twitter:description" content={BlogPost.description} />
   <meta name="twitter:image" content={BlogPost.image} />
 
 
@@ -140,15 +146,9 @@ const Page = async ({params}: {params: Promise<{slug: string}>}) => {
         case "h3":
           return <h3 key={index} className="text-2xl md:text-3xl font-medium text-center mt-4 mb-2">{content.value}</h3>
 
-          case "header image":
+          case "image":
           return (
-          <div key={index} className='w-full flex justify-center'><Image src={content.value} alt={`${BlogPost.title} - ${content.type}`} width={1200} height={630} layout='responsive' priority={index === 0} loading='lazy' className='rounded-lg' />
-          </div>)
-          case "main image":
-          return(<div key={index} className='w-full flex justify-center'><Image key={index} src={content.value} alt={`${BlogPost.title} - ${content.type}`} width={800} height={450} layout='responsive' loading='lazy' className='rounded-lg'/>
-           </div>) //16:9 aspect ratio für bessere UX
-          case "small image": 
-          return (<div key={index} className='w-full max-w-xs mx-auto flex justify-center'><Image key={index} src={content.value} alt={`${BlogPost.title} - ${content.type}`} width={400} height={300} layout='responsive' loading='lazy' className='rounded-lg flex'/>
+          <div key={index} className='w-full flex justify-center'><Image src={content.value as string} alt={`${BlogPost.title} - ${content.type}`} width={1200} height={630} layout='responsive' priority={index === 0} loading='lazy' className='rounded-lg' />
           </div>)
           default:  
           return null;

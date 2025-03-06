@@ -5,8 +5,9 @@ import { BookOpen, CreditCard, Euro, Home, Mail, Menu, User, X } from "lucide-re
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { WandSparkles } from "lucide-react";
+import HeaderAuth from "./header-auth";
 
-const Header = () => {
+const Header = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
@@ -37,7 +38,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="w-full bg-secondary text-white shadow-md">
+    <header className="w-full bg-secondary text-white shadow-md sticky md:relative top-0 md:top-auto z-50">
       <div className="flex justify-between items-center p-4 max-w-7xl mx-auto">
         <Link href="/" className="text-2xl font-bold hover:underline underline-offset-4 decoration-primary">
           Railwail
@@ -67,6 +68,7 @@ const Header = () => {
               <span>{item.name}</span>
             </Link>
           ))}
+          {children}
         </nav>
       </div>
       {isOpen && (
@@ -82,6 +84,7 @@ const Header = () => {
               <span className="text-lg">{item.name}</span>
             </Link>
           ))}
+          {children}
         </nav>
       )}
     </header>

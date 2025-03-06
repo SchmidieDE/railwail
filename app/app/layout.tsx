@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import HeaderAuth from "@/components/layout/header-auth"
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -27,8 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={geistSans.className} suppressHydrationWarning>
       <body className="bg-background text-foreground">
-          <Header />
-          <main className="min-h-screen flex flex-col items-center">
+          <Header>
+            <HeaderAuth />
+          </Header>
+          <main className="min-h-screen flex flex-col items-center mt-8">
             {children}
           </main>
           <Footer />
